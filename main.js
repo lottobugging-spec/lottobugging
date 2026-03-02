@@ -20,6 +20,8 @@ const logContent = document.getElementById('logContent');
 const ballContainer = document.getElementById('ballContainer');
 const probValue = document.getElementById('probValue');
 
+let selectedQty = 1;
+
 // Filter IDs matching HTML
 const FILTER_IDS = [
     'sum', 'ac', 'oddeven', 'highlow', 'endsum', 'prime', 'mul3',
@@ -197,67 +199,6 @@ function addLog(msg, type = '') {
     logContent.scrollTop = logContent.scrollHeight;
 }
 
-async function runAnalysis() {
-    btnGenerate.disabled = true;
-    addLog("DEEP ANALYSIS INITIATED...", "warn");
-    
-    let attempts = 0;
-    let candidate = null;
-    const startTime = Date.now();
-
-    // Fake Real-time probability update
-    const probInterval = setInterval(() => {
-        const val = (Math.random() * 0.0005).toFixed(6);
-        probValue.textContent = `${val}%`;
-    }, 100);
-
-    // Ball Animation
-    const ballInterval = setInterval(() => {
-        document.querySelectorAll('.ball').forEach(el => {
-            el.textContent = Math.floor(Math.random() * 45) + 1;
-        });
-    }, 50);
-
-    // Actual Calculation
-    while (attempts < 20000) {
-        attempts++;
-        let nums = [];
-        while(nums.length < 6) {
-            let n = Math.floor(Math.random() * 45) + 1;
-            if(!nums.includes(n)) nums.push(n);
-        }
-        nums.sort((a,b) => a - b);
-
-        const result = LottoEngine.validate(nums);
-        if (result.pass) {
-            candidate = nums;
-            break;
-        } else if (attempts % 1000 === 0) {
-            addLog(`CHECKPOINT: ${attempts} ITERATIONS...`, "info");
-        }
-    }
-
-    clearInterval(probInterval);
-    clearInterval(ballInterval);
-
-    if (candidate) {
-        addLog(`OPTIMAL BUNDLE FOUND. Iterations: ${attempts}`, "success");
-        candidate.forEach((n, i) => {
-            const el = document.querySelector(`.ball[data-index="${i+1}"]`);
-            el.textContent = n;
-            el.style.borderColor = getBallColor(n);
-            el.style.color = getBallColor(n);
-            el.style.boxShadow = `0 0 15px ${getBallColor(n)}`;
-        });
-        probValue.textContent = (Math.random() * 0.0008).toFixed(6) + "%";
-    } else {
-        addLog("ANALYSIS FAILED TO CONVERGE. ADJUST FILTERS.", "error");
-        probValue.textContent = "0.000000%";
-    }
-
-    btnGenerate.disabled = false;
-}
-
 function getBallColor(n) {
     if (n <= 10) return "#fbc400";
     if (n <= 20) return "#69c8f2";
@@ -265,6 +206,95 @@ function getBallColor(n) {
     if (n <= 40) return "#aaaaaa";
     return "#b0d840";
 }
+
+async function runAnalysis() {
+    btnGenerate.disabled = true;
+    addLog(`INITIATING ANALYSIS FOR ${selectedQty} BUNDLES...`, "warn");
+    
+    ballContainer.innerHTML = ''; // Clear for new results
+    
+    const startTime = Date.now();
+    let candidates = [];
+
+    // Probability & Animation Mock
+    const probInterval = setInterval(() => {
+        probValue.textContent = (Math.random() * 0.0005).toFixed(6) + "%";
+    }, 100);
+
+    // Actual Calculation Loop for selectedQty
+    for (let q = 0; q < selectedQty; q++) {
+        let attempts = 0;
+        let found = null;
+        
+        while (attempts < 20000) {
+            attempts++;
+            let nums = [];
+            while(nums.length < 6) {
+                let n = Math.floor(Math.random() * 45) + 1;
+                if(!nums.includes(n)) nums.push(n);
+            }
+            nums.sort((a,b) => a - b);
+
+            const result = LottoEngine.validate(nums);
+            if (result.pass) {
+                found = nums;
+                break;
+            }
+        }
+
+        if (found) {
+            candidates.push(found);
+            addLog(`BUNDLE #${q+1} CONVERGED AT ${attempts} ITERATIONS.`, "success");
+        } else {
+            addLog(`BUNDLE #${q+1} FAILED TO CONVERGE.`, "error");
+        }
+    }
+
+    clearInterval(probInterval);
+
+    // Display Results
+    if (candidates.length > 0) {
+        displayResults(candidates);
+        probValue.textContent = (0.000412 / selectedQty).toFixed(8) + "%";
+    } else {
+        ballContainer.innerHTML = '<div class="log-line error">FAILED TO GENERATE RESULTS. ADJUST FILTERS.</div>';
+        probValue.textContent = "0.000000%";
+    }
+
+    btnGenerate.disabled = false;
+}
+
+function displayResults(bundles) {
+    ballContainer.innerHTML = '';
+    
+    bundles.forEach((nums, idx) => {
+        const row = document.createElement('div');
+        row.className = 'result-row';
+        
+        nums.forEach(n => {
+            const ball = document.createElement('div');
+            ball.className = bundles.length === 1 ? 'ball' : 'mini-ball';
+            ball.textContent = n;
+            const color = getBallColor(n);
+            ball.style.borderColor = color;
+            ball.style.color = color;
+            ball.style.boxShadow = `0 0 10px ${color}44`;
+            row.appendChild(ball);
+        });
+        
+        ballContainer.appendChild(row);
+    });
+}
+
+// Qty Button Handlers
+document.querySelectorAll('.qty-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.qty-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedQty = parseInt(btn.dataset.qty);
+        addLog(`QUANTITY_SET: ${selectedQty}`);
+    });
+});
 
 // Preset Handlers
 document.querySelectorAll('.preset-btn').forEach(btn => {
@@ -288,15 +318,11 @@ btnGacha.addEventListener('click', async () => {
     btnGacha.classList.add('active');
     addLog("GACHA_MODE: RANDOMIZING FILTERS...", "warn");
     
-    // Clear all
     Object.values(filterMap).forEach(cb => cb.checked = false);
-    
-    // Randomly select 5-8 filters
     let shuffled = FILTER_IDS.sort(() => 0.5 - Math.random());
     let count = 5 + Math.floor(Math.random() * 4);
     let selected = shuffled.slice(0, count);
     
-    // Animation effect
     for(let i = 0; i < 15; i++) {
         let randomId = FILTER_IDS[Math.floor(Math.random() * FILTER_IDS.length)];
         filterMap[randomId].parentElement.style.boxShadow = "0 0 10px #ff00ff";
@@ -304,14 +330,9 @@ btnGacha.addEventListener('click', async () => {
         filterMap[randomId].parentElement.style.boxShadow = "none";
     }
 
-    selected.forEach(id => {
-        filterMap[id].checked = true;
-    });
-
+    selected.forEach(id => { filterMap[id].checked = true; });
     addLog(`GACHA_COMPLETE: ${count} FILTERS ACTIVATED.`);
     btnGacha.classList.remove('active');
-    
-    // Auto-run analysis after gacha
     setTimeout(runAnalysis, 500);
 });
 
