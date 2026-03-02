@@ -95,39 +95,57 @@ h1 { font-family: 'Rajdhani', sans-serif; font-size: 1.5rem; letter-spacing: 2px
 
 .result-display {
     flex: 1;
-    padding: 20px;
+    padding: 20px 10px;
     overflow-y: auto;
+    overflow-x: hidden; /* 가로 스크롤 방지 */
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-height: 400px; /* 고정 높이로 내부 스크롤 유도 */
+    width: 100%;
+    min-height: 200px;
 }
 
 .ball-container { 
     display: flex; 
+    flex-direction: column; /* 세로로 쌓이게 변경 */
     gap: 15px; 
-    padding: 20px 0;
-}
-.ball {
-    width: 60px; height: 60px; border: 2px solid var(--accent-blue);
-    border-radius: 50%; display: flex; justify-content: center; align-items: center;
-    font-size: 1.5rem; font-weight: bold; font-family: 'Rajdhani', sans-serif;
-    color: var(--accent-blue); box-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
-    animation: ball-drop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    padding: 10px 0;
+    width: 100%;
+    align-items: center; /* 중앙 정렬 */
 }
 
-@keyframes ball-drop {
-    0% {
-        transform: translateY(-50px) scale(0.5);
-        opacity: 0;
-    }
-    60% {
-        transform: translateY(10px) scale(1.1);
-    }
-    100% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-    }
+/* 개별 번호 조합 행 */
+.result-row {
+    display: flex; 
+    gap: 8px; 
+    justify-content: center; /* 공들을 행 안에서 중앙 정렬 */
+    align-items: center;
+    padding: 15px; 
+    border-bottom: 1px solid rgba(88, 166, 255, 0.1);
+    width: 100%;
+    max-width: 500px; /* 너무 퍼지지 않게 제한 */
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.ball {
+    width: 54px; height: 54px; border: 2px solid var(--accent-blue);
+    border-radius: 50%; display: flex; justify-content: center; align-items: center;
+    font-size: 1.4rem; font-weight: bold; font-family: 'Rajdhani', sans-serif;
+    color: var(--accent-blue); box-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
+    flex-shrink: 0; /* 공 크기 유지 */
+}
+
+.mini-ball {
+    width: 42px; height: 42px; border: 1.5px solid var(--accent-blue);
+    border-radius: 50%; display: flex; justify-content: center; align-items: center;
+    font-size: 1.1rem; font-weight: bold; font-family: 'Rajdhani', sans-serif;
+    color: var(--accent-blue);
+    flex-shrink: 0;
 }
 
 .probability-box {

@@ -177,9 +177,13 @@ function generateRandomSet() {
 }
 
 async function displayResults(bundles) {
+    ui.ballContainer.innerHTML = '';
+    
     for (const nums of bundles) {
         const row = document.createElement('div');
         row.className = 'result-row';
+        ui.ballContainer.appendChild(row); // 행을 먼저 추가하여 세로 공간 확보
+        
         for (const n of nums) {
             const ball = document.createElement('div');
             ball.className = bundles.length === 1 ? 'ball' : 'mini-ball';
@@ -189,9 +193,10 @@ async function displayResults(bundles) {
             ball.style.color = color;
             ball.style.boxShadow = `0 0 15px ${color}66`;
             row.appendChild(ball);
-            await new Promise(r => setTimeout(r, 50));
+            
+            await new Promise(r => setTimeout(r, 50)); // 공 하나씩 연출
         }
-        ui.ballContainer.appendChild(row);
+        await new Promise(r => setTimeout(r, 100)); // 다음 줄 넘어가기 전 대기
     }
 }
 
