@@ -10,34 +10,34 @@
     --text-bright: #c9d1d9;
 }
 
-/* 1. 컨테이너 유연화 & 가로 터짐 방지 */
+/* 전역 레이아웃 및 가로 터짐 방지 */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { width: 100%; overflow-x: hidden; background-color: var(--bg-dark); color: var(--text-bright); font-family: 'Share Tech Mono', 'Malgun Gothic', sans-serif; line-height: 1.5; }
+html, body { width: 100%; overflow-x: hidden; background-color: var(--bg-dark); color: var(--text-bright); font-family: 'Malgun Gothic', sans-serif; }
 
-body { min-height: 100vh; display: flex; flex-direction: column; }
-
-/* 2. 헤더 & 타이틀 최적화 (반응형 clamp) */
-.main-header { background: #161b22; border-bottom: 1px solid var(--border-tech); padding: clamp(1rem, 3vw, 2rem) 1rem; text-align: center; }
-.logo { width: 90%; margin: 0 auto; }
+/* 반응형 헤더 */
+.main-header {
+    background: #161b22; border-bottom: 1px solid var(--border-tech);
+    padding: clamp(1rem, 4vw, 2rem) 1rem; text-align: center;
+}
 h1 { font-family: 'Rajdhani', sans-serif; font-size: clamp(1.5rem, 8vw, 2.5rem); letter-spacing: 2px; }
 .highlight { color: var(--accent-blue); }
 .tagline { font-size: clamp(0.65rem, 3.5vw, 0.85rem); color: var(--text-muted); margin-top: 5px; }
-.target-info { font-size: 0.75rem; color: var(--accent-blue); margin-top: 8px; font-family: 'Share Tech Mono'; }
 
-.system-status { margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 0.7rem; flex-wrap: wrap; }
-.status-info { color: var(--accent-neon); font-weight: bold; }
-
-/* 3. 메인 레이아웃 (고정 높이 제거) */
-.main-content { display: flex; flex-direction: column; width: 100%; max-width: 1200px; margin: 0 auto; flex: 1; }
+/* 메인 컨텐츠 플렉스 레이아웃 */
+.main-content { display: flex; flex-direction: column; width: 100%; max-width: 1200px; margin: 0 auto; }
 @media (min-width: 1024px) { .main-content { flex-direction: row; } }
 
 .canvas-area { flex: 1; padding: 1rem; }
 .monitor { background: var(--panel-bg); border: 1px solid var(--border-tech); border-radius: 12px; overflow: hidden; }
 
-/* 4. 유광 공 디자인 복구 (반응형) */
-.result-display { padding: 2rem 0.5rem; display: flex; flex-direction: column; align-items: center; min-height: 200px; }
+/* 반응형 공 디자인 (복구) */
+.result-display { padding: 2rem 0.5rem; display: flex; flex-direction: column; align-items: center; }
 .ball-container { display: flex; flex-direction: column; gap: 15px; width: 100%; align-items: center; }
-.result-row { display: flex; flex-direction: row; gap: clamp(4px, 2vw, 10px); justify-content: center; align-items: center; width: 100%; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.result-row { 
+    display: flex; flex-direction: row; gap: clamp(4px, 2vw, 10px); 
+    justify-content: center; align-items: center; width: 100%; 
+    padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+}
 
 .ball {
     width: clamp(35px, 11vw, 50px); height: clamp(35px, 11vw, 50px);
@@ -55,63 +55,74 @@ h1 { font-family: 'Rajdhani', sans-serif; font-size: clamp(1.5rem, 8vw, 2.5rem);
 .ball[data-color="gray"] { background-color: #aaaaaa; }
 .ball[data-color="green"] { background-color: #b0d840; }
 
-/* 5. 컨트롤 그룹 (그리드) */
-.main-controls { padding: 1.5rem; background: #161b22; border-top: 1px solid var(--border-tech); }
+/* 컨트롤 버튼 그리드 */
+.main-controls { padding: 1.5rem; border-top: 1px solid var(--border-tech); background: #161b22; }
 .combo-btns { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 1rem 0; }
 @media (min-width: 600px) { .combo-btns { grid-template-columns: repeat(4, 1fr); } }
 
 .qty-btn { padding: 12px; background: #21262d; border: 1px solid var(--border-tech); color: #fff; cursor: pointer; border-radius: 6px; font-family: 'Share Tech Mono'; transition: 0.2s; }
 .qty-btn.active { background: var(--accent-blue); color: #000; border-color: var(--accent-blue); box-shadow: 0 0 10px var(--accent-blue); }
 
-.cyber-btn { width: 100%; padding: 1.2rem; background: transparent; border: 1px solid var(--accent-neon); color: var(--accent-neon); font-size: 1.1rem; font-family: 'Share Tech Mono'; letter-spacing: 2px; cursor: pointer; margin-top: 10px; }
+.cyber-btn { width: 100%; padding: 1.2rem; background: transparent; border: 1px solid var(--accent-neon); color: var(--accent-neon); font-family: 'Share Tech Mono'; cursor: pointer; margin-top: 10px; font-size: 1.1rem; letter-spacing: 2px; }
 .cyber-btn:hover { background: var(--accent-neon); color: #000; box-shadow: 0 0 20px var(--accent-neon); }
 
-/* 6. SEO 텍스트 섹션 */
-.seo-guide-section { padding: 4rem 1.5rem; background: #0d1117; border-top: 1px solid var(--border-tech); max-width: 1000px; margin: 0 auto; }
-.seo-guide-section h2 { color: var(--accent-blue); margin-bottom: 2rem; font-size: 1.5rem; text-align: center; }
-.guide-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+/* 전문 텍스트 섹션 (SEO) */
+.seo-guide-section { padding: 3rem 1rem; background: #0d1117; border-top: 1px solid var(--border-tech); }
+.seo-guide-section h2 { color: var(--accent-blue); margin-bottom: 1.5rem; text-align: center; }
+.guide-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; max-width: 1000px; margin: 0 auto; }
 @media (min-width: 768px) { .guide-grid { grid-template-columns: 1fr 1fr; } }
 .guide-item h3 { color: var(--accent-neon); margin-bottom: 0.5rem; font-size: 1.1rem; }
-.guide-item p { color: var(--text-muted); font-size: 0.9rem; text-align: justify; line-height: 1.6; }
-.seo-text-long { margin-top: 2rem; color: var(--text-muted); font-size: 0.85rem; line-height: 1.8; text-align: justify; padding-top: 2rem; border-top: 1px solid #222; }
+.guide-item p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+@media (min-width: 768px) { .guide-item p { font-size: 15px; } }
+.seo-text-long { margin-top: 2rem; color: var(--text-muted); line-height: 1.8; text-align: justify; max-width: 1000px; margin-left: auto; margin-right: auto; font-size: 13px; }
 
-@media (max-width: 600px) {
-    .seo-guide-section p, .seo-text-long { font-size: 12px !important; }
-}
+/* 푸터 */
+.main-footer { padding: 2rem 1rem; background: #161b22; text-align: center; border-top: 1px solid var(--border-tech); }
+.footer-links { font-size: 0.8rem; margin-bottom: 1rem; color: var(--text-muted); }
+.footer-links a { color: var(--accent-blue); text-decoration: none; margin: 0 5px; cursor: pointer; }
+.disclaimer { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 1.5rem; max-width: 800px; margin-left: auto; margin-right: auto; }
+.share-btn { padding: 12px 24px; background: #fee500; color: #3c1e1e; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 0.9rem; }
 
-/* 7. 리포트 모달 & 스크롤 */
-.modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 3000; display: none; justify-content: center; align-items: center; padding: 10px; }
-.modal-content { background: var(--panel-bg); border: 1px solid var(--accent-blue); width: 100%; max-width: 450px; max-height: 90vh; overflow: hidden; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; }
-.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 10px; }
-.scroll-box { overflow-y: auto; flex: 1; padding-right: 5px; }
-.scroll-box::-webkit-scrollbar { width: 4px; }
-.scroll-box::-webkit-scrollbar-thumb { background: var(--accent-blue); border-radius: 10px; }
-
-/* 8. 기타 요소 */
+/* 터미널 및 모달 */
 .terminal { background: #000; border: 1px solid var(--border-tech); min-height: 150px; margin-top: 1rem; display: flex; flex-direction: column; }
 .terminal-header { background: #161b22; padding: 5px 10px; font-size: 0.7rem; color: var(--text-muted); border-bottom: 1px solid #333; }
-.log-content { padding: 10px; font-size: 0.75rem; color: var(--accent-neon); overflow-y: auto; height: 120px; font-family: 'Share Tech Mono'; }
+.log-content { padding: 10px; font-size: 0.75rem; color: var(--accent-neon); overflow-y: auto; flex: 1; height: 120px; font-family: 'Share Tech Mono'; }
+.modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 3000; display: none; justify-content: center; align-items: center; padding: 10px; }
+.modal-content { background: var(--panel-bg); border: 1px solid var(--accent-blue); width: 100%; max-width: 450px; border-radius: 12px; padding: 20px; max-height: 90vh; overflow-y: auto; }
+.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+.close-modal { background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
 
+/* Filter Panel */
 .filter-panel { width: 100%; background: #161b22; border-top: 1px solid var(--border-tech); display: flex; flex-direction: column; }
 @media (min-width: 1024px) { .filter-panel { width: 350px; border-top: none; border-left: 1px solid var(--border-tech); } }
+.panel-header { padding: 15px; border-bottom: 1px solid var(--border-tech); font-weight: bold; color: var(--accent-blue); display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; }
 .filter-scroll { padding: 15px; overflow-y: auto; flex: 1; }
-.filter-category h3 { font-size: 0.75rem; color: var(--accent-blue); margin: 15px 0 10px; border-bottom: 1px solid #333; padding-bottom: 5px; }
+.filter-category h3 { font-size: 0.75rem; color: var(--text-muted); margin: 15px 0 10px; border-bottom: 1px solid #333; padding-bottom: 5px; }
 .filter-item { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 0.8rem; }
+.f-name { flex: 1; }
 
-.main-footer { padding: 3rem 1rem; background: #161b22; text-align: center; border-top: 1px solid var(--border-tech); }
-.footer-links { margin-bottom: 1.5rem; font-size: 0.85rem; }
-.footer-links a { color: var(--accent-blue); text-decoration: none; margin: 0 10px; }
-.disclaimer { font-size: 0.75rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 2rem; }
-.share-btn { padding: 12px 30px; background: #fee500; color: #3c1e1e; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+/* History Section */
+.history-section { padding: 1rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+.panel-header-sm { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 10px; border-left: 3px solid var(--accent-blue); padding-left: 8px; }
+.history-table { padding: 10px; background: #0d1117; border: 1px solid var(--border-tech); border-radius: 8px; }
+.history-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #222; font-size: 0.8rem; align-items: center; }
+.history-row:last-child { border-bottom: none; }
 
+/* 리포트 버튼 */
 .btn-report { background: rgba(88, 166, 255, 0.1); border: 1px solid var(--accent-blue); color: var(--accent-blue); font-size: 0.65rem; padding: 4px 8px; cursor: pointer; border-radius: 4px; font-family: 'Share Tech Mono'; transition: 0.2s; }
 .btn-report:hover { background: var(--accent-blue); color: #000; }
 
+.pulse { animation: pulse-animation 2s infinite; }
+@keyframes pulse-animation { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+/* Ad Overlay */
 .ad-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2,4,10,0.98); z-index: 2000; display: flex; justify-content: center; align-items: center; }
 .overlay-content { width: 90%; max-width: 500px; text-align: center; }
+.ai-status { color: var(--accent-neon); font-family: 'Share Tech Mono'; margin-bottom: 2rem; font-size: 1.2rem; }
 .progress-container { height: 4px; background: #222; width: 100%; margin-top: 2rem; border-radius: 2px; overflow: hidden; }
-.progress-bar { height: 100%; background: var(--accent-blue); width: 0%; transition: width 0.1s; }
+.progress-bar { height: 100%; background: var(--accent-blue); width: 0%; transition: width 0.1s; box-shadow: 0 0 10px var(--accent-blue); }
 
+/* Switch Style */
 .switch { position: relative; display: inline-block; width: 34px; height: 18px; flex-shrink: 0; }
 .switch input { opacity: 0; width: 0; height: 0; }
 .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #333; transition: .4s; border-radius: 34px; }
@@ -119,5 +130,7 @@ h1 { font-family: 'Rajdhani', sans-serif; font-size: clamp(1.5rem, 8vw, 2.5rem);
 input:checked + .slider { background-color: var(--accent-green); }
 input:checked + .slider:before { transform: translateX(16px); }
 
-.pulse { animation: pulse-animation 2s infinite; }
-@keyframes pulse-animation { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+/* 모바일 전용 폰트 크기 조정 (SEO 텍스트) */
+@media (max-width: 600px) {
+    .seo-guide-section p, .seo-text-long { font-size: 12px !important; }
+}

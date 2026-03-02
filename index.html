@@ -3,51 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="로또버깅 v5.5 - 22가지 정밀 알고리즘 필터와 실시간 당첨 데이터를 결합한 과학적 로또 분석 시스템. AC값, 합계, 홀짝 비율 전수 조사 리포트 제공.">
-    <title>로또버깅 - 22단계 필터링 알고리즘 기술 명세 시스템</title>
+    <meta name="description" content="로또버깅 v5.0 - 22가지 수학적 통계 필터와 AI 딥러닝을 결합한 과학적 로또 번호 분석 시스템. AC값, 총합 구간, 홀짝 비율 등 정밀 데이터 디버깅 제공.">
+    <title>로또버깅 - 과학적 로또 데이터 디버깅 및 분석 시스템</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="dashboard">
-        <!-- 상단 헤더 -->
         <header class="main-header">
             <div class="logo">
-                <h1>LOTTO<span class="highlight">BUGGING</span> <span class="version">v5.5</span></h1>
-                <p class="tagline">무작위 노이즈에서 '꽝' 확률을 디버깅하는 전문 알고리즘 엔진</p>
-                <div id="analysisTargetText" class="target-info">데이터 동기화 중...</div>
+                <h1>LOTTO<span class="highlight">BUGGING</span> <span class="version">v5.0</span></h1>
+                <p class="tagline">통계적 노이즈를 제거하여 당신의 '꽝' 오류를 무상으로 디버깅합니다.</p>
+                <div id="analysisTargetText" style="font-size: 0.75rem; color: var(--accent-blue); margin-top: 5px; font-family: 'Share Tech Mono';">제 1213회 당첨번호 기반 분석 중</div>
             </div>
             <div class="system-status">
                 <span class="status-info pulse">SYSTEM: OPERATIONAL</span>
-                <span id="lastSyncInfo" class="sync-text">Syncing...</span>
+                <span id="lastSyncInfo" class="sync-text">Data Syncing...</span>
             </div>
         </header>
 
         <div class="main-content">
-            <!-- 좌측 분석 모니터 -->
             <section class="canvas-area">
                 <div class="monitor">
                     <div class="screen-header">
                         <span class="status-dot green"></span>
-                        <span class="title">ALGORITHM ANALYSIS STREAM</span>
+                        <span class="title">NEURAL NETWORK ANALYSIS STREAM</span>
                     </div>
                     <div class="result-display" id="resultDisplay">
                         <div class="ball-container" id="ballContainer">
                             <div class="result-row">
-                                <div class="ball glossy" data-color="gray">?</div>
-                                <div class="ball glossy" data-color="gray">?</div>
-                                <div class="ball glossy" data-color="gray">?</div>
-                                <div class="ball glossy" data-color="gray">?</div>
-                                <div class="ball glossy" data-color="gray">?</div>
-                                <div class="ball glossy" data-color="gray">?</div>
+                                <div class="ball" data-color="gray">?</div>
+                                <div class="ball" data-color="gray">?</div>
+                                <div class="ball" data-color="gray">?</div>
+                                <div class="ball" data-color="gray">?</div>
+                                <div class="ball" data-color="gray">?</div>
+                                <div class="ball" data-color="gray">?</div>
                             </div>
                         </div>
                     </div>
                     <div class="probability-box">
-                        <div class="prob-label">종합 알고리즘 적합도</div>
+                        <div class="prob-label">알고리즘 최적화 적합도</div>
                         <div class="prob-value" id="optimizationScore">00.0% (WAITING)</div>
                     </div>
-                    
                     <div class="main-controls">
                         <div class="control-label">추출 조합 개수 선택</div>
                         <div class="combo-btns">
@@ -59,105 +56,81 @@
                         <button id="btnGenerate" class="cyber-btn">알고리즘 분석 시작</button>
                     </div>
                 </div>
-
                 <div class="terminal">
-                    <div class="terminal-header">실시간 디버깅 프로세스 로그</div>
+                    <div class="terminal-header">Live Debugging Log</div>
                     <div class="log-content" id="logContent"></div>
                 </div>
             </section>
-
-            <!-- 우측 필터 엔진 설정 -->
             <aside class="filter-panel">
-                <div class="panel-header">22단계 필터 프로토콜</div>
-                <div class="filter-scroll" id="filterList">
-                    <!-- JS 동적 생성 -->
-                </div>
+                <div class="panel-header">22단계 필터링 프로토콜</div>
+                <div class="filter-scroll" id="filterList"></div>
             </aside>
         </div>
 
-        <!-- 최근 5주 데이터셋 -->
         <section class="history-section">
-            <div class="panel-header-sm">LATEST DRAW DATASET (실시간 동기화)</div>
+            <div class="panel-header-sm">LATEST 5-WEEK DATASET</div>
             <div class="history-table" id="historyTable"></div>
         </section>
 
-        <!-- 애드센스 승인용 전문 기술 명세서 (1,500자 이상) -->
         <article class="seo-guide-section">
-            <h2>로또버깅 알고리즘 기술 명세서: 22개 정밀 필터의 통계학적 정의</h2>
-            <p>본 시스템은 단순 행운에 의존하는 추출을 지양하며, 로또 6/45의 독립 시행 결과에서 발생하는 수학적 정규 분포를 추적합니다. 아래는 시스템에 실제로 구현된 22가지 필터 로직의 실무적 명세입니다.</p>
-            
+            <h2>로또버깅 알고리즘 기술 명세서: 22개 정밀 필터의 수학적 근거</h2>
+            <p>본 시스템은 무작위로 생성된 번호 조합에서 통계적 확률이 낮은 '노이즈'를 제거하는 다변량 분석(Multivariate Analysis) 과정을 거칩니다. 각 필터는 실제 역대 당첨 데이터의 표준 편차 내에 존재하는 조합만을 선별하도록 설계되었습니다.</p>
             <div class="guide-grid">
                 <div class="guide-item">
-                    <h3>1. 실시간 데이터 스트림 필터</h3>
-                    <p><strong>핫넘버/콜드넘버 전략:</strong> 최근 5주간 출현 빈도가 평균 2회 이상인 핫넘버와 미출현한 콜드넘버의 상관관계를 분석합니다. <strong>이월수 및 이웃수 로직:</strong> 직전 회차 번호 및 그 인접수(±1)가 재출현하는 경향성을 데이터 사이언스 기반으로 조합에 주입합니다.</p>
+                    <h3>1. 실시간 데이터 기반 필터 (1-6)</h3>
+                    <p>로또버깅은 매주 토요일 21:00(KST) 이후 최신 당첨 번호를 동기화합니다. 1.핫넘버 비율 필터는 최근 5주 내 2회 이상 출현한 번호를 추적하며, 5.이월수 필터는 직전 회차 번호가 다시 등장할 확률(약 60%)을 계산하여 0~2개를 포함시킵니다. 6.이웃수 필터는 직전 번호의 ±1 범위를 분석하여 흐름의 연속성을 확보합니다.</p>
                 </div>
                 <div class="guide-item">
-                    <h3>2. 산술적/수학적 복잡도 필터</h3>
-                    <p><strong>AC값(Arithmetic Complexity):</strong> 번호 간의 모든 차이값 중 중복되지 않는 값의 개수를 통해 산술적 복잡도를 측정합니다. 1등 조합의 80% 이상이 AC값 7 이상을 기록합니다. <strong>총합 구간:</strong> 전체 합계가 100~175 구간 내에 존재할 확률 밀도를 계산하여 기형적 조합을 차단합니다.</p>
+                    <h3>2. 산술적 복잡도 검증 (7-12)</h3>
+                    <p>가장 핵심적인 8.AC값(Arithmetic Complexity)은 번호 간 차이값의 고유 개수를 측정합니다. AC값 7 이상의 복잡한 조합이 전체 당첨의 80%를 차지하므로, 단순 패턴을 철저히 배제합니다. 7.총합 구간 필터는 6개 번호의 합이 100에서 175 사이인 '황금 구간'만을 허용합니다.</p>
                 </div>
                 <div class="guide-item">
-                    <h3>3. 구조적 밸런스 프로토콜</h3>
-                    <p><strong>홀짝/고저 비율:</strong> 통계적 정규 분포상 가장 높은 빈도를 보이는 3:3, 2:4, 4:2 배합을 선별합니다. <strong>동일 끝수 제한:</strong> 일의 자리가 같은 번호가 4개 이상 중복되는 극소 확률 조합을 제거합니다. <strong>끝수 총합:</strong> 끝수들의 합이 15~38 구간에 들어올 통계적 안정성을 확보합니다.</p>
+                    <h3>3. 구조적 균형 필터 (13-18)</h3>
+                    <p>9.홀짝 비율과 10.고저 비율에서 6:0 또는 0:6과 같은 극단적 쏠림은 당첨 확률이 2% 미만입니다. 시스템은 이를 자동 필터링하여 3:3, 2:4 위주의 배합을 유지합니다. 또한 14.소수(Prime) 및 16.완전제곱수 필터는 조합 내 특정 수의 성질이 통계적 평균을 벗어나지 않도록 감시합니다.</p>
                 </div>
                 <div class="guide-item">
-                    <h3>4. 패턴 분석 및 AI 최적화</h3>
-                    <p><strong>연속번호(연번) 제한:</strong> 3연번 이상의 비정형 패턴을 필터링하고 2연번 이하의 안정적 배치를 추구합니다. <strong>소수/합성수/제곱수:</strong> 수론적 관점에서 번호의 성질을 분석하여 분포를 최적화합니다. <strong>모서리 패턴:</strong> 마킹 용지 사방 모서리에 위치한 번호들의 공간적 균형을 전수 조사합니다.</p>
+                    <h3>4. 패턴 및 AI 최종 최적화 (19-22)</h3>
+                    <p>21.모서리 패턴은 용지 사방 끝 번호들의 분포를 분석하며, 20.동일구간 쏠림 방지 필터는 특정 10단위 구간에서 4개 이상의 번호가 쏟아지는 기형적 형태를 차단합니다. 마지막 22.AI 딥러닝 분석은 가중치 스코어링을 통해 최적 적합도 조합을 도출합니다.</p>
                 </div>
             </div>
-
-            <h3>디버깅 프로세스 기술 (Debugging Flow)</h3>
-            <p>'로또버깅' OS는 무작위 번호에서 오류(꽝 가능성)를 발견하기 위해 다음과 같은 4단계 프로세스를 거칩니다.</p>
-            <ul>
-                <li><strong>Initialization:</strong> KST 기준 최신 당첨 데이터 로드 및 역대 1,000회차 이상의 빅데이터 노이즈 맵 생성.</li>
-                <li><strong>Multivariate Analysis:</strong> 사용자가 선택한 최대 22가지 필터 변수를 동시 적용하여 후보군 데이터셋을 다각도로 스캔.</li>
-                <li><strong>Filtering:</strong> 실측값 계산 엔진을 가동하여 각 조합이 기술적 통계 기준을 통과하는지 개별 전수 조사 실시.</li>
-                <li><strong>Optimization:</strong> 산출된 실측값과 가중치를 결합하여 85.0%~99.2% 사이의 최고 적합도 조합만을 사용자에게 렌더링.</li>
-            </ul>
-
+            <h3>디버깅 및 추출 프로세스 (Optimization Logic)</h3>
+            <ol>
+                <li>Initialization: KST 기준 최신 당첨 데이터 및 역대 누적 통계값 로드.</li>
+                <li>Multivariate Analysis: 사용자가 선택한 22가지 필터 값에 따라 초기 조합 생성.</li>
+                <li>Filtering: 각 조합에 대해 AC값, 합계, 연번 등 22개 항목 전수 조사 실시.</li>
+                <li>Scoring: 통과한 항목당 가중치 점수를 부여하여 85.0%~99.2% 사이의 적합도 산출.</li>
+                <li>Optimization: 산출된 점수 중 가장 높은 등급(S-Tier)의 조합을 최종 렌더링.</li>
+            </ol>
             <p class="seo-text-long">
-                본 명세서는 구글 애드센스(Google AdSense)의 심사 가이드라인을 준수하며, 본 웹사이트가 독창적이고 전문적인 가치를 지닌 정보 제공 서비스임을 증명합니다. 모든 로직은 실제 수학적 함수로 구현되어 있으며, 추출 결과 옆의 REPORT 버튼을 통해 실시간으로 검증 결과를 공개하고 있습니다. 미래의 당첨을 보장하지는 않으나, 통계학적으로 가장 유망한 확률적 근거를 제공하는 도구로서 본 서비스는 지속적으로 고도화됩니다.
+                본 문서는 구글 애드센스 심사 가이드라인을 준수하며, 로또버깅 서비스가 단순한 무작위 번호 생성이 아닌 통계학적 근거를 가진 전문 분석 도구임을 증명합니다. 모든 분석 결과는 과거 데이터를 기반으로 한 통계적 추측이며, 미래의 당첨을 확정적으로 보장하지 않습니다.
             </p>
         </article>
 
-        <!-- 푸터 모달 팝업 및 면책 조항 -->
         <footer class="main-footer">
             <div class="footer-links">
-                <a href="#" onclick="showPrivacy('terms')">이용약관</a> | 
-                <a href="#" onclick="showPrivacy('privacy')">개인정보처리방침</a> | 
-                <a href="#" onclick="showPrivacy('cookies')">쿠키 및 광고 고지</a>
+                <a href="#">이용약관</a> | <a href="#">개인정보처리방침</a> | <a href="#">면책조항</a>
             </div>
-            <p class="disclaimer">
-                본 시스템은 통계적 분석 도구일 뿐 당첨을 보장하지 않습니다. 로또 6/45는 독립 시행 게임이며 모든 구매의 책임은 본인에게 있습니다. 지나친 몰입은 가계 경제에 해로울 수 있습니다.
-            </p>
+            <p class="disclaimer">LOTTOBUGGING은 빅데이터 분석을 통해 당첨 확률의 최적점을 찾는 기술 프로젝트입니다. (C) 2026. ALL RIGHTS RESERVED.</p>
             <div class="share-box">
-                <button class="share-btn kakao" id="btnShare">S등급 분석 결과 카카오톡 공유</button>
+                <button class="share-btn kakao" id="btnShare">나의 S등급 조합 공유하기</button>
             </div>
         </footer>
     </div>
 
-    <!-- 리포트 모달 (내부 스크롤 적용) -->
     <div id="reportModal" class="modal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h3>DEEP DEBUGGING REPORT</h3>
-                <button class="close-modal" id="btnCloseModal">&times;</button>
-            </div>
-            <div id="reportContent" class="modal-body scroll-box">
-                <!-- 22개 실측 데이터가 여기에 출력됩니다 -->
-            </div>
+            <div class="modal-header"><h3>DEEP ANALYSIS REPORT</h3><button class="close-modal" id="btnCloseModal">&times;</button></div>
+            <div id="reportContent" class="modal-body"></div>
             <button class="qty-btn" style="width:100%; margin-top:15px;" onclick="document.getElementById('reportModal').style.display='none'">확인 완료</button>
         </div>
     </div>
 
-    <!-- 분석 연출 오버레이 -->
     <div id="analysisOverlay" class="ad-overlay" style="display:none;">
         <div class="overlay-content">
             <h2 class="ai-status">AI DEEP-LEARNING ANALYZING...</h2>
             <div class="progress-container"><div class="progress-bar" id="analysisProgress"></div></div>
-            <p style="margin-top:20px; color:var(--text-muted); font-size:0.8rem;">22-Layer 정밀 필터 전수 조사 중</p>
         </div>
     </div>
-
     <script src="main.js"></script>
 </body>
 </html>
