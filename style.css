@@ -136,6 +136,54 @@ h1 { font-family: 'Rajdhani', sans-serif; font-size: 1.5rem; letter-spacing: 2px
 .prob-label { font-size: 0.7rem; color: var(--text-muted); }
 .prob-value { font-size: 1.5rem; color: var(--accent-neon); }
 
+/* History Panel */
+.history-panel {
+    background: var(--panel-bg);
+    border: 1px solid var(--border-tech);
+    border-radius: 6px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-header-sm {
+    background: #21262d;
+    padding: 8px 15px;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-tech);
+}
+
+.history-table {
+    padding: 10px;
+    font-size: 0.75rem;
+    color: var(--text-bright);
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.history-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    border-bottom: 1px dashed #333;
+}
+.history-row:last-child { border-bottom: none; }
+.drw-no { color: var(--accent-blue); font-weight: bold; width: 60px; }
+.drw-date { color: var(--text-muted); width: 90px; }
+.drw-nums { flex: 1; text-align: right; letter-spacing: 1px; }
+.drw-bonus { color: var(--accent-neon); margin-left: 10px; }
+
+.loading-scan {
+    text-align: center;
+    color: var(--accent-green);
+    animation: blink 1s infinite;
+    padding: 20px;
+}
+@keyframes blink { 50% { opacity: 0.5; } }
+
 .main-controls {
     padding: 20px; border-top: 1px solid var(--border-tech);
     display: flex; flex-direction: column; gap: 15px;
