@@ -3,56 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LottoBugging - AI Driven Analysis</title>
+    <title>LottoBugging - AI Deep Tech Dashboard</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts for Tech look -->
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo-area">
-                <h1>LOTTO<span class="highlight">BUGGING</span>_v1.0</h1>
-                <p class="status">SYSTEM: <span class="blink">ONLINE</span></p>
+    <div class="dashboard">
+        <!-- 상단 헤더 -->
+        <header class="main-header">
+            <div class="logo">
+                <h1>LOTTO<span class="highlight">BUGGING</span> <span class="version">v2.1</span></h1>
+                <p class="tagline">유료 업체에 속지 마세요. 당신의 '꽝' 오류를 무상으로 디버깅합니다.</p>
+            </div>
+            <div class="prize-info">
+                <span class="label">ESTIMATED 1ST PRIZE:</span>
+                <span class="value">₩ 24,582,104,220</span>
             </div>
         </header>
 
-        <main>
-            <div class="monitor">
-                <div class="screen-header">
-                    <span class="dot red"></span>
-                    <span class="dot yellow"></span>
-                    <span class="dot green"></span>
-                    <span class="title">ANALYSIS_PROTOCOL_22.exe</span>
-                </div>
-                
-                <div class="result-area" id="resultArea">
-                    <div class="ball-container">
-                        <div class="ball-wrapper"><div class="ball" id="ball1">?</div><span class="label">NO.1</span></div>
-                        <div class="ball-wrapper"><div class="ball" id="ball2">?</div><span class="label">NO.2</span></div>
-                        <div class="ball-wrapper"><div class="ball" id="ball3">?</div><span class="label">NO.3</span></div>
-                        <div class="ball-wrapper"><div class="ball" id="ball4">?</div><span class="label">NO.4</span></div>
-                        <div class="ball-wrapper"><div class="ball" id="ball5">?</div><span class="label">NO.5</span></div>
-                        <div class="ball-wrapper"><div class="ball" id="ball6">?</div><span class="label">NO.6</span></div>
+        <div class="main-content">
+            <!-- 좌측: 메인 캔버스 (결과 & 로그) -->
+            <section class="canvas-area">
+                <div class="monitor">
+                    <div class="screen-header">
+                        <span class="status-dot green"></span>
+                        <span class="title">NEURAL_OUTPUT_STREAM</span>
+                    </div>
+                    
+                    <div class="result-display">
+                        <div class="ball-container" id="ballContainer">
+                            <div class="ball" data-index="1">?</div>
+                            <div class="ball" data-index="2">?</div>
+                            <div class="ball" data-index="3">?</div>
+                            <div class="ball" data-index="4">?</div>
+                            <div class="ball" data-index="5">?</div>
+                            <div class="ball" data-index="6">?</div>
+                        </div>
+                    </div>
+
+                    <div class="probability-box">
+                        <div class="prob-label">CONVERGENCE PROBABILITY</div>
+                        <div class="prob-value" id="probValue">0.000000%</div>
+                    </div>
+
+                    <div class="main-controls">
+                        <button id="btnGenerate" class="cyber-btn primary">RUN DEEP ANALYSIS</button>
                     </div>
                 </div>
 
-                <div class="controls">
-                    <button id="btnGenerate" class="cyber-btn">
-                        <span class="btn-content">START HACKING</span>
-                        <span class="glitch"></span>
-                    </button>
+                <div class="terminal">
+                    <div class="terminal-header">DEBUGGING_LOG_STREAM</div>
+                    <div class="log-content" id="logContent">
+                        <p class="log-line">> System initialized. Ready for multivariate analysis.</p>
+                    </div>
                 </div>
-            </div>
+                
+                <!-- 하단 법적 고지 및 광고 영역 -->
+                <footer class="canvas-footer">
+                    <div class="ad-placeholder">ADSENSE_UNIT_728x90</div>
+                    <p class="legal-notice">※ 본 시스템은 통계적 추측을 제공하며, 당첨을 보장하지 않습니다. 서버 유지비는 광고 클릭으로 충당됩니다.</p>
+                    <div class="share-box">
+                        <span>공유하기:</span>
+                        <button class="share-btn">KAKAOTALK</button>
+                    </div>
+                </footer>
+            </section>
 
-            <div class="terminal">
-                <div class="terminal-header">LOG OUPUT >></div>
-                <div class="log-content" id="logContent">
-                    <p class="log-line">> System initialized...</p>
-                    <p class="log-line">> Waiting for user input...</p>
+            <!-- 우측: 필터 컨트롤 패널 -->
+            <aside class="filter-panel">
+                <div class="panel-header">
+                    <span>ALGORITHM_CONTROLS</span>
+                    <button id="btnGacha" class="gacha-btn-sm" title="GACHA MODE: Randomize Filters">GACHA</button>
                 </div>
-            </div>
-        </main>
+                
+                <div class="preset-group">
+                    <button class="preset-btn" data-preset="golden">황금비율</button>
+                    <button class="preset-btn" data-preset="aggressive">공격적</button>
+                    <button class="preset-btn" data-preset="defensive">방어적</button>
+                </div>
+
+                <div class="filter-scroll">
+                    <!-- 수학적 필터 -->
+                    <div class="filter-category">
+                        <h3>MATH_FILTERS (7)</h3>
+                        <div class="filter-item">
+                            <label class="switch"><input type="checkbox" id="f_sum" checked><span class="slider"></span></label>
+                            <span class="f-name">총합 구간 (100-175)</span>
+                            <span class="info-icon" title="번호 6개의 합이 100~175 사이">?</span>
+                        </div>
+                        <div class="filter-item">
+                            <label class="switch"><input type="checkbox" id="f_ac" checked><span class="slider"></span></label>
+                            <span class="f-name">AC값 복잡도 (7이상)</span>
+                            <span class="info-icon" title="산술적 복잡도 7 이상">?</span>
+                        </div>
+                        <div class="filter-item">
+                            <label class="switch"><input type="checkbox" id="f_oddeven" checked><span class="slider"></span></label>
+                            <span class="f-name">홀짝 밸런스 (2:4~4:2)</span>
+                        </div>
+                        <div class="filter-item">
+                            <label class="switch"><input type="checkbox" id="f_highlow" checked><span class="slider"></span></label>
+                            <span class="f-name">고저 밸런스 (2:4~4:2)</span>
+                        </div>
+                        <div class="filter-item">
+                            <label class="switch"><input type="checkbox" id="f_endsum"><span class="slider"></span></label>
+                            <span class="f-name">끝수 합 (20-35)</span>
+                        </div>
+                        <div class="filter-item">
+                            <label class="switch"><input type="checkbox" id="f_prime"><span class="slider"></span></label>
+                            <span class="f-name">소수 비중 (1-3개)</span>
+                        </div>
+                        <div class="filter-item">
+                            <label class="switch"><input type="checkbox" id="f_mul3"><span class="slider"></span></label>
+                            <span class="f-name">3의 배수 (1-3개)</span>
+                        </div>
+                    </div>
+
+                    <!-- 통계적 필터 -->
+                    <div class="filter-category">
+                        <h3>STAT_FILTERS (7)</h3>
+                        <div class="filter-item">
+                            <label class="switch"><input type="checkbox" id="f_hot" checked><span class="slider"></span></label>
+                            <span class="f-name">최근 핫넘버 반영</span>
+                        </div>
+                        <div class="filter-item">
+                            <label class="switch"><input type="checkbox" id="f_cold"><span class="slider"></span></label>
+                            <span class="f-name">장기 미출수 포함</span>
+                        </div>
+                        <div class="filter-item">
+                            <label class="switch"><input type="checkbox" id="f_carryover"><span class="slider"></span></label>
+                            <span class="f-name">이월수 반영 (0-2개)</span>
+                        </div>
+                        <div class="filter-item">
+                            <label class="switch"><input type="checkbox" id="f_missing"><span class="slider"></span></label>
+                            <span class="f-name">미출현 번호대 확인</span>
+                        </div>
+                        <div class="filter-item">
+                            <label class="switch"><input type="checkbox" id="f_serial"><span class="slider"></span></label>
+                            <span class="f-name">동형수/연번 통계</span>
+                        </div>
+                        <div class="filter-item">
+                            <label class="switch"><input type="checkbox" id="f_lastdigit"><span class="slider"></span></label>
+                            <span class="f-name">동일 끝수 제한</span>
+                        </div>
+                        <div class="filter-item">
+                            <label class="switch"><input type="checkbox" id="f_excludelast"><span class="slider"></span></label>
+                            <span class="f-name">전회차 당첨번호 제외</span>
+                        </div>
+                    </div>
+
+                    <!-- 패턴 필터 -->
+                    <div class="filter-category">
+                        <h3>PATTERN_FILTERS (8)</h3>
+                        <div class="filter-item">
+                            <label class="switch"><input type="checkbox" id="f_consecutive" checked><span class="slider"></span></label>
+                            <span class="f-name">연속번호 제한 (2연번이하)</span>
+                        </div>
+                        <div class="filter-item">
+                            <label class="switch"><input type="checkbox" id="f_corner"><span class="slider"></span></label>
+                            <span class="f-name">모서리 패턴 분석</span>
+                        </div>
+                        <div class="filter-item">
+                            <label class="switch"><input type="checkbox" id="f_section"><span class="slider"></span></label>
+                            <span class="f-name">번호대 균등 배분</span>
+                        </div>
+                        <div class="filter-item">
+                            <label class="switch"><input type="checkbox" id="f_twin"><span class="slider"></span></label>
+                            <span class="f-name">쌍둥이수 (11,22..) 필터</span>
+                        </div>
+                        <div class="filter-item">
+                            <label class="switch"><input type="checkbox" id="f_mirror"><span class="slider"></span></label>
+                            <span class="f-name">거울수 분석</span>
+                        </div>
+                        <div class="filter-item">
+                            <label class="switch"><input type="checkbox" id="f_symmetry"><span class="slider"></span></label>
+                            <span class="f-name">좌우 대칭 패턴</span>
+                        </div>
+                        <div class="filter-item">
+                            <label class="switch"><input type="checkbox" id="f_diagonal"><span class="slider"></span></label>
+                            <span class="f-name">대각선 분포 확인</span>
+                        </div>
+                        <div class="filter-item">
+                            <label class="switch"><input type="checkbox" id="f_ai" checked><span class="slider"></span></label>
+                            <span class="f-name">AI 최종 최적화</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
     </div>
     <script src="main.js"></script>
 </body>
