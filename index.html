@@ -9,27 +9,27 @@
 </head>
 <body>
     <div class="dashboard">
-        <!-- 상단 헤더 -->
         <header class="main-header">
             <div class="logo">
-                <h1>LOTTO<span class="highlight">BUGGING</span> <span class="version">v2.1</span></h1>
+                <h1>LOTTO<span class="highlight">BUGGING</span> <span class="version">v4.0</span></h1>
                 <p class="tagline">유료 업체에 속지 마세요. 당신의 '꽝' 오류를 무상으로 디버깅합니다.</p>
             </div>
             <div class="system-status">
-                <span class="status-label">시스템 상태:</span>
-                <span class="status-value pulse">OPERATIONAL</span>
+                <div class="status-info">
+                    <span class="status-label">시스템 상태:</span>
+                    <span class="status-value pulse">OPERATIONAL</span>
+                </div>
+                <div class="sync-info" id="lastSyncInfo">동기화 데이터: 로딩 중...</div>
             </div>
         </header>
 
         <div class="main-content">
-            <!-- 좌측: 메인 캔버스 (결과 & 로그) -->
             <section class="canvas-area">
                 <div class="monitor">
                     <div class="screen-header">
                         <span class="status-dot green"></span>
                         <span class="title">신경망 분석 출력 스트림</span>
                     </div>
-                    
                     <div class="result-display" id="resultDisplay">
                         <div class="ball-container" id="ballContainer">
                             <div class="result-row">
@@ -42,29 +42,21 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="probability-box">
-                        <div class="prob-label">분석 수렴 확률</div>
-                        <div class="prob-value" id="probValue">0.000000%</div>
+                        <div class="prob-label">알고리즘 적합도</div>
+                        <div class="prob-value" id="optimizationScore">00.0% (N/A)</div>
                     </div>
-
-                    <!-- 최근 5주 당첨 이력 -->
                     <div class="history-panel">
                         <div class="panel-header-sm">최근 5주 당첨 데이터 스트림</div>
-                        <div class="history-table" id="historyTable">
-                            <div class="loading-scan">데이터 동기화 중...</div>
-                        </div>
+                        <div class="history-table" id="historyTable"></div>
                     </div>
-
-                    <!-- 하단 가변 배너 광고 영역 (5개 이상 추출 시 노출) -->
                     <div id="bottomAd" class="ad-banner-bottom" style="display:none;">
                         <div class="ad-label">SPONSORED</div>
-                        <div class="ad-content">구글 애드센스 하단 배너 영역</div>
+                        <div class="ad-content">광고 배너 영역</div>
                     </div>
-
                     <div class="main-controls">
                         <div class="combo-selector">
-                            <label>추출 개수 선택:</label>
+                            <label>추출 개수:</label>
                             <div class="combo-btns">
                                 <button class="qty-btn active" data-qty="1">1개</button>
                                 <button class="qty-btn" data-qty="5">5개</button>
@@ -75,165 +67,156 @@
                         <button id="btnGenerate" class="cyber-btn primary">알고리즘 분석 시작</button>
                     </div>
                 </div>
-
-                <!-- 전면 분석 오버레이 (10/20개 추출 시 노출) -->
-                <div id="analysisOverlay" class="ad-overlay" style="display:none;">
-                    <div class="overlay-content">
-                        <div class="scanner-line"></div>
-                        <h2 class="ai-status">AI DEEP-LEARNING ANALYZING...</h2>
-                        <p class="ai-desc">고가중치 조합 도출을 위해 알고리즘 정밀 분석 중입니다 (3s)</p>
-                        
-                        <div class="large-ad-box">
-                            <div class="ad-label">PREMIUM SPONSOR</div>
-                            <div class="ad-placeholder-large">구글 애드센스 전면/대형 광고 영역</div>
-                        </div>
-
-                        <div class="progress-container">
-                            <div class="progress-bar" id="analysisProgress"></div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="terminal">
                     <div class="terminal-header">디버깅 로그 스트림</div>
-                    <div class="log-content" id="logContent">
-                        <p class="log-line">> 시스템 초기화 완료. 다변량 분석 준비됨.</p>
-                    </div>
+                    <div class="log-content" id="logContent"></div>
                 </div>
-                
-                <!-- 하단 법적 고지 및 광고 영역 -->
-                <footer class="canvas-footer">
-                    <div class="ad-placeholder">구글 애드센스 광고 영역</div>
-                    <p class="legal-notice">※ 본 시스템은 통계적 추측을 제공하며, 당첨을 보장하지 않습니다. 서버 유지비는 광고 클릭으로 충당됩니다.</p>
-                    <div class="share-box">
-                        <span>공유하기:</span>
-                        <button class="share-btn">카카오톡 공유</button>
-                    </div>
-                </footer>
             </section>
 
-            <!-- 우측: 필터 컨트롤 패널 -->
-            <aside class="filter-panel">
+            <aside class="filter-panel" id="filterPanel">
                 <div class="panel-header">
-                    <span>알고리즘 필터 제어</span>
-                    <button id="btnGacha" class="gacha-btn-sm" title="무작위 모드: 필터 무작위 설정">무작위 모드</button>
+                    <span>22가지 정밀 필터링 엔진</span>
+                    <button id="btnGacha" class="gacha-btn-sm">무작위 모드</button>
                 </div>
-                
-                <div class="preset-group">
-                    <button class="preset-btn" data-preset="golden">황금비율</button>
-                    <button class="preset-btn" data-preset="aggressive">공격적</button>
-                    <button class="preset-btn" data-preset="defensive">방어적</button>
-                </div>
-
                 <div class="filter-scroll">
-                    <!-- 수학적 필터 -->
+                    <!-- 1~6: 실시간 데이터 분석 -->
                     <div class="filter-category">
-                        <h3>수학적 필터 (7)</h3>
+                        <h3>실시간 데이터 분석 (1-6)</h3>
                         <div class="filter-item">
-                            <label class="switch"><input type="checkbox" id="f_sum" checked><span class="slider"></span></label>
-                            <span class="f-name">총합 구간 (100-175)</span>
-                            <span class="info-icon" title="번호 6개의 합이 100~175 사이">?</span>
+                            <label class="switch"><input type="checkbox" id="f_1" checked><span class="slider"></span></label>
+                            <span class="f-name">1. 최근 5주간 당첨번호 비율 (핫넘버)</span>
                         </div>
                         <div class="filter-item">
-                            <label class="switch"><input type="checkbox" id="f_ac" checked><span class="slider"></span></label>
-                            <span class="f-name">AC값 복잡도 (7이상)</span>
-                            <span class="info-icon" title="산술적 복잡도 7 이상">?</span>
+                            <label class="switch"><input type="checkbox" id="f_2" checked><span class="slider"></span></label>
+                            <span class="f-name">2. 역대 최다 당첨번호 반영</span>
                         </div>
                         <div class="filter-item">
-                            <label class="switch"><input type="checkbox" id="f_oddeven" checked><span class="slider"></span></label>
-                            <span class="f-name">홀짝 밸런스 (2:4~4:2)</span>
+                            <label class="switch"><input type="checkbox" id="f_3" checked><span class="slider"></span></label>
+                            <span class="f-name">3. 색상 분포 비율 최적화</span>
                         </div>
                         <div class="filter-item">
-                            <label class="switch"><input type="checkbox" id="f_highlow" checked><span class="slider"></span></label>
-                            <span class="f-name">고저 밸런스 (2:4~4:2)</span>
+                            <label class="switch"><input type="checkbox" id="f_4" checked><span class="slider"></span></label>
+                            <span class="f-name">4. 최근 5주간 미출수 (콜드넘버) 전략</span>
                         </div>
                         <div class="filter-item">
-                            <label class="switch"><input type="checkbox" id="f_endsum"><span class="slider"></span></label>
-                            <span class="f-name">끝수 합 (20-35)</span>
+                            <label class="switch"><input type="checkbox" id="f_5" checked><span class="slider"></span></label>
+                            <span class="f-name">5. 직전 회차 이월수 (0~2개)</span>
                         </div>
                         <div class="filter-item">
-                            <label class="switch"><input type="checkbox" id="f_prime"><span class="slider"></span></label>
-                            <span class="f-name">소수 비중 (1-3개)</span>
-                        </div>
-                        <div class="filter-item">
-                            <label class="switch"><input type="checkbox" id="f_mul3"><span class="slider"></span></label>
-                            <span class="f-name">3의 배수 (1-3개)</span>
+                            <label class="switch"><input type="checkbox" id="f_6" checked><span class="slider"></span></label>
+                            <span class="f-name">6. 직전 회차 이웃수 (1~3개)</span>
                         </div>
                     </div>
 
-                    <!-- 통계적 필터 -->
+                    <!-- 7~12: 산술적/통계적 필터 -->
                     <div class="filter-category">
-                        <h3>통계적 필터 (7)</h3>
+                        <h3>산술적/통계적 필터 (7-12)</h3>
                         <div class="filter-item">
-                            <label class="switch"><input type="checkbox" id="f_hot" checked><span class="slider"></span></label>
-                            <span class="f-name">최근 핫넘버 반영</span>
+                            <label class="switch"><input type="checkbox" id="f_7" checked><span class="slider"></span></label>
+                            <span class="f-name">7. 총합 구간 (100~175)</span>
                         </div>
                         <div class="filter-item">
-                            <label class="switch"><input type="checkbox" id="f_cold"><span class="slider"></span></label>
-                            <span class="f-name">장기 미출수 포함</span>
+                            <label class="switch"><input type="checkbox" id="f_8" checked><span class="slider"></span></label>
+                            <span class="f-name">8. AC값 (산술적 복잡도) 7 이상</span>
                         </div>
                         <div class="filter-item">
-                            <label class="switch"><input type="checkbox" id="f_carryover"><span class="slider"></span></label>
-                            <span class="f-name">이월수 반영 (0-2개)</span>
+                            <label class="switch"><input type="checkbox" id="f_9" checked><span class="slider"></span></label>
+                            <span class="f-name">9. 홀짝 비율 (6:0, 0:6 제외)</span>
                         </div>
                         <div class="filter-item">
-                            <label class="switch"><input type="checkbox" id="f_missing"><span class="slider"></span></label>
-                            <span class="f-name">미출현 번호대 확인</span>
+                            <label class="switch"><input type="checkbox" id="f_10" checked><span class="slider"></span></label>
+                            <span class="f-name">10. 고저 비율 (6:0, 0:6 제외)</span>
                         </div>
                         <div class="filter-item">
-                            <label class="switch"><input type="checkbox" id="f_serial"><span class="slider"></span></label>
-                            <span class="f-name">동형수/연번 통계</span>
+                            <label class="switch"><input type="checkbox" id="f_11" checked><span class="slider"></span></label>
+                            <span class="f-name">11. 동일 끝수 (0~3개 포함)</span>
                         </div>
                         <div class="filter-item">
-                            <label class="switch"><input type="checkbox" id="f_lastdigit"><span class="slider"></span></label>
-                            <span class="f-name">동일 끝수 제한</span>
-                        </div>
-                        <div class="filter-item">
-                            <label class="switch"><input type="checkbox" id="f_excludelast"><span class="slider"></span></label>
-                            <span class="f-name">전회차 당첨번호 제외</span>
+                            <label class="switch"><input type="checkbox" id="f_12" checked><span class="slider"></span></label>
+                            <span class="f-name">12. 끝수 총합 (15~38 구간)</span>
                         </div>
                     </div>
 
-                    <!-- 패턴 필터 -->
+                    <!-- 13~18: 구조적/패턴 필터 -->
                     <div class="filter-category">
-                        <h3>패턴 필터 (8)</h3>
+                        <h3>구조적/패턴 필터 (13-18)</h3>
                         <div class="filter-item">
-                            <label class="switch"><input type="checkbox" id="f_consecutive" checked><span class="slider"></span></label>
-                            <span class="f-name">연속번호 제한 (2연번이하)</span>
+                            <label class="switch"><input type="checkbox" id="f_13" checked><span class="slider"></span></label>
+                            <span class="f-name">13. 연속번호(연번) 제한 및 2연번 적용</span>
                         </div>
                         <div class="filter-item">
-                            <label class="switch"><input type="checkbox" id="f_corner"><span class="slider"></span></label>
-                            <span class="f-name">모서리 패턴 분석</span>
+                            <label class="switch"><input type="checkbox" id="f_14" checked><span class="slider"></span></label>
+                            <span class="f-name">14. 소수 포함 비율 (0~3개 포함)</span>
                         </div>
                         <div class="filter-item">
-                            <label class="switch"><input type="checkbox" id="f_section"><span class="slider"></span></label>
-                            <span class="f-name">번호대 균등 배분</span>
+                            <label class="switch"><input type="checkbox" id="f_15" checked><span class="slider"></span></label>
+                            <span class="f-name">15. 합성수 분석 (0~3개 포함)</span>
                         </div>
                         <div class="filter-item">
-                            <label class="switch"><input type="checkbox" id="f_twin"><span class="slider"></span></label>
-                            <span class="f-name">쌍둥이수 (11,22..) 필터</span>
+                            <label class="switch"><input type="checkbox" id="f_16" checked><span class="slider"></span></label>
+                            <span class="f-name">16. 완전제곱수 필터 (0~2개 포함)</span>
                         </div>
                         <div class="filter-item">
-                            <label class="switch"><input type="checkbox" id="f_mirror"><span class="slider"></span></label>
-                            <span class="f-name">거울수 분석</span>
+                            <label class="switch"><input type="checkbox" id="f_17" checked><span class="slider"></span></label>
+                            <span class="f-name">17. 특정 배수 배분 (3의 배수, 5의 배수)</span>
                         </div>
                         <div class="filter-item">
-                            <label class="switch"><input type="checkbox" id="f_symmetry"><span class="slider"></span></label>
-                            <span class="f-name">좌우 대칭 패턴</span>
+                            <label class="switch"><input type="checkbox" id="f_18" checked><span class="slider"></span></label>
+                            <span class="f-name">18. 쌍수 제한 (0~2개 포함)</span>
+                        </div>
+                    </div>
+
+                    <!-- 19~22: 분포/AI 필터 -->
+                    <div class="filter-category">
+                        <h3>분포/AI 최종 필터 (19-22)</h3>
+                        <div class="filter-item">
+                            <label class="switch"><input type="checkbox" id="f_19" checked><span class="slider"></span></label>
+                            <span class="f-name">19. 시작번호와 끝번호 제한</span>
                         </div>
                         <div class="filter-item">
-                            <label class="switch"><input type="checkbox" id="f_diagonal"><span class="slider"></span></label>
-                            <span class="f-name">대각선 분포 확인</span>
+                            <label class="switch"><input type="checkbox" id="f_20" checked><span class="slider"></span></label>
+                            <span class="f-name">20. 동일구간 쏠림 방지</span>
                         </div>
                         <div class="filter-item">
-                            <label class="switch"><input type="checkbox" id="f_ai" checked><span class="slider"></span></label>
-                            <span class="f-name">AI 최종 최적화</span>
+                            <label class="switch"><input type="checkbox" id="f_21" checked><span class="slider"></span></label>
+                            <span class="f-name">21. 모서리 패턴 반영 (1~4개 포함)</span>
+                        </div>
+                        <div class="filter-item">
+                            <label class="switch"><input type="checkbox" id="f_22" checked><span class="slider"></span></label>
+                            <span class="f-name">22. AI 딥러닝 고급 분석 (최종 최적화)</span>
                         </div>
                     </div>
                 </div>
             </aside>
         </div>
     </div>
+
+    <!-- 분석 리포트 모달 -->
+    <div id="reportModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>조합 분석 리포트</h3>
+                <button class="close-modal" id="btnCloseModal">&times;</button>
+            </div>
+            <div id="reportContent" class="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- 분석 연출 오버레이 -->
+    <div id="analysisOverlay" class="ad-overlay" style="display:none;">
+        <div class="overlay-content">
+            <div class="scanner-line"></div>
+            <h2 class="ai-status">AI DEEP-LEARNING ANALYZING...</h2>
+            <div class="large-ad-box">
+                <div class="ad-label">PREMIUM SPONSOR</div>
+                <div class="ad-placeholder-large">광고 시청 중 분석이 완료됩니다</div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar" id="analysisProgress"></div>
+            </div>
+        </div>
+    </div>
+
     <script src="main.js"></script>
 </body>
 </html>
