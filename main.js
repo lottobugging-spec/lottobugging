@@ -1,6 +1,6 @@
 /**
  * 로또버깅(LottoBugging) 분석 엔진 v3.5
- * 22가지 가중치 스코어링 및 Vercel 서버리스 연동
+ * 22가지 가중치 스코어링 및 수익화 전략(광고) 로직 포함
  */
 
 const STATE = {
@@ -17,7 +17,10 @@ const ui = {
     ballContainer: document.getElementById('ballContainer'),
     probValue: document.getElementById('probValue'),
     historyTable: document.getElementById('historyTable'),
-    qtyBtns: document.querySelectorAll('.qty-btn')
+    qtyBtns: document.querySelectorAll('.qty-btn'),
+    bottomAd: document.getElementById('bottomAd'),
+    analysisOverlay: document.getElementById('analysisOverlay'),
+    analysisProgress: document.getElementById('analysisProgress')
 };
 
 /**
@@ -30,12 +33,10 @@ function getKST() {
 }
 
 function calculateCurrentTurn() {
-    const start = new Date('2002-12-07T21:00:00+09:00'); // 1회차 추첨일
+    const start = new Date('2002-12-07T21:00:00+09:00'); 
     const now = getKST();
     const diff = now - start;
     const weeks = Math.floor(diff / (1000 * 60 * 60 * 24 * 7));
-    
-    // 토요일 21:00 이전이면 아직 이번 주 추첨 전
     return weeks + 1;
 }
 
@@ -49,57 +50,52 @@ class FilterEngine {
         const history = STATE.recentHistory;
         const flatWinNums = history.flatMap(h => h.winNums);
 
-        // [필터 1-4] 기본 통계 (각 10점)
         const sum = sorted.reduce((a,b) => a+b, 0);
-        if (sum >= 100 && sum <= 175) score += 10; // 1. 총합
+        if (sum >= 100 && sum <= 175) score += 10;
         
         const odds = sorted.filter(n => n%2).length;
-        if (odds >= 2 && odds <= 4) score += 10; // 2. 홀짝비율
+        if (odds >= 2 && odds <= 4) score += 10;
         
         const highs = sorted.filter(n => n >= 23).length;
-        if (highs >= 2 && highs <= 4) score += 10; // 3. 고저비율
+        if (highs >= 2 && highs <= 4) score += 10;
         
         let diffs = new Set();
         for(let i=0; i<6; i++) for(let j=i+1; j<6; j++) diffs.add(Math.abs(sorted[i]-sorted[j]));
-        if (diffs.size - 5 >= 7) score += 10; // 4. AC값
+        if (diffs.size - 5 >= 7) score += 10;
 
-        // [필터 5-8] 수의 성질 (각 5점)
         const primes = [2,3,5,7,11,13,17,19,23,29,31,37,41,43];
-        if (sorted.filter(n => primes.includes(n)).length <= 3) score += 5; // 5. 소수
-        if (sorted.filter(n => n%3 === 0).length <= 3) score += 5; // 6. 3의 배수
-        const endSum = sorted.reduce((a,b) => a+(b%10), 0);
-        if (endSum >= 20 && endSum <= 35) score += 5; // 7. 끝수합
+        if (sorted.filter(n => primes.includes(n)).length <= 3) score += 5;
+        if (sorted.filter(n => n%3 === 0).length <= 3) score += 5;
         
-        // 8. 연속수 제한
+        const endSum = sorted.reduce((a,b) => a+(b%10), 0);
+        if (endSum >= 20 && endSum <= 35) score += 5;
+        
         let con = 0;
         for(let i=0; i<5; i++) if(sorted[i]+1 === sorted[i+1]) con++;
         if (con <= 1) score += 15; else if (con > 2) score -= 20;
 
-        // [필터 9-12] 최근 데이터 연동 (각 15점)
         if (history.length > 0) {
             const lastWin = history[0].winNums;
             const carryOver = sorted.filter(n => lastWin.includes(n)).length;
-            if (carryOver >= 1 && carryOver <= 2) score += 15; // 9. 이월수
+            if (carryOver >= 1 && carryOver <= 2) score += 15;
             
             const hotCount = sorted.filter(n => flatWinNums.filter(x => x===n).length >= 2).length;
-            if (hotCount >= 1) score += 10; // 10. 핫넘버
+            if (hotCount >= 1) score += 10;
             
-            if (sorted.some(n => !flatWinNums.includes(n))) score += 10; // 11. 콜드넘버
-            if (!sorted.every(n => lastWin.includes(n))) score += 50; // 12. 전회차 중복방지
+            if (sorted.some(n => !flatWinNums.includes(n))) score += 10;
+            if (!sorted.every(n => lastWin.includes(n))) score += 50;
         }
 
-        // [필터 13-22] 패턴 및 분포 (각 3~5점)
         const ends = sorted.map(n => n%10);
-        if (new Set(ends).size >= 4) score += 5; // 13. 끝수 동일 방지
+        if (new Set(ends).size >= 4) score += 5;
         
         const sections = new Set(sorted.map(n => Math.floor((n-1)/10)));
-        if (sections.size >= 4) score += 5; // 14. 번호대 분포
+        if (sections.size >= 4) score += 5;
         
         const corners = [1,2,8,9,6,7,13,14,29,30,36,37,34,35,41,42];
-        if (sorted.filter(n => corners.includes(n)).length >= 1) score += 5; // 15. 모서리 패턴
+        if (sorted.filter(n => corners.includes(n)).length >= 1) score += 5;
         
-        // 16. 쌍둥이수, 17. 거울수, 18. 대각선, 19. 대칭, 20. 가로분포, 21. 세로분포, 22. AI 랜덤 가중치
-        score += (Math.random() * 10); // AI 편향성 엔진
+        score += (Math.random() * 10); 
 
         return score;
     }
@@ -114,7 +110,7 @@ async function addLog(msg, type = '') {
     p.innerHTML = `> ${msg}`;
     ui.logContent.appendChild(p);
     ui.logContent.scrollTop = ui.logContent.scrollHeight;
-    await new Promise(r => setTimeout(r, 100)); // 로그 출력 속도 조절
+    await new Promise(r => setTimeout(r, 100));
 }
 
 async function runAnalysis() {
@@ -122,17 +118,37 @@ async function runAnalysis() {
     STATE.isAnalyzing = true;
     ui.btnGenerate.disabled = true;
     ui.ballContainer.innerHTML = '';
+    
+    // 수익화 전략: 10개/20개 추출 시 전면 광고/대기
+    if (STATE.selectedQty >= 10) {
+        ui.analysisOverlay.style.display = 'flex';
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += 3.33;
+            ui.analysisProgress.style.width = `${progress}%`;
+            if (progress >= 100) clearInterval(interval);
+        }, 100);
+        
+        await new Promise(r => setTimeout(r, 3000));
+        ui.analysisOverlay.style.display = 'none';
+        ui.analysisProgress.style.width = '0%';
+    }
+
+    // 수익화 전략: 5개 추출 시 하단 광고 노출
+    if (STATE.selectedQty === 5) {
+        ui.bottomAd.style.display = 'block';
+    } else {
+        ui.bottomAd.style.display = 'none';
+    }
 
     await addLog("시스템 메모리 정렬 중...", "warn");
-    await addLog("최근 5주 데이터 동기화 확인...", "warn");
-    await addLog("22개 가중치 필터 엔진 가동...", "warn");
-    await addLog("데이터 노이즈 제거 및 시뮬레이션 시작...", "success");
+    await addLog("최근 데이터 동기화 확인...", "warn");
+    await addLog(`${STATE.selectedQty}개 고가중치 조합 추출 엔진 가동...`, "warn");
 
     const probInterval = setInterval(() => {
         ui.probValue.textContent = (Math.random() * 99).toFixed(6) + "%";
     }, 50);
 
-    // 가중치 스코어링 방식의 추출 (5000개 후보군 중 상위 추출)
     setTimeout(async () => {
         let candidates = [];
         for(let i=0; i<5000; i++) {
@@ -151,7 +167,7 @@ async function runAnalysis() {
         
         ui.btnGenerate.disabled = false;
         STATE.isAnalyzing = false;
-    }, 1000);
+    }, 500);
 }
 
 function generateRandomSet() {
@@ -189,9 +205,8 @@ function getBallColor(n) {
 
 async function init() {
     STATE.currentDrwNo = calculateCurrentTurn();
-    addLog(`LOTTOBUGGING 시스템 접속... (Target: ${STATE.currentDrwNo}회차)`, "success");
+    addLog(`LOTTOBUGGING 접속 완료. (Target: ${STATE.currentDrwNo}회차)`, "success");
     
-    // 데이터 불러오기
     for(let i=1; i<=5; i++) {
         const drwNo = STATE.currentDrwNo - i;
         try {

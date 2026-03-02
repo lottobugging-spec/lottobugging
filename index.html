@@ -54,6 +54,12 @@
                         </div>
                     </div>
 
+                    <!-- 하단 가변 배너 광고 영역 (5개 이상 추출 시 노출) -->
+                    <div id="bottomAd" class="ad-banner-bottom" style="display:none;">
+                        <div class="ad-label">SPONSORED</div>
+                        <div class="ad-content">구글 애드센스 하단 배너 영역</div>
+                    </div>
+
                     <div class="main-controls">
                         <div class="combo-selector">
                             <label>추출 개수 선택:</label>
@@ -61,9 +67,28 @@
                                 <button class="qty-btn active" data-qty="1">1개</button>
                                 <button class="qty-btn" data-qty="5">5개</button>
                                 <button class="qty-btn" data-qty="10">10개</button>
+                                <button class="qty-btn" data-qty="20">20개</button>
                             </div>
                         </div>
                         <button id="btnGenerate" class="cyber-btn primary">알고리즘 분석 시작</button>
+                    </div>
+                </div>
+
+                <!-- 전면 분석 오버레이 (10/20개 추출 시 노출) -->
+                <div id="analysisOverlay" class="ad-overlay" style="display:none;">
+                    <div class="overlay-content">
+                        <div class="scanner-line"></div>
+                        <h2 class="ai-status">AI DEEP-LEARNING ANALYZING...</h2>
+                        <p class="ai-desc">고가중치 조합 도출을 위해 알고리즘 정밀 분석 중입니다 (3s)</p>
+                        
+                        <div class="large-ad-box">
+                            <div class="ad-label">PREMIUM SPONSOR</div>
+                            <div class="ad-placeholder-large">구글 애드센스 전면/대형 광고 영역</div>
+                        </div>
+
+                        <div class="progress-container">
+                            <div class="progress-bar" id="analysisProgress"></div>
+                        </div>
                     </div>
                 </div>
 
