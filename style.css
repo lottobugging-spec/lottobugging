@@ -45,6 +45,8 @@ h1 { font-family: 'Rajdhani', sans-serif; font-size: 1.5rem; letter-spacing: 2px
 .prize-info .label { font-size: 0.6rem; color: var(--text-muted); }
 .prize-info .value { font-size: 1.1rem; color: var(--accent-neon); font-weight: bold; }
 
+/* ... (rest of the file remains same until layout grid) ... */
+
 /* Layout Grid */
 .main-content {
     display: grid;
@@ -53,8 +55,52 @@ h1 { font-family: 'Rajdhani', sans-serif; font-size: 1.5rem; letter-spacing: 2px
     overflow: hidden;
 }
 
+/* Responsive Adjustments */
+@media (max-width: 900px) {
+    body {
+        overflow-y: auto;
+        height: auto;
+    }
+    
+    .dashboard {
+        height: auto;
+    }
+
+    .main-content {
+        grid-template-columns: 1fr;
+        height: auto;
+        overflow: visible;
+    }
+
+    .canvas-area {
+        overflow: visible;
+        padding: 10px;
+    }
+
+    .filter-panel {
+        border-left: none;
+        border-top: 1px solid var(--border-tech);
+        height: auto;
+    }
+
+    .ball {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+
+    .ball-container {
+        gap: 8px;
+    }
+
+    .result-display {
+        padding: 20px 10px;
+    }
+}
+
 /* Left Canvas */
 .canvas-area {
+/* ... rest of style.css ... */
     padding: 20px;
     display: flex;
     flex-direction: column;
