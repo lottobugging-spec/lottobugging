@@ -255,7 +255,7 @@ async function runAnalysis() {
 
     // 결과 출력
     if (candidates.length > 0) {
-        displayResults(candidates);
+        await displayResults(candidates);
         probValue.textContent = (0.000412 / selectedQty).toFixed(8) + "%";
     } else {
         ballContainer.innerHTML = '<div class="log-line error">결과 생성에 실패했습니다. 필터 조건을 완화해 주세요.</div>';
@@ -265,14 +265,15 @@ async function runAnalysis() {
     btnGenerate.disabled = false;
 }
 
-function displayResults(bundles) {
+async function displayResults(bundles) {
     ballContainer.innerHTML = '';
     
-    bundles.forEach((nums, idx) => {
+    for (const [idx, nums] of bundles.entries()) {
         const row = document.createElement('div');
         row.className = 'result-row';
+        ballContainer.appendChild(row);
         
-        nums.forEach(n => {
+        for (const n of nums) {
             const ball = document.createElement('div');
             ball.className = bundles.length === 1 ? 'ball' : 'mini-ball';
             ball.textContent = n;
@@ -281,10 +282,15 @@ function displayResults(bundles) {
             ball.style.color = color;
             ball.style.boxShadow = `0 0 10px ${color}44`;
             row.appendChild(ball);
-        });
+            
+            // 공 하나하나가 나타날 때 약간의 지연을 주어 애니메이션 효과를 극대화
+            await new Promise(r => setTimeout(r, 50));
+        }
         
-        ballContainer.appendChild(row);
-    });
+        if (bundles.length > 1) {
+            await new Promise(r => setTimeout(r, 100));
+        }
+    }
 }
 
 // 개수 선택 버튼 핸들러
@@ -314,10 +320,10 @@ document.querySelectorAll('.preset-btn').forEach(btn => {
     });
 });
 
-// 가챠 로직
+// 무작위 모드 로직
 btnGacha.addEventListener('click', async () => {
     btnGacha.classList.add('active');
-    addLog("가챠 모드: 필터를 무작위로 구성 중...", "warn");
+    addLog("무작위 모드: 필터를 무작위로 구성 중...", "warn");
     
     Object.values(filterMap).forEach(cb => cb.checked = false);
     let shuffled = FILTER_IDS.sort(() => 0.5 - Math.random());
@@ -332,7 +338,7 @@ btnGacha.addEventListener('click', async () => {
     }
 
     selected.forEach(id => { filterMap[id].checked = true; });
-    addLog(`가챠 완료: ${count}개의 알고리즘이 활성화되었습니다.`);
+    addLog(`무작위 설정 완료: ${count}개의 알고리즘이 활성화되었습니다.`);
     btnGacha.classList.remove('active');
     setTimeout(runAnalysis, 500);
 });
