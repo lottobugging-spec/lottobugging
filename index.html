@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LottoBugging - AI Deep Tech Dashboard</title>
+    <title>로또버깅 - AI 딥테크 대시보드</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
 </head>
@@ -15,9 +15,9 @@
                 <h1>LOTTO<span class="highlight">BUGGING</span> <span class="version">v2.1</span></h1>
                 <p class="tagline">유료 업체에 속지 마세요. 당신의 '꽝' 오류를 무상으로 디버깅합니다.</p>
             </div>
-            <div class="prize-info">
-                <span class="label">ESTIMATED 1ST PRIZE:</span>
-                <span class="value">₩ 24,582,104,220</span>
+            <div class="system-status">
+                <span class="status-label">시스템 상태:</span>
+                <span class="status-value pulse">OPERATIONAL</span>
             </div>
         </header>
 
@@ -27,10 +27,10 @@
                 <div class="monitor">
                     <div class="screen-header">
                         <span class="status-dot green"></span>
-                        <span class="title">NEURAL_OUTPUT_STREAM</span>
+                        <span class="title">신경망 분석 출력 스트림</span>
                     </div>
                     
-                    <div class="result-display">
+                    <div class="result-display" id="resultDisplay">
                         <div class="ball-container" id="ballContainer">
                             <div class="ball" data-index="1">?</div>
                             <div class="ball" data-index="2">?</div>
@@ -42,37 +42,37 @@
                     </div>
 
                     <div class="probability-box">
-                        <div class="prob-label">CONVERGENCE PROBABILITY</div>
+                        <div class="prob-label">분석 수렴 확률</div>
                         <div class="prob-value" id="probValue">0.000000%</div>
                     </div>
 
                     <div class="main-controls">
                         <div class="combo-selector">
-                            <label>QUANTITY:</label>
+                            <label>추출 개수 선택:</label>
                             <div class="combo-btns">
-                                <button class="qty-btn active" data-qty="1">1</button>
-                                <button class="qty-btn" data-qty="5">5</button>
-                                <button class="qty-btn" data-qty="10">10</button>
+                                <button class="qty-btn active" data-qty="1">1개</button>
+                                <button class="qty-btn" data-qty="5">5개</button>
+                                <button class="qty-btn" data-qty="10">10개</button>
                             </div>
                         </div>
-                        <button id="btnGenerate" class="cyber-btn primary">RUN DEEP ANALYSIS</button>
+                        <button id="btnGenerate" class="cyber-btn primary">알고리즘 분석 시작</button>
                     </div>
                 </div>
 
                 <div class="terminal">
-                    <div class="terminal-header">DEBUGGING_LOG_STREAM</div>
+                    <div class="terminal-header">디버깅 로그 스트림</div>
                     <div class="log-content" id="logContent">
-                        <p class="log-line">> System initialized. Ready for multivariate analysis.</p>
+                        <p class="log-line">> 시스템 초기화 완료. 다변량 분석 준비됨.</p>
                     </div>
                 </div>
                 
                 <!-- 하단 법적 고지 및 광고 영역 -->
                 <footer class="canvas-footer">
-                    <div class="ad-placeholder">ADSENSE_UNIT_728x90</div>
+                    <div class="ad-placeholder">구글 애드센스 광고 영역</div>
                     <p class="legal-notice">※ 본 시스템은 통계적 추측을 제공하며, 당첨을 보장하지 않습니다. 서버 유지비는 광고 클릭으로 충당됩니다.</p>
                     <div class="share-box">
                         <span>공유하기:</span>
-                        <button class="share-btn">KAKAOTALK</button>
+                        <button class="share-btn">카카오톡 공유</button>
                     </div>
                 </footer>
             </section>
@@ -80,8 +80,8 @@
             <!-- 우측: 필터 컨트롤 패널 -->
             <aside class="filter-panel">
                 <div class="panel-header">
-                    <span>ALGORITHM_CONTROLS</span>
-                    <button id="btnGacha" class="gacha-btn-sm" title="GACHA MODE: Randomize Filters">GACHA</button>
+                    <span>알고리즘 필터 제어</span>
+                    <button id="btnGacha" class="gacha-btn-sm" title="가챠 모드: 필터 무작위 설정">가챠 모드</button>
                 </div>
                 
                 <div class="preset-group">
@@ -93,7 +93,7 @@
                 <div class="filter-scroll">
                     <!-- 수학적 필터 -->
                     <div class="filter-category">
-                        <h3>MATH_FILTERS (7)</h3>
+                        <h3>수학적 필터 (7)</h3>
                         <div class="filter-item">
                             <label class="switch"><input type="checkbox" id="f_sum" checked><span class="slider"></span></label>
                             <span class="f-name">총합 구간 (100-175)</span>
@@ -128,7 +128,7 @@
 
                     <!-- 통계적 필터 -->
                     <div class="filter-category">
-                        <h3>STAT_FILTERS (7)</h3>
+                        <h3>통계적 필터 (7)</h3>
                         <div class="filter-item">
                             <label class="switch"><input type="checkbox" id="f_hot" checked><span class="slider"></span></label>
                             <span class="f-name">최근 핫넘버 반영</span>
@@ -161,7 +161,7 @@
 
                     <!-- 패턴 필터 -->
                     <div class="filter-category">
-                        <h3>PATTERN_FILTERS (8)</h3>
+                        <h3>패턴 필터 (8)</h3>
                         <div class="filter-item">
                             <label class="switch"><input type="checkbox" id="f_consecutive" checked><span class="slider"></span></label>
                             <span class="f-name">연속번호 제한 (2연번이하)</span>
