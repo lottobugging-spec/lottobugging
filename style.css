@@ -97,7 +97,7 @@ h1 { font-family: 'Rajdhani', sans-serif; font-size: 1.5rem; letter-spacing: 2px
     flex: 1;
     padding: 20px 10px;
     overflow-y: auto;
-    overflow-x: hidden; /* 가로 스크롤 방지 */
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -107,45 +107,37 @@ h1 { font-family: 'Rajdhani', sans-serif; font-size: 1.5rem; letter-spacing: 2px
 
 .ball-container { 
     display: flex; 
-    flex-direction: column; /* 세로로 쌓이게 변경 */
-    gap: 15px; 
+    flex-direction: column; 
+    gap: 12px; 
     padding: 10px 0;
     width: 100%;
-    align-items: center; /* 중앙 정렬 */
+    align-items: center;
 }
 
-/* 개별 번호 조합 행 */
 .result-row {
     display: flex; 
+    flex-direction: row; /* 공 6개는 무조건 가로 */
     gap: 8px; 
-    justify-content: center; /* 공들을 행 안에서 중앙 정렬 */
+    justify-content: center;
     align-items: center;
-    padding: 15px; 
+    padding: 12px 5px; 
     border-bottom: 1px solid rgba(88, 166, 255, 0.1);
     width: 100%;
-    max-width: 500px; /* 너무 퍼지지 않게 제한 */
-    animation: fadeIn 0.5s ease-out;
+    max-width: 400px;
+    animation: fadeIn 0.4s ease-out;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.ball {
-    width: 54px; height: 54px; border: 2px solid var(--accent-blue);
+.ball, .mini-ball {
+    width: 46px; height: 46px; border: 2px solid var(--accent-blue);
     border-radius: 50%; display: flex; justify-content: center; align-items: center;
-    font-size: 1.4rem; font-weight: bold; font-family: 'Rajdhani', sans-serif;
+    font-size: 1.2rem; font-weight: bold; font-family: 'Rajdhani', sans-serif;
     color: var(--accent-blue); box-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
-    flex-shrink: 0; /* 공 크기 유지 */
+    flex-shrink: 0;
 }
 
 .mini-ball {
-    width: 42px; height: 42px; border: 1.5px solid var(--accent-blue);
-    border-radius: 50%; display: flex; justify-content: center; align-items: center;
-    font-size: 1.1rem; font-weight: bold; font-family: 'Rajdhani', sans-serif;
-    color: var(--accent-blue);
-    flex-shrink: 0;
+    width: 38px; height: 38px; border-width: 1.5px;
+    font-size: 1rem;
 }
 
 .probability-box {

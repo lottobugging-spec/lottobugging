@@ -110,7 +110,6 @@ async function addLog(msg, type = '') {
     p.innerHTML = `> ${msg}`;
     ui.logContent.appendChild(p);
     ui.logContent.scrollTop = ui.logContent.scrollHeight;
-    await new Promise(r => setTimeout(r, 100));
 }
 
 async function runAnalysis() {
@@ -123,6 +122,7 @@ async function runAnalysis() {
     if (STATE.selectedQty >= 10) {
         ui.analysisOverlay.style.display = 'flex';
         let progress = 0;
+        ui.analysisProgress.style.width = '0%';
         const interval = setInterval(() => {
             progress += 3.33;
             ui.analysisProgress.style.width = `${progress}%`;
@@ -131,19 +131,13 @@ async function runAnalysis() {
         
         await new Promise(r => setTimeout(r, 3000));
         ui.analysisOverlay.style.display = 'none';
-        ui.analysisProgress.style.width = '0%';
     }
 
     // 수익화 전략: 5개 추출 시 하단 광고 노출
-    if (STATE.selectedQty === 5) {
-        ui.bottomAd.style.display = 'block';
-    } else {
-        ui.bottomAd.style.display = 'none';
-    }
+    ui.bottomAd.style.display = (STATE.selectedQty === 5) ? 'block' : 'none';
 
-    await addLog("시스템 메모리 정렬 중...", "warn");
-    await addLog("최근 데이터 동기화 확인...", "warn");
-    await addLog(`${STATE.selectedQty}개 고가중치 조합 추출 엔진 가동...`, "warn");
+    await addLog(`--------------------------------`, "warn");
+    await addLog(`${STATE.selectedQty}개 고가중치 조합 분석 시작...`, "warn");
 
     const probInterval = setInterval(() => {
         ui.probValue.textContent = (Math.random() * 99).toFixed(6) + "%";
@@ -182,7 +176,7 @@ async function displayResults(bundles) {
     for (const nums of bundles) {
         const row = document.createElement('div');
         row.className = 'result-row';
-        ui.ballContainer.appendChild(row); // 행을 먼저 추가하여 세로 공간 확보
+        ui.ballContainer.appendChild(row);
         
         for (const n of nums) {
             const ball = document.createElement('div');
@@ -194,9 +188,9 @@ async function displayResults(bundles) {
             ball.style.boxShadow = `0 0 15px ${color}66`;
             row.appendChild(ball);
             
-            await new Promise(r => setTimeout(r, 50)); // 공 하나씩 연출
+            await new Promise(r => setTimeout(r, 50));
         }
-        await new Promise(r => setTimeout(r, 100)); // 다음 줄 넘어가기 전 대기
+        await new Promise(r => setTimeout(r, 100));
     }
 }
 
@@ -233,13 +227,17 @@ function renderHistoryRow(no, date, nums, bonus) {
     ui.historyTable.appendChild(row);
 }
 
-ui.btnGenerate.addEventListener('click', runAnalysis);
+// 추출 개수 버튼 클릭 시 즉시 생성
 ui.qtyBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         ui.qtyBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         STATE.selectedQty = parseInt(btn.dataset.qty);
+        runAnalysis();
     });
 });
+
+// 기존 분석 시작 버튼도 유지 (필요 시 클릭 가능)
+ui.btnGenerate.addEventListener('click', runAnalysis);
 
 init();
