@@ -133,8 +133,12 @@ async function displayResults(data) {
         
         data[i].nums.forEach(n => {
             const b = document.createElement('div');
-            b.className = 'ball'; b.textContent = n;
-            b.style.backgroundColor = getBallColor(n);
+            b.className = 'ball'; 
+            b.textContent = n;
+            const color = getBallColor(n);
+            b.style.borderColor = color;
+            b.style.color = color;
+            b.style.boxShadow = `0 0 15px ${color}44`;
             numsDiv.appendChild(b);
         });
         
@@ -146,7 +150,7 @@ async function displayResults(data) {
 
         const btn = document.createElement('button');
         btn.className = 'btn-report'; btn.textContent = 'REPORT';
-        btn.style.position = 'static'; // 레이아웃 조정을 위해
+        btn.style.position = 'static';
         btn.onclick = () => showReport(i);
 
         infoDiv.appendChild(numsDiv);
