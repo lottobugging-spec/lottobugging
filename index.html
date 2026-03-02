@@ -1,14 +1,59 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LottoBugging - AI Driven Analysis</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for Tech look -->
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+    <div class="container">
+        <header>
+            <div class="logo-area">
+                <h1>LOTTO<span class="highlight">BUGGING</span>_v1.0</h1>
+                <p class="status">SYSTEM: <span class="blink">ONLINE</span></p>
+            </div>
+        </header>
+
+        <main>
+            <div class="monitor">
+                <div class="screen-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="title">ANALYSIS_PROTOCOL_22.exe</span>
+                </div>
+                
+                <div class="result-area" id="resultArea">
+                    <div class="ball-container">
+                        <div class="ball-wrapper"><div class="ball" id="ball1">?</div><span class="label">NO.1</span></div>
+                        <div class="ball-wrapper"><div class="ball" id="ball2">?</div><span class="label">NO.2</span></div>
+                        <div class="ball-wrapper"><div class="ball" id="ball3">?</div><span class="label">NO.3</span></div>
+                        <div class="ball-wrapper"><div class="ball" id="ball4">?</div><span class="label">NO.4</span></div>
+                        <div class="ball-wrapper"><div class="ball" id="ball5">?</div><span class="label">NO.5</span></div>
+                        <div class="ball-wrapper"><div class="ball" id="ball6">?</div><span class="label">NO.6</span></div>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button id="btnGenerate" class="cyber-btn">
+                        <span class="btn-content">START HACKING</span>
+                        <span class="glitch"></span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="terminal">
+                <div class="terminal-header">LOG OUPUT >></div>
+                <div class="log-content" id="logContent">
+                    <p class="log-line">> System initialized...</p>
+                    <p class="log-line">> Waiting for user input...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="main.js"></script>
 </body>
 </html>
