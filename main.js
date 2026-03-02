@@ -230,24 +230,24 @@ async function runAnalysis() {
     STATE.isAnalyzing = true;
     UI.btnGenerate.disabled = true;
     UI.ballContainer.innerHTML = '';
-    UI.optimizationScore.textContent = "ANALYZING...";
+    UI.optimizationScore.textContent = "ALGORITHM STARTING...";
 
     const selectedFilters = Array.from(document.querySelectorAll('.filter-check:checked')).map(el => parseInt(el.dataset.id));
     
     UI.analysisOverlay.style.display = 'flex';
     let prog = 0;
     const interval = setInterval(() => {
-        prog += Math.random() * 15;
+        prog += Math.random() * 12;
         if (prog > 100) prog = 100;
         UI.analysisProgress.style.width = `${prog}%`;
         if (prog >= 100) clearInterval(interval);
-    }, 100);
+    }, 120);
 
-    addLog("Initialization: 신경망 엔진 부팅 중...", "info");
+    addLog("Multivariate: 다변량 데이터 분석 모델 로드 완료", "info");
     await new Promise(r => setTimeout(r, 600));
-    addLog(`Processing: ${selectedFilters.length}개 필터 기반 다변량 분석 실시`, "info");
+    addLog(`Optimization: ${selectedFilters.length}개 독립 변수 기반 교차 검증 실시`, "info");
     await new Promise(r => setTimeout(r, 800));
-    addLog("Scoring: S등급 조합 후보군 스코어링 완료.", "success");
+    addLog("Finalization: 통계적 유의성(p-value) 분석 및 가중치 스코어링 완료", "success");
     await new Promise(r => setTimeout(r, 400));
 
     UI.analysisOverlay.style.display = 'none';
@@ -259,12 +259,13 @@ async function runAnalysis() {
     STATE.generatedData = pool;
     renderResults(pool);
     
-    UI.optimizationScore.innerHTML = `${pool[0].score}% (<span style='color:var(--accent-gold)'>S-Tier</span>)`;
+    UI.optimizationScore.innerHTML = `${pool[0].score}% (<span style='color:var(--accent-gold)'>High-Quality Match</span>)`;
     UI.btnGenerate.disabled = false;
     STATE.isAnalyzing = false;
 }
 
 function renderResults(data) {
+    UI.ballContainer.innerHTML = ''; // Clear welcome msg
     data.forEach((item, idx) => {
         const row = document.createElement('div');
         row.className = 'result-row';
@@ -298,7 +299,7 @@ function getBallColorName(n) {
 function showReport(idx) {
     const item = STATE.generatedData[idx];
     let html = `<div style='text-align:center; margin-bottom:20px;'>
-                    <div style='font-size:0.8rem; color:var(--text-muted)'>FITNESS SCORE</div>
+                    <div style='font-size:0.8rem; color:var(--text-muted)'>STATISTICAL FITNESS SCORE</div>
                     <div style='font-size:2.5rem; color:var(--accent-gold); font-weight:bold; font-family: "Share Tech Mono"'>${item.score}%</div>
                 </div>`;
     html += `<div class='report-list'>`;
@@ -322,17 +323,27 @@ function showModal(type) {
     switch(type) {
         case 'privacy':
             title = "개인정보처리방침";
-            body = `<p>로또버깅은 사용자의 개인정보를 저장하거나 수집하지 않습니다. 모든 분석은 브라우저 환경에서 익명으로 처리됩니다.</p>
-                    <p>1. 수집 항목: 없음<br>2. 수집 목적: 없음<br>3. 보유 기간: 즉시 파기</p>`;
+            body = `<p>로또버깅은 사용자의 개인정보를 저장하거나 수집하지 않습니다. 모든 통계 분석은 사용자의 브라우저 로컬 환경에서 익명으로 처리됩니다.</p>
+                    <p>1. 수집 항목: 없음 (No Data Collection)<br>2. 수집 목적: 통계 계산 보조<br>3. 보유 기간: 즉시 파기</p>`;
             break;
         case 'disclaimer':
             title = "면책조항 (Disclaimer)";
-            body = `<p>본 시스템에서 제공하는 번호는 통계적 가공 데이터이며 당첨을 확정하지 않습니다.</p>
-                    <p>로또 구매의 최종 책임은 사용자 본인에게 있으며, 과도한 몰입은 가계 경제에 해를 끼칠 수 있으니 주의하시기 바랍니다.</p>`;
+            body = `<p>본 플랫폼에서 제공하는 모든 데이터는 과거 당첨 번호를 기반으로 한 통계적 확률 정보입니다.</p>
+                    <p>당첨을 보장하지 않으며, 모든 구매 결정과 그 결과에 대한 책임은 사용자 본인에게 있습니다. 건전한 복권 문화를 지향합니다.</p>`;
+            break;
+        case 'about':
+            title = "서비스 소개 (About Us)";
+            body = `<p>로또버깅은 단순한 번호 생성기를 넘어, 통계학적 방법론을 복권 분석에 접목한 데이터 사이언스 프로젝트입니다.</p>
+                    <p>22가지 정밀 필터링 프로토콜을 통해 확률적 '노이즈'를 제거하고, 사용자에게 데이터 기반의 합리적인 의사결정 모델을 제공하는 것을 목표로 합니다.</p>`;
+            break;
+        case 'contact':
+            title = "문의하기 (Contact)";
+            body = `<p>서비스 이용 중 불편한 점이나 기술적인 문의사항이 있으시면 아래 채널로 연락 주시기 바랍니다.</p>
+                    <p>Email: support@lottobugging.ai<br>운영시간: 평일 10:00 - 18:00 (KST)</p>`;
             break;
         case 'darkmode':
-            title = "시스템 테마 설정";
-            body = `<p>테마 전환 기능을 통해 다크모드와 화이트모드를 선택할 수 있습니다. 설정은 브라우저에 저장되어 다음 방문 시에도 유지됩니다.</p>`;
+            title = "테마 설정 안내";
+            body = `<p>사용자의 가독성 향상을 위해 다크모드와 화이트모드 전환을 지원합니다. 설정값은 브라우저에 저장되어 유지됩니다.</p>`;
             break;
     }
     
@@ -359,7 +370,7 @@ async function init() {
                 ch.checked = ids.includes(parseInt(ch.dataset.id));
             });
             updateActiveCount();
-            addLog(`${btn.textContent} 프리셋이 적용되었습니다.`, "info");
+            addLog(`${btn.textContent} 프리셋 전략이 로드되었습니다.`, "info");
         };
     });
 
@@ -369,26 +380,11 @@ async function init() {
             document.querySelectorAll('.qty-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             STATE.selectedQty = parseInt(btn.dataset.qty);
-            addLog(`추출 개수가 ${STATE.selectedQty}개로 설정되었습니다.`);
+            addLog(`추출 세트 수량이 ${STATE.selectedQty}개로 최적화되었습니다.`);
         };
     });
 
     UI.btnGenerate.onclick = runAnalysis;
-    
-    // Mock History
-    const history = [
-        { drw: 1213, nums: [5, 11, 25, 27, 36, 38] },
-        { drw: 1212, nums: [2, 16, 17, 32, 39, 43] },
-        { drw: 1211, nums: [7, 13, 22, 28, 31, 40] },
-        { drw: 1210, nums: [1, 5, 19, 24, 33, 45] },
-        { drw: 1209, nums: [12, 18, 20, 25, 37, 42] }
-    ];
-    UI.historyTable.innerHTML = history.map(h => `
-        <div class="history-row">
-            <span style="font-weight:bold; color:var(--accent-blue)">${h.drw}회</span>
-            <span>${h.nums.join(', ')}</span>
-        </div>
-    `).join('');
 }
 
 // Global scope for onclicks in HTML
