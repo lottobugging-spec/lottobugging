@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XHWG1YQVQN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XHWG1YQVQN');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="로또버깅 v7.0 - 빅데이터 기반 로또 분석 시스템. 대수의 법칙, 조합론, 회귀 분석을 통한 과학적 당첨 번호 디버깅 및 통계 칼럼 제공.">
@@ -57,15 +66,6 @@
                         
                         <div class="main-controls">
                             <div class="control-group">
-                                <label>분석 전략 프리셋 (Strategy)</label>
-                                <div class="btn-grid">
-                                    <button class="preset-btn" data-preset="basic">표준 통계형</button>
-                                    <button class="preset-btn" data-preset="pattern">패턴 집중형</button>
-                                    <button class="preset-btn" data-preset="full">AI 정밀 분석</button>
-                                    <button class="preset-btn" data-preset="reset">초기화</button>
-                                </div>
-                            </div>
-                            <div class="control-group">
                                 <label>추출 데이터 세트 (Quantity)</label>
                                 <div class="btn-grid">
                                     <button class="qty-btn active" data-qty="1">1 Set</button>
@@ -80,6 +80,17 @@
                 </div>
 
                 <aside class="sidebar">
+                    <!-- 전략 프리셋을 필터 상단으로 이동 -->
+                    <div class="panel strategy-panel">
+                        <div class="panel-header">Analysis Strategy</div>
+                        <div class="strategy-btns">
+                            <button class="preset-btn" data-preset="basic">표준 통계형</button>
+                            <button class="preset-btn" data-preset="pattern">패턴 집중형</button>
+                            <button class="preset-btn" data-preset="full">AI 정밀 분석</button>
+                            <button class="preset-btn" data-preset="reset">초기화</button>
+                        </div>
+                    </div>
+
                     <div class="panel filter-panel">
                         <div class="panel-header">
                             <span>Filtering Protocol</span>
@@ -215,4 +226,3 @@
     <script src="main.js"></script>
 </body>
 </html>
-
