@@ -3,15 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>분석 방법론 | 로또버깅 - Our Methodology</title>
-    <meta name="description" content="로또버깅 v7.0의 다변량 통계 분석 기법, 정규 분포 검증, 패턴 매칭 등 과학적 분석 방법론을 소개합니다.">
+    
+    <!-- [SEO] 서브 페이지 메타 데이터 -->
+    <title>로또 분석 방법론: 22단계 필터링 알고리즘 원리 | 로또버깅</title>
+    <meta name="description" content="다변량 통계 분석, 정규 분포 검증, 패턴 매칭 알고리즘 등 로또버깅 v7.0에 적용된 과학적 분석 기법을 상세히 소개합니다.">
+    <link rel="canonical" href="https://lottoresults.site/methodology.html">
+    <meta name="robots" content="index, follow">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
+
+    <!-- [SEO] 구조화 데이터: Breadcrumbs -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "홈",
+        "item": "https://lottoresults.site"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "분석 방법론",
+        "item": "https://lottoresults.site/methodology.html"
+      }]
+    }
+    </script>
+
+    <link rel="stylesheet" href="style.css?v=1.3">
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="theme-toggle">
-        <button id="themeBtn" class="theme-btn" title="다크/라이트 모드 전환">
+        <button id="themeBtn" class="theme-btn" aria-label="다크 모드 전환">
             <span id="themeIcon">☀️</span>
         </button>
     </div>
@@ -24,7 +48,7 @@
                 </a>
                 <p class="tagline">Data Science Solution for Lottery Probability</p>
             </div>
-            <nav class="top-nav">
+            <nav class="top-nav" aria-label="메인 메뉴">
                 <a href="/#analyzer">AI 분석기</a>
                 <a href="columns.html">통계 칼럼</a>
                 <a href="methodology.html" class="active">분석 방법론</a>
@@ -35,16 +59,16 @@
         <main>
             <section id="methodology" class="tech-section">
                 <div class="tech-container">
-                    <div class="tech-text">
+                    <article class="tech-text">
                         <h2>Our Methodology</h2>
                         <p>로또버깅 v7.0은 단순 난수 생성이 아닌, <strong>다변량 통계 분석(Multivariate Statistical Analysis)</strong> 기법을 채택하고 있습니다.</p>
                         <ul class="tech-list">
-                            <li><strong>정규 분포 검증:</strong> 생성된 조합이 역대 당첨 데이터의 정규 분포 곡선(Bell Curve) 내에 위치하는지 검증합니다. 합계 100~175 구간이 이에 해당합니다.</li>
-                            <li><strong>패턴 매칭 (Pattern Matching):</strong> '연번', '동일 끝수', '모서리 패턴' 등 기하학적 배치를 분석하여 사람이 수동으로 마킹할 때 발생하기 쉬운 패턴 오류를 방지합니다.</li>
-                            <li><strong>가중치 스코어링 (Weighted Scoring):</strong> 22개 필터를 통과한 조합 중에서도, 최신 트렌드 가중치가 높은 조합에 'S-Tier' 등급을 부여하여 최종 추천합니다.</li>
+                            <li><strong>정규 분포 검증:</strong> 생성된 조합이 역대 당첨 데이터의 정규 분포 곡선 내에 위치하는지 검증합니다.</li>
+                            <li><strong>패턴 매칭 (Pattern Matching):</strong> 연번, 동일 끝수 등 기하학적 배치를 분석하여 확률을 높입니다.</li>
+                            <li><strong>가중치 스코어링 (Weighted Scoring):</strong> 22개 필터를 통과한 조합 중 최적의 결과에 가중치를 부여합니다.</li>
                         </ul>
-                    </div>
-                    <div class="tech-viz">
+                    </article>
+                    <aside class="tech-viz" aria-label="데이터 시각화 예시">
                         <div class="viz-box">
                             <div class="viz-bar" style="height: 40%"></div>
                             <div class="viz-bar" style="height: 70%"></div>
@@ -53,15 +77,13 @@
                             <div class="viz-bar" style="height: 30%"></div>
                         </div>
                         <p class="viz-caption">Real-time Data Distribution</p>
-                    </div>
+                    </aside>
                 </div>
             </section>
         </main>
 
         <footer class="main-footer">
-            <div class="footer-content">
-                <p class="copyright">&copy; 2026 LOTTOBUGGING Data Science Lab. All Rights Reserved.</p>
-            </div>
+            <p class="copyright">&copy; 2026 LOTTOBUGGING Data Science Lab. All Rights Reserved.</p>
         </footer>
     </div>
     <script src="main.js"></script>

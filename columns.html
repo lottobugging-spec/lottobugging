@@ -3,15 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>통계 칼럼 | 로또버깅 - Lotto Science Insights</title>
-    <meta name="description" content="데이터 사이언스 관점에서 바라본 로또 분석과 확률의 세계. 대수의 법칙, AC값 분석 등 전문적인 통계 칼럼을 제공합니다.">
+    
+    <!-- [SEO] 서브 페이지 메타 데이터 -->
+    <title>로또 통계 칼럼: 데이터로 증명하는 로또의 패턴 | 로또버깅</title>
+    <meta name="description" content="대수의 법칙, AC값 분석, 회차별 데이터 분석 등 전문가의 시선으로 바라본 로또 통계 칼럼을 제공합니다.">
+    <link rel="canonical" href="https://lottoresults.site/columns.html">
+    <meta name="robots" content="index, follow">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
+
+    <!-- [SEO] 구조화 데이터: Breadcrumbs -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "홈",
+        "item": "https://lottoresults.site"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "통계 칼럼",
+        "item": "https://lottoresults.site/columns.html"
+      }]
+    }
+    </script>
+
+    <link rel="stylesheet" href="style.css?v=1.3">
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="theme-toggle">
-        <button id="themeBtn" class="theme-btn" title="다크/라이트 모드 전환">
+        <button id="themeBtn" class="theme-btn" aria-label="다크 모드 전환">
             <span id="themeIcon">☀️</span>
         </button>
     </div>
@@ -24,7 +48,7 @@
                 </a>
                 <p class="tagline">Data Science Solution for Lottery Probability</p>
             </div>
-            <nav class="top-nav">
+            <nav class="top-nav" aria-label="메인 메뉴">
                 <a href="/#analyzer">AI 분석기</a>
                 <a href="columns.html" class="active">통계 칼럼</a>
                 <a href="methodology.html">분석 방법론</a>
@@ -34,18 +58,18 @@
 
         <main>
             <section id="columns" class="content-section">
-                <div class="section-header">
+                <header class="section-header">
                     <h2>Lotto Science Insights</h2>
                     <p>데이터 사이언스 관점에서 바라본 로또 분석과 확률의 세계</p>
-                </div>
+                </header>
                 
                 <div class="article-grid">
                     <article class="post-card">
                         <h3>대수의 법칙과 로또: 무작위성 속의 질서</h3>
                         <p class="post-meta">2026.03.02 | Data Analytics Team</p>
                         <p class="post-excerpt">
-                            로또는 매 회차 독립 시행이지만, 시행 횟수가 무한대로 늘어나면 각 번호의 출현 빈도는 이론적 확률(1/45)에 수렴하게 됩니다. 이를 '대수의 법칙(Law of Large Numbers)'이라 합니다. 
-                            그러나 단기적으로는 특정 번호가 몰려 나오거나 오랫동안 나오지 않는 '빈도 편향(Bias)'이 반드시 발생합니다. 로또버깅은 이 단기적 편향을 역이용하여, 최근 5주간 과열된 번호(Hot)와 소외된 번호(Cold)의 비율을 7:3으로 조정하는 '평균 회귀 전략'을 사용합니다.
+                            로또는 매 회차 독립 시행이지만, 시행 횟수가 무한대로 늘어나면 각 번호의 출현 빈도는 이론적 확률(1/45)에 수렴하게 됩니다. 이를 '대수의 법칙'이라 합니다. 
+                            로또버깅은 이 단기적 편향을 분석하여 최적의 비율을 찾아냅니다.
                         </p>
                     </article>
 
@@ -54,7 +78,7 @@
                         <p class="post-meta">2026.02.28 | Algorithm Research</p>
                         <p class="post-excerpt">
                             많은 사람들이 생일이나 기념일로 번호를 조합하지만, 이는 수학적으로 매우 위험한 선택입니다. 로또 당첨 번호는 무작위성이 극대화된 상태여야 합니다. 
-                            이를 측정하는 지표가 바로 AC(Arithmetic Complexity) 값입니다. AC값은 번호들 간의 차이값의 고유 개수를 의미하며, 역대 1등 당첨 번호의 85% 이상은 AC값이 7 이상인 복잡한 숫자들로 구성되어 있습니다. 본 시스템은 AC값이 7 미만인 '단순 조합'을 자동으로 필터링합니다.
+                            AC값은 이를 측정하는 핵심 지표입니다.
                         </p>
                     </article>
 
@@ -62,8 +86,7 @@
                         <h3>제 1213회 데이터 분석: 패턴의 변화</h3>
                         <p class="post-meta">2026.02.27 | Weekly Report</p>
                         <p class="post-excerpt">
-                            지난 1213회 당첨번호(5, 11, 25, 27, 36, 38)는 전형적인 '분산형 패턴'을 보여주었습니다. 특히 10번대와 30번대 구간에서의 출현 빈도가 평균을 상회했습니다.
-                            이번 회차 분석의 핵심은 '이월수(직전 회차 번호의 재등장)'의 가능성입니다. 통계적으로 이월수가 2회 연속 발생할 확률은 약 14%로 낮아지므로, 이번 주 로또버깅 엔진은 새로운 구간(1~9, 40~45)에서의 번호 추출 가중치를 15% 상향 조정하였습니다.
+                            지난 1213회 당첨번호는 전형적인 '분산형 패턴'을 보여주었습니다. 특히 10번대와 30번대 구간에서의 출현 빈도가 평균을 상회했습니다.
                         </p>
                     </article>
                 </div>
@@ -71,9 +94,7 @@
         </main>
 
         <footer class="main-footer">
-            <div class="footer-content">
-                <p class="copyright">&copy; 2026 LOTTOBUGGING Data Science Lab. All Rights Reserved.</p>
-            </div>
+            <p class="copyright">&copy; 2026 LOTTOBUGGING Data Science Lab. All Rights Reserved.</p>
         </footer>
     </div>
     <script src="main.js"></script>
