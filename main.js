@@ -64,6 +64,7 @@ const UI = {
 /** 1. Theme Logic */
 function initTheme() {
     const savedTheme = localStorage.getItem('lotto-theme') || 'light';
+    
     if (savedTheme === 'light') {
         document.body.classList.add('light-mode');
         if (UI.themeIcon) UI.themeIcon.textContent = '☀️';
