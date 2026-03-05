@@ -1,5 +1,5 @@
 :root {
-    /* 기본 테마 (Light Mode) - 사용자가 요청한 낮 모드 우선 */
+    /* 기본 테마 (Light Mode) - 아무 클래스가 없어도 이 색상이 적용됨 */
     --bg-main: #f6f8fa;
     --bg-secondary: #ffffff;
     --panel-bg: #ffffff;
@@ -17,8 +17,8 @@
     --font-body: 'Noto Sans KR', sans-serif;
 }
 
-/* Dark Mode 설정 - body에 light-mode 클래스가 없을 때 (기본은 light-mode를 넣을 것임) */
-body:not(.light-mode) {
+/* Dark Mode 설정 - body에 dark-mode 클래스가 있을 때만 적용 */
+body.dark-mode {
     --bg-main: #0d1117;
     --bg-secondary: #010409;
     --panel-bg: #161b22;

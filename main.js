@@ -65,19 +65,19 @@ const UI = {
 function initTheme() {
     const savedTheme = localStorage.getItem('lotto-theme') || 'light';
     
-    if (savedTheme === 'light') {
-        document.body.classList.add('light-mode');
-        if (UI.themeIcon) UI.themeIcon.textContent = '☀️';
-    } else {
-        document.body.classList.remove('light-mode');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
         if (UI.themeIcon) UI.themeIcon.textContent = '🌙';
+    } else {
+        document.body.classList.remove('dark-mode');
+        if (UI.themeIcon) UI.themeIcon.textContent = '☀️';
     }
     
     if (UI.themeBtn) {
         UI.themeBtn.onclick = () => {
-            const isLight = document.body.classList.toggle('light-mode');
-            localStorage.setItem('lotto-theme', isLight ? 'light' : 'dark');
-            if (UI.themeIcon) UI.themeIcon.textContent = isLight ? '☀️' : '🌙';
+            const isDark = document.body.classList.toggle('dark-mode');
+            localStorage.setItem('lotto-theme', isDark ? 'dark' : 'light');
+            if (UI.themeIcon) UI.themeIcon.textContent = isDark ? '🌙' : '☀️';
         };
     }
 }
