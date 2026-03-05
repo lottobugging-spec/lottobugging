@@ -67,7 +67,7 @@
     <!-- 테마 토글 -->
     <div class="theme-toggle">
         <button id="themeBtn" class="theme-btn" title="다크/라이트 모드 전환">
-            <span id="themeIcon">🌙</span>
+            <span id="themeIcon">☀️</span>
         </button>
     </div>
 
@@ -79,8 +79,8 @@
             </div>
             <nav class="top-nav">
                 <a href="#analyzer">AI 분석기</a>
-                <a href="#columns">통계 칼럼</a>
-                <a href="#methodology">분석 방법론</a>
+                <a href="columns.html">통계 칼럼</a>
+                <a href="methodology.html">분석 방법론</a>
                 <a href="#policy">운영 정책</a>
             </nav>
         </header>
@@ -148,73 +148,7 @@
                 </aside>
             </section>
 
-            <!-- 2. 전문 칼럼 섹션 (AdSense 승인 핵심: 풍부한 텍스트 콘텐츠) -->
-            <section id="columns" class="content-section">
-                <div class="section-header">
-                    <h2>Lotto Science Insights</h2>
-                    <p>데이터 사이언스 관점에서 바라본 로또 분석과 확률의 세계</p>
-                </div>
-                
-                <div class="article-grid">
-                    <article class="post-card">
-                        <h3>대수의 법칙과 로또: 무작위성 속의 질서</h3>
-                        <p class="post-meta">2026.03.02 | Data Analytics Team</p>
-                        <p class="post-excerpt">
-                            로또는 매 회차 독립 시행이지만, 시행 횟수가 무한대로 늘어나면 각 번호의 출현 빈도는 이론적 확률(1/45)에 수렴하게 됩니다. 이를 '대수의 법칙(Law of Large Numbers)'이라 합니다. 
-                            그러나 단기적으로는 특정 번호가 몰려 나오거나 오랫동안 나오지 않는 '빈도 편향(Bias)'이 반드시 발생합니다. 로또버깅은 이 단기적 편향을 역이용하여, 최근 5주간 과열된 번호(Hot)와 소외된 번호(Cold)의 비율을 7:3으로 조정하는 '평균 회귀 전략'을 사용합니다.
-                        </p>
-                        <a href="#columns" class="read-more">Read More ></a>
-                    </article>
-
-                    <article class="post-card">
-                        <h3>AC값(산술적 복잡도)이 증명하는 당첨의 조건</h3>
-                        <p class="post-meta">2026.02.28 | Algorithm Research</p>
-                        <p class="post-excerpt">
-                            많은 사람들이 생일이나 기념일로 번호를 조합하지만, 이는 수학적으로 매우 위험한 선택입니다. 로또 당첨 번호는 무작위성이 극대화된 상태여야 합니다. 
-                            이를 측정하는 지표가 바로 AC(Arithmetic Complexity) 값입니다. AC값은 번호들 간의 차이값의 고유 개수를 의미하며, 역대 1등 당첨 번호의 85% 이상은 AC값이 7 이상인 복잡한 숫자들로 구성되어 있습니다. 본 시스템은 AC값이 7 미만인 '단순 조합'을 자동으로 필터링합니다.
-                        </p>
-                        <a href="#columns" class="read-more">Read More ></a>
-                    </article>
-
-                    <article class="post-card">
-                        <h3>제 1213회 데이터 분석: 패턴의 변화</h3>
-                        <p class="post-meta">2026.02.27 | Weekly Report</p>
-                        <p class="post-excerpt">
-                            지난 1213회 당첨번호(5, 11, 25, 27, 36, 38)는 전형적인 '분산형 패턴'을 보여주었습니다. 특히 10번대와 30번대 구간에서의 출현 빈도가 평균을 상회했습니다.
-                            이번 회차 분석의 핵심은 '이월수(직전 회차 번호의 재등장)'의 가능성입니다. 통계적으로 이월수가 2회 연속 발생할 확률은 약 14%로 낮아지므로, 이번 주 로또버깅 엔진은 새로운 구간(1~9, 40~45)에서의 번호 추출 가중치를 15% 상향 조정하였습니다.
-                        </p>
-                        <a href="#columns" class="read-more">Read More ></a>
-                    </article>
-                </div>
-            </section>
-
-            <!-- 3. 분석 방법론 (E-E-A-T 강화: 전문성/권위) -->
-            <section id="methodology" class="tech-section">
-                <div class="tech-container">
-                    <div class="tech-text">
-                        <h2>Our Methodology</h2>
-                        <p>로또버깅 v7.0은 단순 난수 생성이 아닌, <strong>다변량 통계 분석(Multivariate Statistical Analysis)</strong> 기법을 채택하고 있습니다.</p>
-                        <ul class="tech-list">
-                            <li><strong>정규 분포 검증:</strong> 생성된 조합이 역대 당첨 데이터의 정규 분포 곡선(Bell Curve) 내에 위치하는지 검증합니다. 합계 100~175 구간이 이에 해당합니다.</li>
-                            <li><strong>패턴 매칭 (Pattern Matching):</strong> '연번', '동일 끝수', '모서리 패턴' 등 기하학적 배치를 분석하여 사람이 수동으로 마킹할 때 발생하기 쉬운 패턴 오류를 방지합니다.</li>
-                            <li><strong>가중치 스코어링 (Weighted Scoring):</strong> 22개 필터를 통과한 조합 중에서도, 최신 트렌드 가중치가 높은 조합에 'S-Tier' 등급을 부여하여 최종 추천합니다.</li>
-                        </ul>
-                    </div>
-                    <div class="tech-viz">
-                        <!-- 시각적 요소 (CSS로 구현) -->
-                        <div class="viz-box">
-                            <div class="viz-bar" style="height: 40%"></div>
-                            <div class="viz-bar" style="height: 70%"></div>
-                            <div class="viz-bar" style="height: 55%"></div>
-                            <div class="viz-bar highlight" style="height: 90%"></div>
-                            <div class="viz-bar" style="height: 30%"></div>
-                        </div>
-                        <p class="viz-caption">Real-time Data Distribution</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 4. 운영 정책 및 신뢰성 섹션 (Trust) -->
+            <!-- 2. 운영 정책 및 신뢰성 섹션 (Trust) -->
             <section id="policy" class="policy-section">
                 <div class="policy-grid">
                     <div class="policy-item">

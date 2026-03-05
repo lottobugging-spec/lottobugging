@@ -63,10 +63,13 @@ const UI = {
 
 /** 1. Theme Logic */
 function initTheme() {
-    const savedTheme = localStorage.getItem('lotto-theme') || 'dark';
+    const savedTheme = localStorage.getItem('lotto-theme') || 'light';
     if (savedTheme === 'light') {
         document.body.classList.add('light-mode');
         if (UI.themeIcon) UI.themeIcon.textContent = '☀️';
+    } else {
+        document.body.classList.remove('light-mode');
+        if (UI.themeIcon) UI.themeIcon.textContent = '🌙';
     }
     
     if (UI.themeBtn) {
