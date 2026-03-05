@@ -60,12 +60,18 @@
       gtag('config', 'G-XHWG1YQVQN');
     </script>
     
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=1.2">
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <script>
         (function() {
+            // 강제 리셋: 이전 다크모드 기록이 있다면 1회성으로 라이트 모드 전환
+            if (!localStorage.getItem('theme-v7-reset')) {
+                localStorage.setItem('lotto-theme', 'light');
+                localStorage.setItem('theme-v7-reset', 'true');
+            }
+            
             const savedTheme = localStorage.getItem('lotto-theme') || 'light';
             if (savedTheme === 'dark') {
                 document.body.classList.add('dark-mode');
