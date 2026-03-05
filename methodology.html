@@ -40,22 +40,8 @@
     }
     </script>
 
-    <!-- [Feedback] Userback Widget -->
-    <script>
-      window.Userback = window.Userback || {};
-      Userback.access_token = "A-sBQHLH60t5i7qrdZCdmd3x7B1";
-      (function(d) {
-        var s = d.createElement('script');s.async = true;s.src = 'https://static.userback.io/widget/v1.js';(d.head || d.body).appendChild(s);
-      })(document);
-    </script>
-
-    <link rel="preload" as="style" href="style.css?v=1.3">
-    <link rel="stylesheet" href="style.css?v=1.3" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="style.css?v=1.3"></noscript>
-    
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="style.css?v=1.3">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="theme-toggle">
@@ -68,7 +54,7 @@
         <header class="main-header">
             <div class="logo-area">
                 <a href="/" style="text-decoration: none; color: inherit;">
-                    <div class="h1-placeholder" style="font-size: 1.5rem; font-weight: bold; font-family: 'Rajdhani', sans-serif;">LOTTO<span class="highlight">BUGGING</span> <span class="version">v7.0</span></div>
+                    <h1>LOTTO<span class="highlight">BUGGING</span> <span class="version">v7.0</span></h1>
                 </a>
                 <p class="tagline">Data Science Solution for Lottery Probability</p>
             </div>
@@ -84,19 +70,8 @@
             <section id="methodology" class="tech-section">
                 <div class="tech-container">
                     <article class="tech-text">
-                        <h1>Our Methodology: 22단계 로또 분석 알고리즘 원리</h1>
-                        <p>로또버깅 v7.0은 단순 난수 생성이 아닌, <strong>다변량 통계 분석(Multivariate Statistical Analysis)</strong> 기법을 채택하고 있습니다. (2026년 3월 최신 기법 반영)</p>
-                        
-                        <div class="method-summary" style="background: rgba(0, 242, 254, 0.05); padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0; border: 1px solid rgba(0, 242, 254, 0.2);">
-                            <h2 style="font-size: 1.1rem; color: var(--accent-color);">알고리즘 핵심 요약 (Technical Summary)</h2>
-                            <ul style="padding-left: 1.2rem; margin-top: 0.8rem; font-size: 0.95rem;">
-                                <li><strong>단계별 필터링:</strong> 총 22단계의 통계적 검증 과정을 거쳐 저확률 조합을 제거합니다.</li>
-                                <li><strong>AI 학습:</strong> 역대 1,000회차 이상의 당첨 데이터를 딥러닝 모델로 분석합니다.</li>
-                                <li><strong>실시간 반영:</strong> 매주 발표되는 최신 당첨 결과를 즉시 데이터베이스에 업데이트합니다.</li>
-                            </ul>
-                            <a href="/#analyzer" style="display: inline-block; margin-top: 1rem; color: var(--accent-color); text-decoration: none; font-weight: bold;">→ 지금 바로 AI 분석기 사용해보기</a>
-                        </div>
-
+                        <h2>Our Methodology</h2>
+                        <p>로또버깅 v7.0은 단순 난수 생성이 아닌, <strong>다변량 통계 분석(Multivariate Statistical Analysis)</strong> 기법을 채택하고 있습니다.</p>
                         <ul class="tech-list">
                             <li><strong>정규 분포 검증:</strong> 생성된 조합이 역대 당첨 데이터의 정규 분포 곡선 내에 위치하는지 검증합니다.</li>
                             <li><strong>패턴 매칭 (Pattern Matching):</strong> 연번, 동일 끝수 등 기하학적 배치를 분석하여 확률을 높입니다.</li>
@@ -121,6 +96,6 @@
             <p class="copyright">&copy; 2026 LOTTOBUGGING Data Science Lab. All Rights Reserved.</p>
         </footer>
     </div>
-    <script src="main.js" defer></script>
+    <script src="main.js"></script>
 </body>
 </html>
