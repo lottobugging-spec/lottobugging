@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title id="pageTitle">로또 필터 상세 분석 - 로또버깅</title>
+    <meta name="description" id="metaDesc" content="로또버깅의 정밀 분석 필터 원리와 예시를 확인하세요.">
+    <link rel="stylesheet" href="style.css?v=1.5">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .detail-container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        .filter-header { border-bottom: 2px solid var(--accent-blue); padding-bottom: 20px; margin-bottom: 30px; }
+        .filter-header h2 { font-size: 2rem; color: var(--text-main); margin-bottom: 10px; }
+        .filter-header .badge { background: var(--accent-blue); color: #fff; padding: 5px 15px; border-radius: 50px; font-size: 0.8rem; }
+        
+        .section { margin-bottom: 40px; background: var(--panel-bg); padding: 30px; border-radius: 15px; border: 1px solid var(--border-color); }
+        .section h3 { font-size: 1.2rem; margin-bottom: 15px; color: var(--accent-blue); display: flex; align-items: center; gap: 10px; }
+        .section h3::before { content: '•'; font-size: 1.5rem; }
+        .section p { line-height: 1.8; color: var(--text-main); }
+        
+        .example-box { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+        .status-badge { padding: 4px 12px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; }
+        .status-pass { background: rgba(46, 204, 64, 0.1); color: #2ECC40; border: 1px solid #2ECC40; }
+        .status-fail { background: rgba(255, 65, 54, 0.1); color: #FF4136; border: 1px solid #FF4136; }
+        
+        .action-area { text-align: center; margin-top: 50px; }
+        .gen-link-btn { display: inline-block; background: var(--accent-orange); color: #fff; padding: 18px 40px; border-radius: 50px; font-weight: bold; font-size: 1.1rem; text-decoration: none; box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3); transition: 0.3s; }
+        .gen-link-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255, 107, 0, 0.4); }
+        
+        .ads-area { margin: 30px 0; text-align: center; min-height: 100px; background: rgba(0,0,0,0.02); display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem; border: 1px dashed #ddd; border-radius: 10px; }
+    </style>
+</head>
+<body>
+    <div class="header-controls">
+        <div class="lang-selector">
+            <select id="langSelect"><option value="ko">한국어</option><option value="en">English</option><option value="ja">日本語</option></select>
+        </div>
+        <div class="theme-toggle"><button id="themeBtn" class="theme-btn"><span id="themeIcon">☀️</span></button></div>
+    </div>
+
+    <header class="main-header container">
+        <div class="logo-area">
+            <h1><a href="/" style="text-decoration:none;">LOTTO<span class="highlight">BUGGING</span></a></h1>
+        </div>
+        <nav class="top-nav">
+            <a href="/#analyzer">AI 분석기</a>
+            <a href="columns.html">통계 칼럼</a>
+            <a href="methodology.html">분석 방법론</a>
+            <a href="filters.html">필터 가이드</a>
+        </nav>
+    </header>
+
+    <div class="ads-area">GOOGLE ADSENSE - 상단 광고</div>
+
+    <main class="detail-container" id="filterDetailContent">
+        <!-- JS로 내용 채움 -->
+    </main>
+
+    <div class="ads-area">GOOGLE ADSENSE - 하단 광고</div>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 LOTTOBUGGING Lab. All Rights Reserved.</p>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const id = parseInt(params.get('id'));
+            const filter = FILTER_DETAILS.find(f => f.id === id);
+            
+            if (!filter) {
+                document.getElementById('filterDetailContent').innerHTML = "<h2>필터를 찾을 수 없습니다.</h2>";
+                return;
+            }
+
+            document.getElementById('pageTitle').innerText = `${filter.name} - 로또 분석 필터 상세 | 로또버깅`;
+            document.getElementById('metaDesc').setAttribute('content', filter.desc);
+
+            const content = document.getElementById('filterDetailContent');
+            content.innerHTML = `
+                <div class="filter-header">
+                    <span class="badge">STEP ${String(filter.id).padStart(2, '0')}</span>
+                    <h2>${filter.name}</h2>
+                </div>
+
+                <div class="section">
+                    <h3>필터 설명</h3>
+                    <p>${filter.desc}</p>
+                </div>
+
+                <div class="section">
+                    <h3>왜 사용하나요?</h3>
+                    <p>${filter.why}</p>
+                </div>
+
+                <div class="section">
+                    <h3>예시 번호</h3>
+                    <div class="ball-container" style="justify-content: flex-start; margin-top:10px;">
+                        ${filter.exampleNums.map(n => `<div class="ball" data-color="${n <= 10 ? 'yellow' : n <= 20 ? 'blue' : n <= 30 ? 'red' : n <= 40 ? 'gray' : 'green'}">${n}</div>`).join('')}
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>검증 예시 (PASS / FAIL)</h3>
+                    <div style="display:flex; flex-direction:column; gap:15px;">
+                        <div style="display:flex; align-items:center; gap:15px;">
+                            <span class="status-badge status-pass">PASS</span>
+                            <span style="font-size:0.9rem; color:var(--text-dim);">${filter.passEx}</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:15px;">
+                            <span class="status-badge status-fail">FAIL</span>
+                            <span style="font-size:0.9rem; color:var(--text-dim);">${filter.failEx}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-area">
+                    <a href="/#analyzer" class="gen-link-btn">이 필터로 번호 생성하기</a>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>

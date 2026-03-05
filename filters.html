@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>로또 분석 필터 가이드 | 22단계 정밀 통계 시스템 - 로또버깅</title>
+    <meta name="description" content="로또버깅이 제공하는 22가지 과학적 분석 필터를 확인하세요. 핫넘버, 콜드넘버, AC값, 패턴 분석 등 당첨 확률을 높이는 모든 기술이 담겨 있습니다.">
+    <link rel="stylesheet" href="style.css?v=1.5">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .filters-hero { text-align: center; padding: 60px 20px; background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); }
+        .filters-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
+        .filter-card { 
+            background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 15px; padding: 25px; 
+            cursor: pointer; transition: all 0.3s ease; display: flex; flex-direction: column; gap: 15px;
+            text-decoration: none; color: inherit;
+        }
+        .filter-card:hover { transform: translateY(-5px); border-color: var(--accent-blue); box-shadow: var(--card-shadow); }
+        .f-num { font-family: var(--font-display); font-weight: 700; color: var(--accent-blue); font-size: 1.2rem; }
+        .f-title { font-weight: 700; font-size: 1.1rem; color: var(--text-main); }
+        .f-desc { font-size: 0.9rem; color: var(--text-dim); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .f-tag { align-self: flex-start; background: rgba(9, 105, 218, 0.1); color: var(--accent-blue); font-size: 0.75rem; padding: 4px 10px; border-radius: 50px; font-weight: 600; }
+        
+        .ads-area { max-width: 1200px; margin: 20px auto; text-align: center; min-height: 100px; background: rgba(0,0,0,0.02); display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem; border: 1px dashed #ddd; border-radius: 10px; }
+    </style>
+</head>
+<body>
+    <div class="header-controls">
+        <div class="lang-selector">
+            <select id="langSelect"><option value="ko">한국어</option><option value="en">English</option><option value="ja">日本語</option></select>
+        </div>
+        <div class="theme-toggle"><button id="themeBtn" class="theme-btn"><span id="themeIcon">☀️</span></button></div>
+    </div>
+
+    <header class="main-header container">
+        <div class="logo-area">
+            <h1><a href="/" style="text-decoration:none;">LOTTO<span class="highlight">BUGGING</span></a></h1>
+        </div>
+        <nav class="top-nav">
+            <a href="/#analyzer">AI 분석기</a>
+            <a href="columns.html">통계 칼럼</a>
+            <a href="methodology.html">분석 방법론</a>
+            <a href="filters.html" class="active">필터 가이드</a>
+        </nav>
+    </header>
+
+    <section class="filters-hero">
+        <div class="ads-area">GOOGLE ADSENSE - 상단 광고</div>
+        <h2 style="font-size: 2.2rem; margin-bottom: 15px;">22단계 정밀 분석 필터</h2>
+        <p style="color: var(--text-dim); max-width: 700px; margin: 0 auto;">로또버깅의 인공지능 엔진은 아래 22가지 통계 필터링 과정을 거쳐 최적의 조합을 산출합니다. 각 필터의 과학적 원리를 확인해 보세요.</p>
+    </section>
+
+    <main class="filters-grid" id="filtersContainer">
+        <!-- JS로 22개 카드 생성 -->
+    </main>
+
+    <section class="container" style="padding: 40px 20px; text-align: center;">
+        <div class="ads-area">GOOGLE ADSENSE - 하단 광고</div>
+    </section>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 LOTTOBUGGING Lab. All Rights Reserved.</p>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('filtersContainer');
+            // FILTER_DETAILS는 main.js에 정의할 예정
+            FILTER_DETAILS.forEach((f, idx) => {
+                const card = document.createElement('a');
+                card.className = 'filter-card';
+                card.href = `filter-detail.html?id=${f.id}`;
+                card.innerHTML = `
+                    <div class="f-num">Step ${String(f.id).padStart(2, '0')}</div>
+                    <div class="f-title">${f.name}</div>
+                    <div class="f-desc">${f.desc}</div>
+                    <div class="f-tag">통계 알고리즘</div>
+                `;
+                container.appendChild(card);
+            });
+        });
+    </script>
+</body>
+</html>
