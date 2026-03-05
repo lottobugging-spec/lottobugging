@@ -1,21 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- 1. 메인 홈 (AI 분석기) -->
   <url>
     <loc>https://lottoresults.site/</loc>
     <lastmod>2026-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://lottoresults.site/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lottoresults.site/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://lottoresults.site/ja/"/>
   </url>
+
+  <!-- 2. 통계 칼럼 메인 -->
   <url>
     <loc>https://lottoresults.site/columns.html</loc>
     <lastmod>2026-03-05</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
+
+  <!-- 3. 분석 방법론 -->
   <url>
     <loc>https://lottoresults.site/methodology.html</loc>
     <lastmod>2026-03-05</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 4. 개인정보 처리방침 (Planned) -->
+  <url>
+    <loc>https://lottoresults.site/privacy</loc>
+    <lastmod>2026-03-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- 5. 이용약관 (Planned) -->
+  <url>
+    <loc>https://lottoresults.site/terms</loc>
+    <lastmod>2026-03-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- 6. 자주 묻는 질문 (FAQ) (Planned) -->
+  <url>
+    <loc>https://lottoresults.site/faq</loc>
+    <lastmod>2026-03-05</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <!-- 7. 데이터 사이언스 연구소 소개 (Planned) -->
+  <url>
+    <loc>https://lottoresults.site/about</loc>
+    <lastmod>2026-03-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- 8. 회차별 분석 리포트 아카이브 (Planned) -->
+  <url>
+    <loc>https://lottoresults.site/archive</loc>
+    <lastmod>2026-03-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 9. AI 알고리즘 업데이트 소식 (Planned) -->
+  <url>
+    <loc>https://lottoresults.site/updates</loc>
+    <lastmod>2026-03-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- 10. 커뮤니티 게시판 (Planned) -->
+  <url>
+    <loc>https://lottoresults.site/community</loc>
+    <lastmod>2026-03-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 11. 문의하기 (Planned) -->
+  <url>
+    <loc>https://lottoresults.site/contact</loc>
+    <lastmod>2026-03-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- 12. 번호 조합기 도구 (Planned) -->
+  <url>
+    <loc>https://lottoresults.site/generator</loc>
+    <lastmod>2026-03-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
 </urlset>
