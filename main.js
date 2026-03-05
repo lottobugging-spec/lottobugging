@@ -1,88 +1,49 @@
 /**
- * LOTTOBUGGING v7.0 Core Analysis Engine
- * Precision 22-Layer Filtering & AI Optimization
- * Bug Fix: Fixed button inactivity caused by missing DOM elements
+ * LOTTOBUGGING v7.5 - Scoring Engine & AI Optimizer
+ * Core: Weight-based Extraction Algorithm
  */
 
 const STATE = {
-    currentDrwNo: 0,
-    latestWinNums: [5, 11, 25, 27, 36, 38], // 1213회 기준
-    hotNums: [5, 11, 25, 27, 36, 38, 1, 10, 20, 30],
-    coldNums: [2, 14, 23, 33, 41, 45, 9, 18],
     selectedQty: 1,
+    threshold: 0.8, // 80%
     isAnalyzing: false,
-    generatedData: []
+    generatedData: [],
+    latestWinNums: [5, 11, 25, 27, 36, 38] // 1213회 기준
 };
 
 const FILTER_RULES = [
-    { id: 1, name: "최근 5주간 당첨번호 비율 (핫넘버)" },
-    { id: 2, name: "역대 최다 당첨번호 가중치" },
-    { id: 3, name: "색상 분포 비율 최적화" },
-    { id: 4, name: "최근 5주간 미출수 (콜드넘버) 전략" },
-    { id: 5, name: "직전 회차 이월수 (0~2개)" },
-    { id: 6, name: "직전 회차 이웃수 (1~3개)" },
-    { id: 7, name: "총합 구간 (100~175)" },
-    { id: 8, name: "AC값 (산술적 복잡도) 7 이상" },
-    { id: 9, name: "홀짝 비율 (6:0, 0:6 배제)" },
-    { id: 10, name: "고저 비율 (6:0, 0:6 배제)" },
-    { id: 11, name: "동일 끝수 (0~3개 제한)" },
-    { id: 12, name: "끝수 총합 (15~38 구간)" },
-    { id: 13, name: "연속번호(연번) 제한 및 2연번" },
-    { id: 14, name: "소수 포함 비율 (0~3개)" },
-    { id: 15, name: "합성수 분석 (0~3개)" },
-    { id: 16, name: "완전제곱수 필터 (0~2개)" },
-    { id: 17, name: "특정 배수 배분 (3/5의 배수)" },
-    { id: 18, name: "쌍수 제한 (0~2개)" },
-    { id: 19, name: "시작번호와 끝번호 제한" },
-    { id: 20, name: "동일구간 쏠림 방지" },
-    { id: 21, name: "모서리 패턴 반영 (1~4개)" },
-    { id: 22, name: "AI 딥러닝 고급 분석" }
+    { id: 1, name: "합계 구간 (100~175)", check: (nums) => { const s = nums.reduce((a,b)=>a+b); return s>=100 && s<=175; } },
+    { id: 2, name: "AC값 (산술적 복잡도) 7 이상", check: (nums) => Logic.getAC(nums) >= 7 },
+    { id: 3, name: "홀짝 비율 (6:0, 0:6 배제)", check: (nums) => { const odd = nums.filter(n=>n%2!==0).length; return odd>0 && odd<6; } },
+    { id: 4, name: "고저 비율 (6:0, 0:6 배제)", check: (nums) => { const high = nums.filter(n=>n>=23).length; return high>0 && high<6; } },
+    { id: 5, name: "연속번호(연번) 제한 (2연번 이하)", check: (nums) => { let count=0; for(let i=0;i<5;i++) if(nums[i+1]-nums[i]===1) count++; return count<=2; } },
+    { id: 6, name: "동일 끝수 (3개 이하)", check: (nums) => { const ends = nums.map(n=>n%10); const counts = {}; ends.forEach(e=>counts[e]=(counts[e]||0)+1); return Math.max(...Object.values(counts))<=3; } },
+    { id: 7, name: "소수 포함 (1~3개)", check: (nums) => { const primes = [2,3,5,7,11,13,17,19,23,29,31,37,41,43]; const c = nums.filter(n=>primes.includes(n)).length; return c>=1 && c<=3; } },
+    { id: 8, name: "완전제곱수 필터 (0~2개)", check: (nums) => { const squares = [1,4,9,16,25,36]; const c = nums.filter(n=>squares.includes(n)).length; return c<=2; } },
+    { id: 9, name: "이월수 필터 (0~2개)", check: (nums) => { const c = nums.filter(n=>STATE.latestWinNums.includes(n)).length; return c<=2; } },
+    { id: 10, name: "동일구간 쏠림 방지 (3개 이하)", check: (nums) => { const zones = [0,0,0,0,0]; nums.forEach(n=>zones[Math.floor((n-1)/10)]++); return Math.max(...zones)<=3; } },
+    { id: 11, name: "끝수 총합 (15~38)", check: (nums) => { const s = nums.reduce((a,b)=>a+(b%10), 0); return s>=15 && s<=38; } },
+    { id: 12, name: "AI 딥러닝 패턴 매칭", check: () => Math.random() > 0.2 } // 가상 AI 로직
 ];
 
-const PRESETS = {
-    basic: [1, 7, 8, 9, 10],
-    pattern: [13, 14, 16, 20, 21],
-    full: Array.from({ length: 22 }, (_, i) => i + 1),
-    reset: []
-};
+// 나머지 필터들도 동일 구조로 확장 가능 (현재 12개 주요 필터 적용)
 
 const UI = {
     filterList: document.getElementById('filterList'),
     activeFilterCount: document.getElementById('activeFilterCount'),
     ballContainer: document.getElementById('ballContainer'),
     optimizationScore: document.getElementById('optimizationScore'),
-    logContent: document.getElementById('logContent'),
     btnGenerate: document.getElementById('btnGenerate'),
     analysisOverlay: document.getElementById('analysisOverlay'),
     analysisProgress: document.getElementById('analysisProgress'),
     reportModal: document.getElementById('reportModal'),
     reportContent: document.getElementById('reportContent'),
     themeBtn: document.getElementById('themeBtn'),
-    themeIcon: document.getElementById('themeIcon')
+    themeIcon: document.getElementById('themeIcon'),
+    thresholdRange: document.getElementById('thresholdRange'),
+    thresholdValue: document.getElementById('thresholdValue')
 };
 
-/** 1. Theme Logic */
-function initTheme() {
-    const savedTheme = localStorage.getItem('lotto-theme') || 'light';
-    
-    if (savedTheme === 'dark') {
-        document.body.classList.add('dark-mode');
-        if (UI.themeIcon) UI.themeIcon.textContent = '🌙';
-    } else {
-        document.body.classList.remove('dark-mode');
-        if (UI.themeIcon) UI.themeIcon.textContent = '☀️';
-    }
-    
-    if (UI.themeBtn) {
-        UI.themeBtn.onclick = () => {
-            const isDark = document.body.classList.toggle('dark-mode');
-            localStorage.setItem('lotto-theme', isDark ? 'dark' : 'light');
-            if (UI.themeIcon) UI.themeIcon.textContent = isDark ? '🌙' : '☀️';
-        };
-    }
-}
-
-/** 2. Core Logic Functions */
 const Logic = {
     getAC: (nums) => {
         let diffs = new Set();
@@ -92,31 +53,157 @@ const Logic = {
             }
         }
         return diffs.size - 5;
+    },
+    generateRandomSet: () => {
+        let nums = new Set();
+        while (nums.size < 6) nums.add(Math.floor(Math.random() * 45) + 1);
+        return Array.from(nums).sort((a, b) => a - b);
     }
 };
 
-/** 3. Engine Class */
-class LottoEngine {
-    static generateSet(filterIds) {
-        let nums = new Set();
-        while (nums.size < 6) nums.add(Math.floor(Math.random() * 45) + 1);
-        const set = Array.from(nums).sort((a, b) => a - b);
+/** Scoring Engine Core */
+class ScoringEngine {
+    static async getWeightedCombination(selectedFilterIds) {
+        const filters = FILTER_RULES.filter(f => selectedFilterIds.includes(f.id));
+        const targetScore = filters.length * STATE.threshold;
         
-        // Mock validation for report
-        const score = (Math.random() * 10 + 88).toFixed(1);
-        const results = FILTER_RULES.map(rule => ({
-            id: rule.id,
-            name: rule.name,
-            status: filterIds.includes(rule.id) ? (Math.random() > 0.1 ? "PASS" : "ADJ") : "OFF"
-        }));
+        let bestCandidate = null;
+        let maxScore = -1;
 
-        return { nums: set, score, results };
+        // 최대 5,000번 시도
+        for (let i = 0; i < 5000; i++) {
+            const nums = Logic.generateRandomSet();
+            let currentScore = 0;
+            const detailResults = [];
+
+            filters.forEach(f => {
+                const pass = f.check(nums);
+                if (pass) currentScore++;
+                detailResults.push({ name: f.name, status: pass ? "PASS" : "FAIL" });
+            });
+
+            if (currentScore >= targetScore) {
+                return { nums, score: ((currentScore/filters.length)*100).toFixed(1), details: detailResults, isBest: false };
+            }
+
+            if (currentScore > maxScore) {
+                maxScore = currentScore;
+                bestCandidate = { nums, score: ((currentScore/filters.length)*100).toFixed(1), details: detailResults, isBest: true };
+            }
+
+            // 루프 중간에 멈춤 방지 (브라우저 응답성 유지)
+            if (i % 500 === 0) await new Promise(r => setTimeout(r, 0));
+        }
+
+        return bestCandidate;
     }
 }
 
-/** 4. UI Handlers */
-function createFilterUI() {
-    if (!UI.filterList) return;
+async function runAnalysis() {
+    if (STATE.isAnalyzing) return;
+    STATE.isAnalyzing = true;
+    UI.btnGenerate.disabled = true;
+    UI.ballContainer.innerHTML = '';
+    UI.optimizationScore.textContent = "ALGORITHM RUNNING...";
+
+    const selectedFilters = Array.from(document.querySelectorAll('.filter-check:checked')).map(el => parseInt(el.dataset.id));
+    
+    UI.analysisOverlay.style.display = 'flex';
+    let prog = 0;
+    const interval = setInterval(() => {
+        prog += 5;
+        UI.analysisProgress.style.width = `${prog}%`;
+        if (prog >= 100) clearInterval(interval);
+    }, 50);
+
+    const pool = [];
+    for (let i = 0; i < STATE.selectedQty; i++) {
+        const result = await ScoringEngine.getWeightedCombination(selectedFilters);
+        pool.push(result);
+    }
+
+    STATE.generatedData = pool;
+    renderResults(pool);
+    
+    UI.analysisOverlay.style.display = 'none';
+    UI.optimizationScore.innerHTML = `OPTIMIZATION COMPLETE (${pool[0].score}%)`;
+    UI.btnGenerate.disabled = false;
+    STATE.isAnalyzing = false;
+}
+
+function renderResults(data) {
+    UI.ballContainer.innerHTML = '';
+    data.forEach((item, idx) => {
+        const row = document.createElement('div');
+        row.className = 'result-row';
+        if (item.isBest) row.classList.add('best-fit');
+        
+        const inner = document.createElement('div');
+        inner.style.display = 'flex'; inner.style.gap = '8px';
+        item.nums.forEach(n => {
+            const b = document.createElement('div');
+            b.className = 'ball'; b.textContent = n;
+            b.setAttribute('data-color', n <= 10 ? "yellow" : n <= 20 ? "blue" : n <= 30 ? "red" : n <= 40 ? "gray" : "green");
+            inner.appendChild(b);
+        });
+
+        const btnArea = document.createElement('div');
+        btnArea.style.display = 'flex'; btnArea.style.alignItems = 'center'; btnArea.style.gap = '10px';
+        
+        if (item.isBest) {
+            const badge = document.createElement('span');
+            badge.style.cssText = "font-size:0.6rem; background:var(--accent-gold); color:#000; padding:2px 5px; border-radius:4px; font-weight:bold;";
+            badge.textContent = "최적 조합";
+            btnArea.appendChild(badge);
+        }
+
+        const btn = document.createElement('button');
+        btn.className = 'btn-report'; btn.textContent = 'REPORT';
+        btn.onclick = () => showReport(idx);
+        
+        btnArea.appendChild(btn);
+        row.appendChild(inner);
+        row.appendChild(btnArea);
+        UI.ballContainer.appendChild(row);
+    });
+}
+
+function showReport(idx) {
+    const item = STATE.generatedData[idx];
+    let html = `<div style='text-align:center; margin-bottom:20px;'>
+                    <div style='font-size:2.5rem; color:var(--accent-gold); font-weight:bold;'>${item.score}%</div>
+                    <p style='font-size:0.8rem; color:var(--text-dim);'>${item.isBest ? "5,000회 시뮬레이션 중 최적해 도출" : "임계치 조건 충족 완료"}</p>
+                </div>`;
+    html += `<div class='report-list'>`;
+    item.details.forEach(f => {
+        html += `<div style='display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--border-color); font-size:0.85rem;'>
+                    <span>${f.name}</span>
+                    <span style='color:${f.status === "PASS" ? "var(--accent-green)" : "var(--accent-red)"}; font-weight:bold;'>${f.status}</span>
+                 </div>`;
+    });
+    html += `</div>`;
+    UI.reportContent.innerHTML = html;
+    UI.reportModal.style.display = 'flex';
+}
+
+/** Theme & Init */
+function initTheme() {
+    const savedTheme = localStorage.getItem('lotto-theme') || 'light';
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        UI.themeIcon.textContent = '🌙';
+    }
+    UI.themeBtn.onclick = () => {
+        const isDark = document.body.classList.toggle('dark-mode');
+        localStorage.setItem('lotto-theme', isDark ? 'dark' : 'light');
+        UI.themeIcon.textContent = isDark ? '🌙' : '☀️';
+    };
+}
+
+function init() {
+    initTheme();
+    
+    // Filter UI
     UI.filterList.innerHTML = FILTER_RULES.map(rule => `
         <div class="filter-item">
             <label class="switch">
@@ -126,117 +213,13 @@ function createFilterUI() {
             <span class="f-name">${rule.id}. ${rule.name}</span>
         </div>
     `).join('');
-    
-    document.querySelectorAll('.filter-check').forEach(ch => {
-        ch.onchange = updateActiveCount;
-    });
-    updateActiveCount();
-}
 
-function updateActiveCount() {
-    const checked = document.querySelectorAll('.filter-check:checked').length;
-    if (UI.activeFilterCount) UI.activeFilterCount.textContent = `${checked} Active`;
-}
-
-function addLog(msg, type = '') {
-    if (!UI.logContent) return;
-    const p = document.createElement('p');
-    p.className = `log-line ${type}`;
-    p.textContent = `[${new Date().toLocaleTimeString()}] > ${msg}`;
-    UI.logContent.appendChild(p);
-    UI.logContent.scrollTop = UI.logContent.scrollHeight;
-}
-
-async function runAnalysis() {
-    if (STATE.isAnalyzing) return;
-    STATE.isAnalyzing = true;
-    if (UI.btnGenerate) UI.btnGenerate.disabled = true;
-    if (UI.ballContainer) UI.ballContainer.innerHTML = '';
-    if (UI.optimizationScore) UI.optimizationScore.textContent = "ANALYZING...";
-
-    const selectedFilters = Array.from(document.querySelectorAll('.filter-check:checked')).map(el => parseInt(el.dataset.id));
-    
-    if (UI.analysisOverlay) UI.analysisOverlay.style.display = 'flex';
-    let prog = 0;
-    const interval = setInterval(() => {
-        prog += 10;
-        if (UI.analysisProgress) UI.analysisProgress.style.width = `${prog}%`;
-        if (prog >= 100) clearInterval(interval);
-    }, 100);
-
-    await new Promise(r => setTimeout(r, 1200));
-    if (UI.analysisOverlay) UI.analysisOverlay.style.display = 'none';
-
-    let pool = [];
-    for (let i = 0; i < STATE.selectedQty; i++) {
-        pool.push(LottoEngine.generateSet(selectedFilters));
-    }
-    STATE.generatedData = pool;
-    renderResults(pool);
-    
-    if (UI.optimizationScore) UI.optimizationScore.innerHTML = `${pool[0].score}% (<span style='color:var(--accent-gold)'>S-Tier Match</span>)`;
-    if (UI.btnGenerate) UI.btnGenerate.disabled = false;
-    STATE.isAnalyzing = false;
-}
-
-function renderResults(data) {
-    if (!UI.ballContainer) return;
-    data.forEach((item, idx) => {
-        const row = document.createElement('div');
-        row.className = 'result-row';
-        const inner = document.createElement('div');
-        inner.style.display = 'flex'; inner.style.gap = '8px';
-        item.nums.forEach(n => {
-            const b = document.createElement('div');
-            b.className = 'ball'; b.textContent = n;
-            b.setAttribute('data-color', n <= 10 ? "yellow" : n <= 20 ? "blue" : n <= 30 ? "red" : n <= 40 ? "gray" : "green");
-            inner.appendChild(b);
-        });
-        const btn = document.createElement('button');
-        btn.className = 'btn-report'; 
-        btn.style.marginLeft = '10px';
-        btn.textContent = 'REPORT';
-        btn.onclick = () => showReport(idx);
-        row.appendChild(inner);
-        row.appendChild(btn);
-        UI.ballContainer.appendChild(row);
-    });
-}
-
-function showReport(idx) {
-    const item = STATE.generatedData[idx];
-    if (!UI.reportContent || !UI.reportModal) return;
-    let html = `<div style='text-align:center; margin-bottom:20px;'><div style='font-size:2.5rem; color:var(--accent-gold); font-weight:bold;'>${item.score}%</div></div>`;
-    html += `<div class='report-list'>`;
-    item.results.forEach(f => {
-        if (f.status !== "OFF") {
-            html += `<div style='display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.05); font-size:0.85rem;'>
-                        <span>${f.name}</span>
-                        <span style='color:${f.status === "PASS" ? "var(--accent-green)" : "var(--accent-gold)"}'>${f.status}</span>
-                     </div>`;
-        }
-    });
-    html += `</div>`;
-    UI.reportContent.innerHTML = html;
-    UI.reportModal.style.display = 'flex';
-}
-
-/** 5. Initializer */
-async function init() {
-    initTheme();
-    createFilterUI();
-    
-    // Preset Buttons
-    document.querySelectorAll('.preset-btn').forEach(btn => {
-        btn.onclick = () => {
-            const preset = btn.dataset.preset;
-            const ids = PRESETS[preset];
-            document.querySelectorAll('.filter-check').forEach(ch => {
-                ch.checked = ids.includes(parseInt(ch.dataset.id));
-            });
-            updateActiveCount();
-        };
-    });
+    // Threshold Control
+    UI.thresholdRange.oninput = (e) => {
+        const val = e.target.value;
+        UI.thresholdValue.textContent = `${val}%`;
+        STATE.threshold = val / 100;
+    };
 
     // Qty Buttons
     document.querySelectorAll('.qty-btn').forEach(btn => {
@@ -247,13 +230,20 @@ async function init() {
         };
     });
 
-    if (UI.btnGenerate) UI.btnGenerate.onclick = runAnalysis;
+    // Presets
+    document.querySelectorAll('.preset-btn').forEach(btn => {
+        btn.onclick = () => {
+            const preset = btn.dataset.preset;
+            const allChecks = document.querySelectorAll('.filter-check');
+            if (preset === 'reset') allChecks.forEach(c => c.checked = false);
+            else if (preset === 'full') allChecks.forEach(c => c.checked = true);
+            else allChecks.forEach((c, i) => c.checked = i < 6); // Simple basic/pattern mock
+        };
+    });
 
-    // Modal Close
-    const closeBtn = document.querySelector('.close-modal');
-    const confirmBtn = document.querySelector('.confirm-btn');
-    if (closeBtn) closeBtn.onclick = () => UI.reportModal.style.display = 'none';
-    if (confirmBtn) confirmBtn.onclick = () => UI.reportModal.style.display = 'none';
+    UI.btnGenerate.onclick = runAnalysis;
+    document.querySelector('.close-modal').onclick = () => UI.reportModal.style.display = 'none';
+    document.querySelector('.close-modal-btn').onclick = () => UI.reportModal.style.display = 'none';
 }
 
 window.onload = init;

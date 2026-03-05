@@ -174,6 +174,15 @@
                         
                         <div class="main-controls">
                             <div class="control-group">
+                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                                    <label for="thresholdRange">분석 정밀도 (Threshold)</label>
+                                    <span id="thresholdValue" style="color:var(--accent-gold); font-family:var(--font-mono); font-weight:bold;">80%</span>
+                                </div>
+                                <input type="range" id="thresholdRange" min="50" max="100" value="80" step="5" style="width:100%; accent-color:var(--accent-blue);">
+                                <p style="font-size:0.7rem; color:var(--text-dim); margin-top:5px;">*설정값이 높을수록 AI가 더 까다로운 기준으로 번호를 추출합니다.</p>
+                            </div>
+
+                            <div class="control-group">
                                 <label for="qtySelect">추출 데이터 세트 (Quantity)</label>
                                 <div class="btn-grid" id="qtySelect">
                                     <button class="qty-btn active" data-qty="1">1 Set</button>
