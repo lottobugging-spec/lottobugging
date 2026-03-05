@@ -1,4 +1,4 @@
-# [SEO] 로또버깅(LottoBugging) 로봇 접근 제어 설정
+# [SEO/GEO] 로또버깅(LottoBugging) 로봇 접근 제어 설정 (2026.03.05 최신화)
 
 # 1. Google 최적화 (Googlebot)
 User-agent: Googlebot
@@ -15,11 +15,18 @@ Allow: /style.css
 Allow: /main.js
 Disallow: /api/
 
-# 3. Bing 최적화 (Bingbot)
+# 3. 다음/카카오 최적화 (Daumoa)
+User-agent: Daumoa
+Allow: /
+Allow: /style.css
+Allow: /main.js
+Disallow: /api/
+
+# 4. Bing 최적화 (Bingbot)
 User-agent: Bingbot
 Allow: /
 
-# 4. 기타 모든 로봇 허용
+# 5. 기타 모든 로봇 허용
 User-agent: *
 Allow: /
 Disallow: /api/

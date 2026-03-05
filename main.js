@@ -1,6 +1,6 @@
 /**
- * LOTTOBUGGING v7.5 - Scoring Engine & Backtesting Simulation
- * Core: Weight-based Extraction & Historical Verification
+ * LOTTOBUGGING v7.5 - Scoring Engine
+ * Core: Weight-based Extraction & Analysis
  */
 
 const STATE = {
@@ -39,9 +39,7 @@ const UI = {
     themeBtn: document.getElementById('themeBtn'),
     themeIcon: document.getElementById('themeIcon'),
     thresholdRange: document.getElementById('thresholdRange'),
-    thresholdValue: document.getElementById('thresholdValue'),
-    simDrawNo: document.getElementById('simDrawNo'),
-    btnSimulate: document.getElementById('btnSimulate')
+    thresholdValue: document.getElementById('thresholdValue')
 };
 
 const Logic = {
@@ -90,56 +88,6 @@ class ScoringEngine {
             if (i % 500 === 0) await new Promise(r => setTimeout(r, 0));
         }
         return bestCandidate;
-    }
-}
-
-/** Backtesting Simulation */
-async function runSimulation() {
-    const drwNo = UI.simDrawNo.value;
-    if (!drwNo) return alert("회차를 입력해주세요.");
-
-    UI.btnSimulate.disabled = true;
-    UI.btnSimulate.textContent = "검색중...";
-
-    try {
-        // 실제 API 호출 시뮬레이션 (api/lotto.js 활용 가능)
-        await new Promise(r => setTimeout(r, 800));
-        
-        // 가상의 과거 당첨 번호 (실제 데이터와 유사하게 테스트)
-        const pastWinNums = [3, 7, 14, 15, 22, 38].sort((a,b)=>a-b); 
-        const selectedFilters = Array.from(document.querySelectorAll('.filter-check:checked')).map(el => parseInt(el.dataset.id));
-        const filters = FILTER_RULES.filter(f => selectedFilters.includes(f.id));
-        
-        let passCount = 0;
-        const details = [];
-        filters.forEach(f => {
-            const pass = f.check(pastWinNums);
-            if (pass) passCount++;
-            details.push({ name: f.name, status: pass ? "PASS" : "FAIL" });
-        });
-
-        const score = ((passCount / filters.length) * 100).toFixed(1);
-        
-        UI.ballContainer.innerHTML = `
-            <div class="welcome-msg" style="animation: fadeIn 0.5s;">
-                <h3 style="color:var(--accent-gold)">제 ${drwNo}회 백테스팅 결과</h3>
-                <p>실제 당첨 번호: <span style="color:var(--text-main); font-weight:bold;">${pastWinNums.join(', ')}</span></p>
-                <div style="font-size:2.5rem; margin:20px 0; font-weight:bold; color:var(--accent-blue);">${score}%</div>
-                <p style="font-size:0.9rem; margin-bottom:20px;">현재 필터 설정에 대한 실제 당첨 번호의 적합도입니다.</p>
-                <button class="cyber-btn" id="btnShowSimReport" style="max-width:250px; padding:10px;">상세 분석 리포트 확인</button>
-            </div>
-        `;
-
-        document.getElementById('btnShowSimReport').onclick = () => {
-            STATE.generatedData[999] = { nums: pastWinNums, score, details, isBest: false };
-            showReport(999);
-        };
-
-    } catch (e) {
-        alert("데이터를 가져오는 중 오류가 발생했습니다.");
-    } finally {
-        UI.btnSimulate.disabled = false;
-        UI.btnSimulate.textContent = "실행";
     }
 }
 
@@ -258,7 +206,6 @@ function init() {
         };
     });
     UI.btnGenerate.onclick = runAnalysis;
-    UI.btnSimulate.onclick = runSimulation;
     document.querySelector('.close-modal').onclick = () => UI.reportModal.style.display = 'none';
     document.querySelector('.close-modal-btn').onclick = () => UI.reportModal.style.display = 'none';
 }
