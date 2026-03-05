@@ -55,12 +55,16 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
     background: var(--bg-secondary);
     border-bottom: 1px solid var(--border-color);
     margin-bottom: 40px;
+    position: relative;
+    z-index: 100;
 }
 
 .top-bar {
     padding: 10px 0;
     display: flex;
-    justify-content: flex-end; /* Right align */
+    justify-content: flex-end;
+    position: relative;
+    z-index: 102;
 }
 
 .header-controls {
@@ -76,6 +80,13 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
+    position: relative;
+    z-index: 101;
+}
+
+.logo-area {
+    position: relative;
+    z-index: 103;
 }
 
 .logo-area h1 {
@@ -83,14 +94,13 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
     font-size: 2.2rem;
     font-weight: 700;
 }
-.highlight { color: var(--accent-blue); }
-.version { font-size: 0.5em; vertical-align: super; color: var(--text-dim); }
-.tagline { font-size: 0.85rem; color: var(--text-dim); }
 
 .top-nav {
     display: flex;
     gap: 25px;
-    justify-content: flex-end; /* Right align */
+    justify-content: flex-end;
+    position: relative;
+    z-index: 103;
 }
 .top-nav a {
     font-size: 0.95rem;
