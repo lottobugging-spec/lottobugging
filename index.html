@@ -64,6 +64,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('lotto-theme') || 'light';
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+            }
+        })();
+    </script>
     <!-- 테마 토글 -->
     <div class="theme-toggle">
         <button id="themeBtn" class="theme-btn" title="다크/라이트 모드 전환">

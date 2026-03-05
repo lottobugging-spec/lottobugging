@@ -110,7 +110,7 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
     border-bottom: 1px solid var(--border-color);
     display: flex; align-items: center; gap: 10px;
 }
-body:not(.light-mode) .screen-header { background: rgba(0,0,0,0.3); }
+body.dark-mode .screen-header { background: rgba(0,0,0,0.3); }
 
 .status-dot { width: 8px; height: 8px; background: var(--accent-neon); border-radius: 50%; box-shadow: 0 0 8px var(--accent-neon); }
 .title { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim); letter-spacing: 1px; }
