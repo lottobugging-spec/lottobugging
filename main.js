@@ -312,6 +312,9 @@ function init() {
 
     document.querySelectorAll('.preset-btn').forEach(btn => {
         btn.onclick = () => {
+            document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
             const preset = btn.dataset.preset;
             const checks = document.querySelectorAll('.filter-check');
             if (preset === 'reset') checks.forEach(c => c.checked = false);
