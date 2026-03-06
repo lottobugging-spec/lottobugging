@@ -53,7 +53,7 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
 /* Header Redesign */
 .site-header {
     background: var(--bg-secondary);
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: none; /* Persistent gray line removed here */
     margin-bottom: 40px;
     position: relative;
     z-index: 100;
@@ -66,6 +66,7 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
     align-items: center;
     position: relative;
     z-index: 102;
+    border-bottom: none; /* Extra assurance */
 }
 
 .header-controls {
