@@ -47,29 +47,31 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 25px; /* Consistent baseline padding for all devices */
+    padding: 0 30px; /* Increased baseline padding to prevent edge touching */
     width: 100%;
 }
 
-/* Header Redesign */
+/* Header Redesign - Floating Card Style */
 .site-header {
     background: var(--bg-secondary);
     border-bottom: none;
-    margin-bottom: 40px;
-    padding-top: 15px;
+    margin: 20px auto 40px auto; /* Centered with top/bottom margin */
+    padding: 10px 0;
     position: relative;
     z-index: 100;
-    width: 100%;
+    max-width: 1200px;
+    width: calc(100% - 40px); /* Ensures 20px margin on small screens */
+    border-radius: 20px; /* Modern rounded look */
+    box-shadow: var(--card-shadow);
 }
 
 .top-bar {
-    padding: 10px 0; /* Horizontal margin handled by .container */
+    padding: 10px 30px; /* Internal padding matches container padding feel */
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
     z-index: 102;
-    border-bottom: none;
 }
 
 .header-controls {
@@ -79,7 +81,7 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
 }
 
 .main-header {
-    padding: 20px 0; /* Horizontal margin handled by .container */
+    padding: 15px 30px; /* Internal padding matches container padding feel */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -106,6 +108,13 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
 
 .logo-area .highlight {
     color: var(--accent-blue);
+}
+
+.tagline {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    font-weight: 500;
+    margin: 0;
 }
 
 /* Dropdown Language Switcher */
@@ -182,7 +191,7 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
 }
 .top-nav a {
     font-size: 0.95rem;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--text-dim);
     position: relative;
 }
@@ -396,7 +405,7 @@ input:checked + .slider:before { transform: translateX(16px); }
     }
 
     .main-header {
-        padding: 15px 0;
+        padding: 15px 25px; /* Increased mobile side padding */
     }
 }
 
@@ -404,10 +413,14 @@ input:checked + .slider:before { transform: translateX(16px); }
     .container {
         padding: 0 20px;
     }
+    .site-header {
+        width: calc(100% - 30px); /* Slightly more margin on mobile */
+        margin-bottom: 30px;
+    }
     .logo-area h1 { font-size: 1.6rem; }
     .result-display { min-height: 140px; }
     .main-controls { padding: 15px; }
     .qty-btn { padding: 8px; font-size: 0.75rem; }
-    .top-bar { padding: 10px 0; }
+    .top-bar { padding: 10px 25px; }
 }
 /* last sync: Fri Mar  6 09:17:40 AM UTC 2026 */
