@@ -47,27 +47,27 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 25px; /* Consistent baseline padding */
 }
 
 /* Header Redesign */
 .site-header {
     background: var(--bg-secondary);
-    border-bottom: none; /* Persistent gray line removed here */
+    border-bottom: none;
     margin-bottom: 40px;
-    padding-top: 15px; /* Added margin above the top-bar */
+    padding-top: 15px;
     position: relative;
     z-index: 100;
 }
 
 .top-bar {
-    padding: 10px 0;
+    padding: 10px 0; /* Horizontal padding handled by .container */
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
     z-index: 102;
-    border-bottom: none; /* Extra assurance */
+    border-bottom: none;
 }
 
 .header-controls {
@@ -77,7 +77,7 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
 }
 
 .main-header {
-    padding: 20px 0;
+    padding: 20px 0; /* Horizontal padding handled by .container */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -110,7 +110,7 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
 .lang-dropdown-container { position: relative; }
 .lang-dropdown-btn {
     background: var(--bg-main);
-    border: 1px solid var(--border-color); /* Restore Border for Language Selection */
+    border: 1px solid var(--border-color);
     padding: 6px 14px;
     border-radius: 50px;
     color: var(--text-main);
@@ -195,8 +195,8 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
     position: absolute;
     top: calc(100% + 8px);
     right: 0;
-    background: rgba(255, 255, 255, 0.75); /* macOS semi-transparent white */
-    backdrop-filter: blur(20px); /* Glassmorphism effect */
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 12px;
@@ -210,14 +210,14 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
 }
 
 body.dark-mode .lang-dropdown-menu {
-    background: rgba(30, 30, 30, 0.75); /* macOS semi-transparent dark */
+    background: rgba(30, 30, 30, 0.75);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
 .lang-dropdown-menu.show { 
     max-height: 250px; 
-    padding: 6px; /* Space for internal rounded items */
+    padding: 6px;
 }
 
 .lang-option {
@@ -225,7 +225,7 @@ body.dark-mode .lang-dropdown-menu {
     font-size: 0.85rem;
     font-weight: 500;
     cursor: pointer;
-    border-radius: 8px; /* MacBook menu item style */
+    border-radius: 8px;
     transition: 0.15s ease;
     margin-bottom: 2px;
     color: var(--text-main);
@@ -234,8 +234,8 @@ body.dark-mode .lang-dropdown-menu {
 .lang-option:last-child { margin-bottom: 0; }
 
 .lang-option:hover { 
-    background: #007AFF; /* macOS selection blue */
-    color: #ffffff; /* White text on selection */
+    background: #007AFF;
+    color: #ffffff;
 }
 
 /* Tool Section */
@@ -350,14 +350,14 @@ body.dark-mode .lang-dropdown-menu {
 /* Switch */
 .switch { position: relative; display: inline-block; width: 36px; height: 20px; }
 .switch input { opacity: 0; width: 0; height: 0; }
-.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--border-color); transition: .4s; border-radius: 34px; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: right; bottom: 0; background-color: var(--border-color); transition: .4s; border-radius: 34px; }
 .slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
 input:checked + .slider { background-color: var(--accent-green); }
 input:checked + .slider:before { transform: translateX(16px); }
 
 @media (max-width: 768px) {
     .menu-toggle {
-        display: flex; /* Changed from block to flex for better alignment control */
+        display: flex;
     }
 
     .top-nav {
@@ -369,11 +369,11 @@ input:checked + .slider:before { transform: translateX(16px); }
         width: 100%;
         background: var(--bg-secondary);
         border-bottom: 1px solid var(--border-color);
-        padding: 0; /* No padding when closed */
+        padding: 0;
         gap: 15px;
         max-height: 0;
         overflow: hidden;
-        visibility: hidden; /* Fully hide content */
+        visibility: hidden;
         transition: all 0.3s ease-in-out;
         justify-content: flex-start;
         align-items: center;
@@ -394,15 +394,18 @@ input:checked + .slider:before { transform: translateX(16px); }
     }
 
     .main-header {
-        padding: 15px 20px; /* Increased side padding for mobile header/tagline */
+        padding: 15px 0; /* Horizontal padding removed, using .container instead */
     }
 }
 
 @media (max-width: 600px) {
+    .container {
+        padding: 0 20px; /* Synchronized margins for all elements using .container */
+    }
     .logo-area h1 { font-size: 1.6rem; }
     .result-display { min-height: 140px; }
     .main-controls { padding: 15px; }
     .qty-btn { padding: 8px; font-size: 0.75rem; }
-    .top-bar { padding: 10px 20px; } /* Ensure top-bar also has consistent side padding */
+    .top-bar { padding: 10px 0; } /* Horizontal padding removed, using .container instead */
 }
 /* last sync: Fri Mar  6 09:17:40 AM UTC 2026 */
