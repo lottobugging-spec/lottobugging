@@ -89,8 +89,8 @@ const TRANSLATIONS = {
         preset_full: "AI精密",
         preset_reset: "初期化",
         filter_header: "フィルタリング条件",
-        footer_privacy: "個人情報処理方針",
-        footer_terms: "利用規約",
+        footer_privacy: "個人정보처리방침",
+        footer_terms: "이용약관",
         footer_contact: "お問い合わせ",
         footer_copyright: "&copy; 2026 LOTTOBUGGING Data Science Lab. All Rights Reserved.",
         analysis_report: "分析レポート",
@@ -117,7 +117,7 @@ const FILTER_DETAILS = [
     { id: 14, name: { ko: "소수 포함 (0~3개)", en: "Prime Numbers", ja: "素数含む" }, desc: { ko: "**'소수'**란 1과 자기 자신 이외에는 나누어떨어지지 않는 숫자를 의미하며, 로또 번호 45개 중에는 **총 14개(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43)**가 존재합니다. 역대 1등 당첨 번호 통계 분석 결과, 한 조합 안에 소수가 4개 이상 포함될 확률은 1% 미만으로 매우 희박합니다. 시스템은 이러한 데이터를 바탕으로, 소수의 비중을 0~3개 사이로 엄격히 제한하여 당첨 가능성이 가장 높은 최적의 숫자 조합만을 구성합니다.", en: "**'소수'**란 1과 자기 자신 이외에는 나누어떨어지지 않는 숫자를 의미하며, 로또 번호 45개 중에는 **총 14개(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43)**가 존재합니다. 역대 1등 당첨 번호 통계 분석 결과, 한 조합 안에 소수가 4개 이상 포함될 확률은 1% 미만으로 매우 희박합니다. 시스템은 이러한 데이터를 바탕으로, 소수의 비중을 0~3개 사이로 엄격히 제한하여 당첨 가능성이 가장 높은 최적의 숫자 조합만을 구성합니다.", ja: "**'소수'**란 1과 자기 자신 이외에는 나누어떨어지지 않는 숫자를 의미하며, 로또 번호 45개 중에는 **총 14개(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43)**가 존재합니다. 역대 1등 당첨 번호 통계 분석 결과, 한 조합 안에 소수가 4개 이상 포함될 확률은 1% 미만으로 매우 희박합니다. 시스템은 이러한 데이터를 바탕으로, 소수의 비중을 0~3개 사이로 엄격히 제한하여 당첨 가능성이 가장 높은 최적의 숫자 조합만을 구성합니다." } },
     { id: 15, name: { ko: "합성수 분석 (0~3개)", en: "Composite Numbers", ja: "合成数分析" }, desc: { ko: "**'합성수'**란 로또 번호 중 소수와 3의 배수를 제외한 숫자를 의미하며, 45개 번호 중 **총 17개(1, 4, 8, 10, 14, 16, 20, 22, 25, 26, 28, 32, 34, 35, 38, 40, 44)**가 이에 해당합니다. 역대 1등 당첨 통계를 분석했을 때, 한 조합 안에 합성수가 4개 이상 포함될 확률은 10% 미만으로 낮게 나타납니다. 시스템은 당첨 가능성을 높이기 위해 합성수의 비중을 0~3개 이내로 정교하게 조절하여 조합의 완성도를 높입니다.", en: "**'합성수'**란 로또 번호 중 소수와 3의 배수를 제외한 숫자를 의미하며, 45개 번호 중 **총 17개(1, 4, 8, 10, 14, 16, 20, 22, 25, 26, 28, 32, 34, 35, 38, 40, 44)**가 이에 해당합니다. 역대 1등 당첨 통계를 분석했을 때, 한 조합 안에 합성수가 4개 이상 포함될 확률은 10% 미만으로 낮게 나타납니다. 시스템은 당첨 가능성을 높이기 위해 합성수의 비중을 0~3개 이내로 정교하게 조절하여 조합의 완성도를 높입니다.", ja: "**'합성수'**란 로또 번호 중 소수와 3의 배수를 제외한 숫자를 의미하며, 45개 번호 중 **총 17개(1, 4, 8, 10, 14, 16, 20, 22, 25, 26, 28, 32, 34, 35, 38, 40, 44)**가 이에 해당합니다. 역대 1등 당첨 통계를 분석했을 때, 한 조합 안에 합성수가 4개 이상 포함될 확률은 10% 미만으로 낮게 나타납니다. 시스템은 당첨 가능성을 높이기 위해 합성수의 비중을 0~3개 이내로 정교하게 조절하여 조합의 완성도를 높입니다." } },
     { id: 16, name: { ko: "완전제곱수 필터 (0~2개)", en: "Perfect Squares", ja: "完全平方数フィルタ" }, desc: { ko: "**'완전제곱수'**란 같은 수를 두 번 곱해서 나오는 숫자를 말하며, 로또 번호 45개 중에는 **총 6개(1, 4, 9, 16, 25, 36)**가 존재합니다. 역대 1등 당첨 통계를 분석해 보면, 한 조합 안에 완전제곱수가 3개 이상 포함될 확률은 2% 미만으로 매우 희박합니다. 시스템은 당첨 확률을 극대화하기 위해 완전제곱수의 포함 개수를 0~2개 이내로 엄격히 제한하여, 확률적으로 가장 유리한 조합만을 생성합니다.", en: "**'완전제곱수'**란 같은 수를 두 번 곱해서 나오는 숫자를 말하며, 로또 번호 45개 중에는 **총 6개(1, 4, 9, 16, 25, 36)**가 존재합니다. 역대 1등 당첨 통계를 분석해 보면, 한 조합 안에 완전제곱수가 3개 이상 포함될 확률은 2% 미만으로 매우 희박합니다. 시스템은 당첨 확률을 극대화하기 위해 완전제곱수의 포함 개수를 0~2개 이내로 엄격히 제한하여, 확률적으로 가장 유리한 조합만을 생성합니다.", ja: "**'완전제곱수'**란 같은 수를 두 번 곱해서 나오는 숫자를 말하며, 로또 번호 45개 중에는 **총 6개(1, 4, 9, 16, 25, 36)**가 존재합니다. 역대 1등 당첨 통계를 분석해 보면, 한 조합 안에 완전제곱수가 3개 이상 포함될 확률은 2% 미만으로 매우 희박합니다. 시스템은 당첨 확률을 극대화하기 위해 완전제곱수의 포함 개수를 0~2개 이내로 엄격히 제한하여, 확률적으로 가장 유리한 조합만을 생성합니다." } },
-    { id: 17, name: { ko: "특정 배수 배분", en: "Specific Multiples", ja: "特定倍数配分" }, desc: { ko: "로또 번호 45개 중 특정 숫자로 나누어떨어지는 **'배수'**들의 비중을 조절합니다. 3의 배수는 총 15개(3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45)이며, 5의 배수는 총 9개(5, 10, 15, 25, 30, 35, 40, 45)가 존재합니다. 역대 1등 당첨 번호 통계상 이 배수들이 특정 개수 범위 내에서 출현할 확률은 90% 이상으로 매우 높습니다. 시스템은 이 데이터를 기반으로 3의 배수는 0~3개, 5의 배수는 0~2개까지만 포함하도록 정교하게 배분하여 당첨 확률을 극대화합니다.", en: "로또 번호 45개 중 특정 숫자로 나누어떨어지는 **'배수'**들의 비중을 조절합니다. 3의 배수는 총 15개(3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45)이며, 5의 배수는 총 9개(5, 10, 15, 25, 30, 35, 40, 45)가 존재합니다. 역대 1등 당첨 번호 통계상 이 배수들이 특정 개수 범위 내에서 출현할 확률은 90% 이상으로 매우 높습니다. 시스템은 이 데이터를 기반으로 3의 배수는 0~3개, 5의 배수는 0~2개까지만 포함하도록 정교하게 배분하여 당첨 확률을 극대화합니다.", ja: "로또 번호 45개 중 특정 숫자로 나누어떨어지는 **'배수'**들의 비중을 조절합니다. 3의 배수는 총 15개(3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45)이며, 5의 배수는 총 9개(5, 10, 15, 25, 30, 35, 40, 45)가 존재합니다. 역대 1등 당첨 번호 통계상 이 배수들이 특정 개수 범위 내에서 출현할 확률은 90% 이상으로 매우 높습니다. 시스템은 이 데이터를 기반으로 3의 배수는 0~3개, 5의 배수는 0~2개까지만 포함하도록 정교하게 배분하여 당첨 확률을 극대화합니다." } },
+    { id: 17, name: { ko: "특정 배수 배분", en: "Specific Multiples", ja: "特定倍数配分" }, desc: { ko: "로또 번호 45개 중 특정 숫자로 나누어떨어지는 **'배수'**들의 비중을 조절합니다. 3의 배수는 총 15개(3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45)이며, 5의 배수는 총 9개(5, 10, 15, 25, 30, 35, 40, 45)가 존재합니다. 역대 1등 당첨 번호 통계상 이 배수들이 특정 개수 범위 내에서 출현할 확률은 90% 이상으로 매우 높습니다. 시스템은 이 데이터를 기반으로 3의 배수는 0~3개, 5의 배수는 0~2개까지만 포함하도록 정교하게 배분하여 당첨 확률을 극대화합니다.", en: "로또 번호 45개 중 특정 숫자로 나누어떨어지는 **'배수'**들의 비중을 조절합니다. 3의 배수는 총 15개(3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45)이며, 5의 배수는 총 9개(5, 10, 15, 25, 30, 35, 40, 45)가 존재합니다. 역대 1등 당첨 번호 통계상 이 배수들이 특정 개수 범위 내에서 출현할 확률은 90% 이상으로 매우 높습니다. 시스템은 이 데이터를 기반으로 3의 배수는 0~3개, 5의 배수는 0~2개까지만 포함하도록 정교하게 배분하여 당첨 확률을 극대화합니다.", ja: "ロト番号45個のうち特定の数字で割り切れる**「倍数」**の比重を調整します。3の倍数は計15個、5の倍数は計9個存在します。歴代1等当選番号の統計上、これらの倍数が特定の個数範囲内で出現する確率は90%以上と非常に高いです。システムはこのデータに基づき、3の倍数は0〜3個、5の倍数は0〜2個まで含めるよう精巧に配分し、当選確率を極大化します。" } },
     { id: 18, name: { ko: "쌍수 제한 (0~2개)", en: "Double Numbers", ja: "双数制限" }, desc: { ko: "**'쌍수'**란 로또 번호 중 십의 자리와 일의 자리 숫자가 같은 번호를 의미하며, 로또 번호 45개 중 11, 22, 33, 44 총 4개가 이에 해당합니다. 역대 1등 당첨 번호 통계 분석 결과, 한 조합 안에 쌍수가 3개 이상 포함될 확률은 1% 미만으로 지극히 낮습니다. 따라서 시스템은 당첨 가능성이 희박한 조합을 배제하기 위해, 쌍수의 포함 개수를 0~2개 이내로 엄격히 제한하여 확률 중심의 조합을 구성합니다.", en: "**'쌍수'**란 로또 번호 중 십의 자리와 일의 자리 숫자가 같은 번호를 의미하며, 로또 번호 45개 중 11, 22, 33, 44 총 4개가 이에 해당합니다. 역대 1등 당첨 번호 통계 분석 결과, 한 조합 안에 쌍수가 3개 이상 포함될 확률은 1% 미만으로 지극히 낮습니다. 따라서 시스템은 당첨 가능성이 희박한 조합을 배제하기 위해, 쌍수의 포함 개수를 0~2개 이내로 엄격히 제한하여 확률 중심의 조합을 구성합니다.", ja: "**'쌍수'**란 로또 번호 중 십의 자리와 일의 자리 숫자가 같은 번호를 의미하며, 로또 번호 45개 중 11, 22, 33, 44 총 4개가 이에 해당합니다. 역대 1등 당첨 번호 통계 분석 결과, 한 조합 안에 쌍수가 3개 이상 포함될 확률은 1% 미만으로 지극히 낮습니다. 따라서 시스템은 당첨 가능성이 희박한 조합을 배제하기 위해, 쌍수의 포함 개수를 0~2개 이내로 엄격히 제한하여 확률 중심의 조합을 구성합니다." } },
     { id: 19, name: { ko: "시작/끝 번호 제한", en: "Start/End Range", ja: "開始・終了番号制限" }, desc: { ko: "조합된 6개 번호 중 가장 작은 수를 '시작번호', 가장 큰 수를 **'끝번호'**라고 합니다. 예를 들어 당첨 번호가 13, 18, 30, 31, 38, 41이라면 시작번호는 13, 끝번호는 41이 됩니다. 역대 1등 당첨 통계를 분석해 보면, 시작번호가 15 이상으로 너무 높게 시작하거나 끝번호가 30 이하로 너무 낮게 끝나는 기형적인 조합이 당첨될 확률은 10% 미만입니다. 시스템은 이러한 통계를 바탕으로 번호가 특정 구간에 너무 몰리지 않도록 시작과 끝의 범위를 조절하여 당첨 가용성을 극대화합니다.", en: "조합된 6개 번호 중 가장 작은 수를 '시작번호', 가장 큰 수를 **'끝번호'**라고 합니다. 예를 들어 당첨 번호가 13, 18, 30, 31, 38, 41이라면 시작번호는 13, 끝번호는 41이 됩니다. 역대 1등 당첨 통계를 분석해 보면, 시작번호가 15 이상으로 너무 높게 시작하거나 끝번호가 30 이하로 너무 낮게 끝나는 기형적인 조합이 당첨될 확률은 10% 미만입니다. 시스템은 이러한 통계를 바탕으로 번호가 특정 구간에 너무 몰리지 않도록 시작과 끝의 범위를 조절하여 당첨 가용성을 극대화합니다.", ja: "조합된 6개 번호 중 가장 작은 수를 '시작번호', 가장 큰 수를 **'끝번호'**라고 합니다. 예를 들어 당첨 번호가 13, 18, 30, 31, 38, 41이라면 시작번호는 13, 끝번호는 41이 됩니다. 역대 1등 당첨 통계를 분석해 보면, 시작번호가 15 이상으로 너무 높게 시작하거나 끝번호가 30 이하로 너무 낮게 끝나는 기형적인 조합이 당첨될 확률은 10% 미만입니다. 시스템은 이러한 통계를 바탕으로 번호가 특정 구간에 너무 몰리지 않도록 시작과 끝의 범위를 조절하여 당첨 가용성을 극대화합니다." } },
     { id: 20, name: { ko: "동일구간 쏠림 방지", en: "Zone Crowding Prevention", ja: "同一区間偏り防止" }, desc: { ko: "로또 번호 45개를 10단위씩 공 색깔 기준으로 나누면 1~10번, 11~20번, 21~30번, 31~40번, 41~45번까지 총 5개의 **'동일구간'**이 생성됩니다. 역대 1등 당첨 통계상, 특정 한 구간에서만 4개 이상의 번호가 쏟아져 나올 확률은 5% 미만으로 매우 희박합니다. 따라서 시스템은 번호가 특정 구간에 과도하게 쏠리는 것을 방지하고, 전체 구간에 골고루 분산된 가장 이상적인 당첨 패턴의 조합만을 생성합니다.", en: "로또 번호 45개를 10단위씩 공 색깔 기준으로 나누면 1~10번, 11~20번, 21~30번, 31~40번, 41~45번까지 총 5개의 **'동일구간'**이 생성됩니다. 역대 1등 당첨 통계상, 특정 한 구간에서만 4개 이상의 번호가 쏟아져 나올 확률은 5% 미만으로 매우 희박합니다. 따라서 시스템은 번호가 특정 구간에 과도하게 쏠리는 것을 방지하고, 전체 구간에 골고루 분산된 가장 이상적인 당첨 패턴의 조합만을 생성합니다.", ja: "로또 번호 45개를 10단위씩 공 색깔 기준으로 나누면 1~10번, 11~20번, 21~30번, 31~40번, 41~45번까지 총 5개의 **'동일구간'**이 생성됩니다. 역대 1등 당첨 통계상, 특정 한 구간에서만 4개 이상의 번호가 쏟아져 나올 확률은 5% 미만으로 매우 희박합니다. 따라서 시스템은 번호가 특정 구간에 과도하게 쏠리는 것을 방지하고, 전체 구간에 골고루 분산된 가장 이상적인 당첨 패턴의 조합만을 생성합니다." } },
@@ -125,17 +125,103 @@ const FILTER_DETAILS = [
     { id: 22, name: { ko: "AI 딥러닝 고급 분석", en: "AI Deep Learning", ja: "AIディープラーニング" }, desc: { ko: "앞선 21가지의 통계 필터링을 거친 번호들을 대상으로, 최첨단 인공지능(AI) 모델을 통해 최종 당첨 가능성을 검증합니다. 단순히 운에 맡기는 것이 아니라, 방대한 과거 당첨 데이터를 머신러닝 알고리즘으로 분석하여 가장 유망한 번호 조합을 추출합니다. 데이터 사이언스 적용: 랜덤 포레스트(Random Forest), GBM(Gradient Boosting Machine) 등 고도화된 머신러닝 모델을 활용하여 번호 간의 복잡한 상관관계를 분석합니다. 패턴 학습 및 검증: 과거 당첨 번호의 확률 분포와 미세한 변동 패턴을 학습시키고, 모델의 성능을 사전에 철저히 검증하여 신뢰도를 높였습니다. 지능형 번호 추출: 일반적인 분석으로는 찾아내기 힘든 특별한 경향과 숨겨진 패턴을 포착하여, 인공지능이 선별한 '최적의 필살기 조합'을 최종적으로 제공합니다.", en: "앞선 21가지의 통계 필터링을 거친 번호들을 대상으로, 최첨단 인공지능(AI) 모델을 통해 최종 당첨 가능성을 검증합니다. 단순히 운에 맡기는 것이 아니라, 방대한 과거 당첨 데이터를 머신러닝 알고리즘으로 분석하여 가장 유망한 번호 조합을 추출합니다. 데이터 사이언스 적용: 랜덤 포레스트(Random Forest), GBM(Gradient Boosting Machine) 등 고도화된 머신러닝 모델을 활용하여 번호 간의 복잡한 상관관계를 분석합니다. 패턴 학습 및 검증: 과거 당첨 번호의 확률 분포와 미세한 변동 패턴을 학습시키고, 모델의 성능을 사전에 철저히 검증하여 신뢰도를 높였습니다. 지능형 번호 추출: 일반적인 분석으로는 찾아내기 힘든 특별한 경향과 숨겨진 패턴을 포착하여, 인공지능이 선별한 '최적의 필살기 조합'을 최종적으로 제공합니다.", ja: "앞선 21가지의 통계 필터링을 거친 번호들을 대상으로, 최첨단 인공지능(AI) 모델을 통해 최종 당첨 가능성을 검증합니다. 단순히 운에 맡기는 것이 아니라, 방대한 과거 당첨 데이터를 머신러닝 알고리즘으로 분석하여 가장 유망한 번호 조합을 추출합니다. 데이터 사이언스 적용: 랜덤 포레스트(Random Forest), GBM(Gradient Boosting Machine) 등 고도화된 머신러닝 모델을 활용하여 번호 간의 복잡한 상관관계를 분석합니다. 패턴 학습 및 검증: 과거 당첨 번호의 확률 분포와 미세한 변동 패턴을 학습시키고, 모델의 성능을 사전에 철저히 검증하여 신뢰도를 높였습니다. 지능형 번호 추출: 일반적인 분석으로는 찾아내기 힘든 특별한 경향과 숨겨진 패턴을 포착하여, 인공지능이 선별한 '최적의 필살기 조합'을 최종적으로 제공합니다." } }
 ];
 
+// ===== 동적 통계 로딩 (최근 5주 핫/콜드, 역대 최다) =====
+let hotLast5 = [];
+let coldLast5 = [];
+let historicTop = [43, 27, 34, 17, 1, 33]; // 초기 기본값
+
+async function loadLast5Stats() {
+  try {
+    const res = await fetch('/data/last5_stats.json');
+    const data = await res.json();
+    hotLast5 = data.hotLast5 || [];
+    coldLast5 = data.coldLast5 || [];
+  } catch (e) {
+    console.warn('최근 5주 통계 불러오기 실패, 기본값 사용', e);
+  }
+}
+
+async function loadHistoricTop() {
+  try {
+    const res = await fetch('/data/historic_top.json');
+    const data = await res.json();
+    historicTop = data.top || historicTop;
+  } catch (e) {
+    console.warn('historicTop 불러오기 실패, 기본값 사용', e);
+  }
+}
+
+// ===== 공통 유틸 =====
+function getAC(nums) {
+  const diffs = new Set();
+  for (let i = 0; i < 6; i++) {
+    for (let j = i + 1; j < 6; j++) {
+      diffs.add(Math.abs(nums[i] - nums[j]));
+    }
+  }
+  return diffs.size - 5;
+}
+
+const COLOR_ZONES = [[1,10],[11,20],[21,30],[31,40],[41,45]];
+const PRIMES      = [2,3,5,7,11,13,17,19,23,29,31,37,41,43];
+const COMPOSITES  = [1,4,8,10,14,16,20,22,25,26,28,32,34,35,38,40,44];
+const SQUARES     = [1,4,9,16,25,36];
+const PAIRS       = [11,22,33,44];
+const ZONES       = [[1,10],[11,20],[21,30],[31,40],[41,45]];
+const CORNERS     = [1,2,8,9,6,7,13,14,29,30,36,37,34,35,41,42];
+
+// ===== 22개 필터 함수 =====
+
+const FILTER_FUNCTIONS = {
+    1: (nums) => nums.filter(n => hotLast5.includes(n)).length >= 1,
+    2: (nums) => nums.filter(n => historicTop.includes(n)).length >= 2,
+    3: (nums) => COLOR_ZONES.every(([min, max]) => nums.filter(n => n >= min && n <= max).length <= 2),
+    4: (nums) => nums.filter(n => coldLast5.includes(n)).length >= 1,
+    5: (nums) => nums.filter(n => (STATE.latestWinNums || []).includes(n)).length <= 2,
+    6: (nums) => {
+        const prev = STATE.latestWinNums || [];
+        let neighbors = 0;
+        nums.forEach(n => prev.forEach(p => { if (Math.abs(n - p) === 1) neighbors++; }));
+        return neighbors >= 1 && neighbors <= 3;
+    },
+    7: (nums) => { const sum = nums.reduce((a, b) => a + b, 0); return sum >= 100 && sum <= 175; },
+    8: (nums) => getAC(nums) >= 7,
+    9: (nums) => { const odd = nums.filter(n => n % 2 !== 0).length; return !(odd === 0 || odd === 6); },
+    10: (nums) => { const high = nums.filter(n => n >= 23).length; return !(high === 0 || high === 6); },
+    11: (nums) => {
+        const counts = {};
+        nums.forEach(n => { const d = n % 10; counts[d] = (counts[d] || 0) + 1; });
+        return Math.max(...Object.values(counts)) <= 3;
+    },
+    12: (nums) => { const sumEnds = nums.reduce((a, n) => a + (n % 10), 0); return sumEnds >= 15 && sumEnds <= 38; },
+    13: (nums) => {
+        let consecPairs = 0;
+        for (let i = 0; i < 5; i++) { if (nums[i + 1] - nums[i] === 1) consecPairs++; }
+        return consecPairs <= 2;
+    },
+    14: (nums) => nums.filter(n => PRIMES.includes(n)).length <= 3,
+    15: (nums) => nums.filter(n => COMPOSITES.includes(n)).length <= 3,
+    16: (nums) => nums.filter(n => SQUARES.includes(n)).length <= 2,
+    17: (nums) => {
+        const mul3 = nums.filter(n => n % 3 === 0).length;
+        const mul5 = nums.filter(n => n % 5 === 0).length;
+        return mul3 <= 3 && mul5 <= 2;
+    },
+    18: (nums) => nums.filter(n => PAIRS.includes(n)).length <= 2,
+    19: (nums) => nums[0] >= 14 && nums[5] > 30,
+    20: (nums) => ZONES.every(([min, max]) => nums.filter(n => n >= min && n <= max).length <= 3),
+    21: (nums) => { const cnt = nums.filter(n => CORNERS.includes(n)).length; return cnt >= 1 && cnt <= 4; },
+    22: (nums) => {
+        const ac = getAC(nums);
+        const sum = nums.reduce((a, b) => a + b, 0);
+        return ((ac * 3) + (sum / 30)) / 2 > 7;
+    }
+};
+
 const FILTER_RULES = FILTER_DETAILS.map(f => ({
     id: f.id,
     name: f.name,
-    check: (nums) => {
-        if (f.id === 7) { const s = nums.reduce((a,b)=>a+b); return s>=100 && s<=175; }
-        if (f.id === 8) return Logic.getAC(nums) >= 7;
-        if (f.id === 9) { const odd = nums.filter(n=>n%2!==0).length; return odd>0 && odd<6; }
-        if (f.id === 10) { const high = nums.filter(n=>n>=23).length; return high>0 && high<6; }
-        if (f.id === 13) { let count=0; for(let i=0;i<5;i++) if(nums[i+1]-nums[i]===1) count++; return count<=2; }
-        return Math.random() > 0.2; // Default mock logic for others
-    }
+    check: FILTER_FUNCTIONS[f.id] || (() => Math.random() > 0.2)
 }));
 
 const UI = {
@@ -153,13 +239,7 @@ const UI = {
 };
 
 const Logic = {
-    getAC: (nums) => {
-        let diffs = new Set();
-        for (let i = 0; i < 6; i++) {
-            for (let j = i + 1; j < 6; j++) diffs.add(Math.abs(nums[i] - nums[j]));
-        }
-        return diffs.size - 5;
-    },
+    getAC: getAC,
     generateRandomSet: () => {
         let nums = new Set();
         while (nums.size < 6) nums.add(Math.floor(Math.random() * 45) + 1);
@@ -173,21 +253,17 @@ function setLanguage(lang) {
     localStorage.setItem('lotto-lang', lang);
     document.documentElement.lang = lang === 'ko' ? 'ko-KR' : lang === 'en' ? 'en-US' : 'ja-JP';
 
-    // Update data-i18n elements
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) el.innerHTML = TRANSLATIONS[lang][key];
     });
 
-    // Update active pill styling
     document.querySelectorAll('.lang-pill').forEach(btn => {
         btn.classList.toggle('active', btn.getAttribute('onclick').includes(lang));
     });
 
-    // Re-render filters with translated names
     renderFilters();
     
-    // Close dropdown if exists
     const menu = document.querySelector('.lang-dropdown-menu');
     if(menu) menu.classList.remove('show');
 }
@@ -291,7 +367,6 @@ function init() {
         };
     }
 
-    // Language Dropdown Toggle
     const langBtn = document.querySelector('.lang-dropdown-btn');
     const langMenu = document.querySelector('.lang-dropdown-menu');
     if(langBtn) {
@@ -330,7 +405,6 @@ function init() {
         document.querySelector('.close-modal-btn').onclick = () => UI.reportModal.style.display = 'none';
     }
 
-    // Mobile Menu Toggle
     const menuToggle = document.getElementById('menuToggle');
     const topNav = document.querySelector('.top-nav');
     if (menuToggle && topNav) {
@@ -341,4 +415,7 @@ function init() {
     }
 }
 
-window.onload = init;
+window.onload = async () => {
+    await Promise.all([loadLast5Stats(), loadHistoricTop()]);
+    init();
+};
