@@ -329,6 +329,16 @@ function init() {
         document.querySelector('.close-modal').onclick = () => UI.reportModal.style.display = 'none';
         document.querySelector('.close-modal-btn').onclick = () => UI.reportModal.style.display = 'none';
     }
+
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const topNav = document.querySelector('.top-nav');
+    if (menuToggle && topNav) {
+        menuToggle.onclick = () => {
+            menuToggle.classList.toggle('active');
+            topNav.classList.toggle('open');
+        };
+    }
 }
 
 window.onload = init;
