@@ -426,3 +426,4 @@ window.onload = async () => {
     await Promise.all([loadLast5Stats(), loadHistoricTop()]);
     init();
 };
+ 

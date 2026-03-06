@@ -359,3 +359,4 @@ input:checked + .slider:before { transform: translateX(16px); }
     .qty-btn { padding: 8px; font-size: 0.75rem; }
 }
 /* last sync: Fri Mar  6 09:17:40 AM UTC 2026 */
+ 
