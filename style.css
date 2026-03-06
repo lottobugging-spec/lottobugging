@@ -55,6 +55,7 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
     background: var(--bg-secondary);
     border-bottom: none; /* Persistent gray line removed here */
     margin-bottom: 40px;
+    padding-top: 15px; /* Added margin above the top-bar */
     position: relative;
     z-index: 100;
 }
