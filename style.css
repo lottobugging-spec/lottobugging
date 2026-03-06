@@ -65,7 +65,8 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
 }
 
 .top-bar {
-    padding: 10px 20px; /* Reduced internal padding */
+    padding: 10px 20px 10px 20px;
+    padding-right: 5px; /* Moved controls more to the right */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -80,7 +81,8 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
 }
 
 .main-header {
-    padding: 10px 20px; /* Reduced internal padding */
+    padding: 10px 20px 10px 20px;
+    padding-right: 5px; /* Moved hamburger more to the right */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -119,8 +121,8 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
 /* Dropdown Language Switcher */
 .lang-dropdown-container { position: relative; }
 .lang-dropdown-btn {
-    background: var(--bg-secondary); /* Keep button background distinct */
-    border: 1px solid var(--border-color);
+    background: var(--bg-main); /* Match with page background */
+    border: 1px solid var(--bg-main); /* Unified with background to hide the line */
     padding: 6px 14px;
     border-radius: 50px;
     color: var(--text-main);
