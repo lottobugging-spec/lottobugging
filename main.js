@@ -2,6 +2,13 @@
  * LOTTOBUGGING v7.5 - Scoring Engine & i18n
  */
 
+// Userback Feedback Service
+window.Userback = window.Userback || {};
+Userback.access_token = "A-sBQHLH60t5i7qrdZCdmd3x7B1";
+(function(d) {
+    var s = d.createElement('script');s.async = true;s.src = 'https://static.userback.io/widget/v1.js';(d.head || d.body).appendChild(s);
+})(document);
+
 const STATE = {
     selectedQty: 1,
     isAnalyzing: false,
