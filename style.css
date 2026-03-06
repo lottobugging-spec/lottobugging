@@ -66,7 +66,7 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
 
 .top-bar {
     padding: 10px 20px 10px 20px;
-    padding-right: 5px; /* Moved controls more to the right */
+    padding-right: 15px; /* Moved controls slightly left */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -82,7 +82,7 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
 
 .main-header {
     padding: 10px 20px 10px 20px;
-    padding-right: 5px; /* Moved hamburger more to the right */
+    padding-right: 15px; /* Moved hamburger slightly left */
     display: flex;
     justify-content: space-between;
     align-items: center;
