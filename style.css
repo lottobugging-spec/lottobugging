@@ -186,26 +186,50 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
 
 .lang-dropdown-menu {
     position: absolute;
-    top: calc(100% + 5px);
+    top: calc(100% + 8px);
     right: 0;
-    background: var(--panel-bg);
-    border: none; /* Removed the gray border that caused the line */
+    background: rgba(255, 255, 255, 0.75); /* macOS semi-transparent white */
+    backdrop-filter: blur(20px); /* Glassmorphism effect */
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 12px;
-    width: 150px;
+    width: 160px;
     max-height: 0;
     overflow: hidden;
-    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Use shadow instead of border */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05);
     z-index: 1001;
+    padding: 0;
 }
-.lang-dropdown-menu.show { max-height: 200px; padding: 5px 0; }
+
+body.dark-mode .lang-dropdown-menu {
+    background: rgba(30, 30, 30, 0.75); /* macOS semi-transparent dark */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.lang-dropdown-menu.show { 
+    max-height: 250px; 
+    padding: 6px; /* Space for internal rounded items */
+}
+
 .lang-option {
-    padding: 10px 15px;
+    padding: 8px 12px;
     font-size: 0.85rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: 0.2s;
+    border-radius: 8px; /* MacBook menu item style */
+    transition: 0.15s ease;
+    margin-bottom: 2px;
+    color: var(--text-main);
 }
-.lang-option:hover { background: rgba(88, 166, 255, 0.1); color: var(--accent-blue); }
+
+.lang-option:last-child { margin-bottom: 0; }
+
+.lang-option:hover { 
+    background: #007AFF; /* macOS selection blue */
+    color: #ffffff; /* White text on selection */
+}
 
 /* Tool Section */
 .tool-section {
