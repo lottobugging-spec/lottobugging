@@ -121,8 +121,8 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
 /* Dropdown Language Switcher */
 .lang-dropdown-container { position: relative; }
 .lang-dropdown-btn {
-    background: var(--bg-main); /* Match with page background */
-    border: 1px solid var(--bg-main); /* Unified with background to hide the line */
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color); /* Restored border */
     padding: 6px 14px;
     border-radius: 50px;
     color: var(--text-main);
@@ -133,8 +133,10 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
     align-items: center;
     gap: 6px;
     transition: 0.2s;
+    box-shadow: none !important; /* Completely removed shadow/white line */
 }
 .lang-dropdown-btn:hover { border-color: var(--accent-blue); }
+
 
 .theme-btn {
     width: 36px; height: 36px; border-radius: 50%; background: var(--bg-secondary);
