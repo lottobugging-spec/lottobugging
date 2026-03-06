@@ -47,26 +47,25 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 30px; /* Increased baseline padding to prevent edge touching */
+    padding: 0 20px; /* Reduced baseline padding */
     width: 100%;
 }
 
-/* Header Redesign - Floating Card Style */
+/* Header Redesign - Seamless Box Style */
 .site-header {
-    background: var(--bg-secondary);
+    background: var(--bg-main); /* Unified with page background */
     border-bottom: none;
-    margin: 20px auto 40px auto; /* Centered with top/bottom margin */
+    margin: 0 auto 30px auto; /* Centered, no floating box look */
     padding: 10px 0;
     position: relative;
     z-index: 100;
     max-width: 1200px;
-    width: calc(100% - 40px); /* Ensures 20px margin on small screens */
-    border-radius: 20px; /* Modern rounded look */
-    box-shadow: var(--card-shadow);
+    width: 100%;
+    box-shadow: none; /* Removed shadow for seamless look */
 }
 
 .top-bar {
-    padding: 10px 30px; /* Internal padding matches container padding feel */
+    padding: 10px 20px; /* Reduced internal padding */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -81,7 +80,7 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
 }
 
 .main-header {
-    padding: 15px 30px; /* Internal padding matches container padding feel */
+    padding: 10px 20px; /* Reduced internal padding */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -100,7 +99,7 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
 
 .logo-area h1 {
     font-family: var(--font-display);
-    font-size: 2.25rem;
+    font-size: 2rem; /* Slightly reduced for better balance */
     font-weight: 700;
     line-height: 1;
     margin: 0;
@@ -111,7 +110,7 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
 }
 
 .tagline {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--text-dim);
     font-weight: 500;
     margin: 0;
@@ -120,7 +119,7 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
 /* Dropdown Language Switcher */
 .lang-dropdown-container { position: relative; }
 .lang-dropdown-btn {
-    background: var(--bg-main);
+    background: var(--bg-secondary); /* Keep button background distinct */
     border: 1px solid var(--border-color);
     padding: 6px 14px;
     border-radius: 50px;
@@ -136,7 +135,7 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
 .lang-dropdown-btn:hover { border-color: var(--accent-blue); }
 
 .theme-btn {
-    width: 36px; height: 36px; border-radius: 50%; background: var(--bg-main);
+    width: 36px; height: 36px; border-radius: 50%; background: var(--bg-secondary);
     border: 1px solid var(--border-color); color: var(--text-main); font-size: 1rem;
     cursor: pointer; display: flex; justify-content: center; align-items: center;
 }
@@ -329,7 +328,7 @@ body.dark-mode .lang-dropdown-menu {
 .preset-btn:hover { 
     background: var(--border-color); 
     transform: translateY(-2px);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0,100,255,0.1);
 }
 .preset-btn.active { 
     background: var(--accent-blue); 
@@ -405,7 +404,7 @@ input:checked + .slider:before { transform: translateX(16px); }
     }
 
     .main-header {
-        padding: 15px 25px; /* Increased mobile side padding */
+        padding: 15px 20px;
     }
 }
 
@@ -414,13 +413,13 @@ input:checked + .slider:before { transform: translateX(16px); }
         padding: 0 20px;
     }
     .site-header {
-        width: calc(100% - 30px); /* Slightly more margin on mobile */
-        margin-bottom: 30px;
+        width: 100%;
+        margin-bottom: 20px;
     }
     .logo-area h1 { font-size: 1.6rem; }
     .result-display { min-height: 140px; }
     .main-controls { padding: 15px; }
     .qty-btn { padding: 8px; font-size: 0.75rem; }
-    .top-bar { padding: 10px 25px; }
+    .top-bar { padding: 10px 20px; }
 }
 /* last sync: Fri Mar  6 09:17:40 AM UTC 2026 */
