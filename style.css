@@ -95,6 +95,41 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
     font-weight: 700;
 }
 
+/* Hamburger Menu Toggle */
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1002;
+}
+
+.hamburger {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text-main);
+    position: relative;
+    transition: background 0.3s;
+}
+
+.hamburger::before, .hamburger::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background: var(--text-main);
+    transition: transform 0.3s;
+}
+
+.hamburger::before { top: -8px; }
+.hamburger::after { bottom: -8px; }
+
+.menu-toggle.active .hamburger { background: transparent; }
+.menu-toggle.active .hamburger::before { transform: rotate(45deg) translate(5px, 6px); }
+.menu-toggle.active .hamburger::after { transform: rotate(-45deg) translate(5px, -6px); }
+
 .top-nav {
     display: flex;
     gap: 25px;
@@ -276,10 +311,49 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
 input:checked + .slider { background-color: var(--accent-green); }
 input:checked + .slider:before { transform: translateX(16px); }
 
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .top-nav {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--bg-secondary);
+        border-bottom: 1px solid var(--border-color);
+        padding: 20px;
+        gap: 15px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+        justify-content: flex-start;
+        align-items: center;
+        box-shadow: 0 10px 10px rgba(0,0,0,0.05);
+    }
+
+    .top-nav.open {
+        max-height: 300px;
+        padding: 20px;
+    }
+
+    .top-nav a {
+        font-size: 1.1rem;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .main-header {
+        padding: 15px 0;
+    }
+}
+
 @media (max-width: 600px) {
     .logo-area h1 { font-size: 1.6rem; }
-    .top-nav { gap: 10px; justify-content: center; }
-    .top-nav a { font-size: 0.8rem; }
     .result-display { min-height: 140px; }
     .main-controls { padding: 15px; }
     .qty-btn { padding: 8px; font-size: 0.75rem; }
