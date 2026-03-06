@@ -189,13 +189,13 @@ a { text-decoration: none; color: inherit; transition: 0.2s; }
     top: calc(100% + 5px);
     right: 0;
     background: var(--panel-bg);
-    border: 1px solid var(--border-color);
+    border: none; /* Removed the gray border that caused the line */
     border-radius: 12px;
     width: 150px;
     max-height: 0;
     overflow: hidden;
     transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: var(--card-shadow);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Use shadow instead of border */
     z-index: 1001;
 }
 .lang-dropdown-menu.show { max-height: 200px; padding: 5px 0; }
