@@ -5,10 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>로또 분석 필터 가이드 | 22단계 정밀 통계 시스템 - 로또버깅</title>
     <meta name="description" content="로또버깅이 제공하는 22가지 과학적 분석 필터를 확인하세요. 핫넘버, 콜드넘버, AC값, 패턴 분석 등 당첨 확률을 높이는 모든 기술이 담겨 있습니다.">
-    <link rel="stylesheet" href="style.css?v=1.7">
+    <link rel="stylesheet" href="style.css?v=2.4">
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        .filters-hero { text-align: center; padding: 60px 20px; background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); }
+        .filters-hero { 
+            text-align: center; 
+            padding: 60px 0; 
+            background: var(--bg-secondary); 
+            border-bottom: 1px solid var(--border-color); 
+            width: 100%;
+        }
+        .filters-hero .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
         .filters-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
         .filter-card { 
             background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 15px; padding: 25px; 
@@ -49,7 +60,7 @@
                     <div class="lang-dropdown-menu">
                         <div class="lang-option" onclick="setLanguage('ko')">🇰🇷 한국어 (KO)</div>
                         <div class="lang-option" onclick="setLanguage('en')">🇺🇸 English (EN)</div>
-                        <div class="lang-option" onclick="setLanguage('ja')">🇯🇵 일본어 (JA)</div>
+                        <div class="lang-option" onclick="setLanguage('ja')">🇯🇵 日本語 (JA)</div>
                     </div>
                 </div>
                 <div class="theme-toggle">
@@ -76,13 +87,16 @@
         </div>
     </header>
 
-    <div class="container">
-        <section class="filters-hero">
+    <!-- 히어로 섹션을 container 밖으로 이동하여 상단 바와 정렬 일치 -->
+    <section class="filters-hero">
+        <div class="hero-content">
             <div class="ads-area">GOOGLE ADSENSE - 상단 광고</div>
             <h2 style="font-size: 2.2rem; margin-bottom: 15px;">22단계 정밀 분석 필터</h2>
             <p style="color: var(--text-dim); max-width: 700px; margin: 0 auto;">로또버깅의 인공지능 엔진은 아래 22가지 통계 필터링 과정을 거쳐 최적의 조합을 산출합니다. 각 필터의 과학적 원리를 확인해 보세요.</p>
-        </section>
+        </div>
+    </section>
 
+    <div class="container">
         <main class="filters-grid" id="filtersContainer">
             <!-- JS로 22개 카드 생성 -->
         </main>
@@ -100,7 +114,7 @@
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             const container = document.getElementById('filtersContainer');
-            // FILTER_DETAILS는 main.js에 정의할 예정
+            // FILTER_DETAILS는 main.js에서 가져옴
             FILTER_DETAILS.forEach((f, idx) => {
                 const card = document.createElement('a');
                 card.className = 'filter-card';
@@ -117,4 +131,3 @@
     </script>
 </body>
 </html>
- 

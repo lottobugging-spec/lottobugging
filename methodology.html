@@ -21,25 +21,6 @@
     <meta name="robots" content="index, follow">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-    <!-- [SEO] 구조화 데이터: Breadcrumbs -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "name": "홈",
-        "item": "https://lottoresults.site"
-      },{
-        "@type": "ListItem",
-        "position": 2,
-        "name": "분석 방법론",
-        "item": "https://lottoresults.site/methodology.html"
-      }]
-    }
-    </script>
-
     <link rel="stylesheet" href="style.css?v=1.7">
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5404863618739679"
@@ -96,34 +77,69 @@
     </header>
 
     <div class="container">
-        <main>
-            <section id="methodology" class="tech-section">
-                <div class="tech-container">
-                    <article class="tech-text">
-                        <h2>Our Methodology</h2>
-                        <p>로또버깅 v7.0은 단순 난수 생성이 아닌, <strong>다변량 통계 분석(Multivariate Statistical Analysis)</strong> 기법을 채택하고 있습니다.</p>
-                        <ul class="tech-list">
-                            <li><strong>정규 분포 검증:</strong> 생성된 조합이 역대 당첨 데이터의 정규 분포 곡선 내에 위치하는지 검증합니다.</li>
-                            <li><strong>패턴 매칭 (Pattern Matching):</strong> 연번, 동일 끝수 등 기하학적 배치를 분석하여 확률을 높입니다.</li>
-                            <li><strong>가중치 스코어링 (Weighted Scoring):</strong> 22개 필터를 통과한 조합 중 최적의 결과에 가중치를 부여합니다.</li>
+        <main style="padding: 40px 0;">
+            <section class="tech-detail-section">
+                <header class="section-header" style="text-align:center; margin-bottom:60px;">
+                    <h2 style="font-size: 2.5rem; color: var(--accent-blue); margin-bottom: 20px;">LottoBugging Analysis Framework</h2>
+                    <p style="font-size: 1.1rem; color: var(--text-dim); max-width: 800px; margin: 0 auto; line-height: 1.6;">
+                        로또버깅은 단순한 번호 생성을 넘어, 수만 번의 시뮬레이션과 22가지 통계 필터를 통해 '수학적 질서'를 찾아냅니다. 
+                        우리의 프레임워크는 대수의 법칙과 딥러닝 알고리즘을 결합하여 최적의 당첨 기댓값을 산출합니다.
+                    </p>
+                </header>
+
+                <div class="methodology-content" style="display:grid; gap: 40px; line-height: 1.8;">
+                    <article class="method-card" style="background: var(--panel-bg); padding: 30px; border-radius: 15px; border: 1px solid var(--border-color);">
+                        <h3 style="color: var(--accent-gold); margin-bottom: 20px; font-size: 1.5rem;">01. 다변량 통계 분석 (Multivariate Statistical Analysis)</h3>
+                        <p>
+                            로또는 각 번호가 나올 확률이 동일한 독립 시행이지만, 6개 번호가 조합되었을 때 나타나는 '총합', 'AC값', '홀짝 비율' 등은 특정한 정규 분포 곡선을 따릅니다. 
+                            로또버깅은 단일 변수가 아닌 수십 가지의 변수를 동시에 고려하는 다변량 분석 기법을 사용하여, 통계적으로 유의미한 조합만을 선별합니다.
+                        </p>
+                    </article>
+
+                    <article class="method-card" style="background: var(--panel-bg); padding: 30px; border-radius: 15px; border: 1px solid var(--border-color);">
+                        <h3 style="color: var(--accent-gold); margin-bottom: 20px; font-size: 1.5rem;">02. 22단계 하이브리드 필터링 시스템</h3>
+                        <p>
+                            우리의 핵심 알고리즘은 22가지의 독립된 필터를 거칩니다. 이 필터들은 크게 세 가지 카테고리로 나뉩니다.
+                        </p>
+                        <ul style="margin-left: 20px; margin-top: 15px;">
+                            <li><strong>역사적 데이터 기반:</strong> 최근 5주간 핫/콜드 넘버, 이월수, 이웃수 분석</li>
+                            <li><strong>산술적 복잡도 기반:</strong> AC값 7 이상 유지, 총합 구간 최적화, 끝수 합계 검증</li>
+                            <li><strong>패턴 및 밸런스 기반:</strong> 홀짝/고저 비율, 동일 끝수 제한, 연속번호 제어, 구역별 분산 분석</li>
                         </ul>
                     </article>
-                    <aside class="tech-viz" aria-label="데이터 시각화 예시">
-                        <div class="viz-box">
-                            <div class="viz-bar" style="height: 40%"></div>
-                            <div class="viz-bar" style="height: 70%"></div>
-                            <div class="viz-bar" style="height: 55%"></div>
-                            <div class="viz-bar highlight" style="height: 90%"></div>
-                            <div class="viz-bar" style="height: 30%"></div>
-                        </div>
-                        <p class="viz-caption">Real-time Data Distribution</p>
-                    </aside>
+
+                    <article class="method-card" style="background: var(--panel-bg); padding: 30px; border-radius: 15px; border: 1px solid var(--border-color);">
+                        <h3 style="color: var(--accent-gold); margin-bottom: 20px; font-size: 1.5rem;">03. 딥러닝 기반 피트니스 스코어링 (Fitness Scoring)</h3>
+                        <p>
+                            필터를 통과한 수천 개의 후보 조합 중 어떤 것이 가장 '좋은' 조합일까요? 로또버깅은 자체 개발한 AI 모델을 통해 각 조합의 '피트니스 점수'를 계산합니다. 
+                            과거 1등 당첨 번호들이 가졌던 미세한 특징들을 학습한 모델은, 현재 생성된 조합이 실제 당첨 번호와 얼마나 유사한 패턴을 보이는지 수치화하여 최종 랭킹을 매깁니다.
+                        </p>
+                    </article>
+
+                    <article class="method-card" style="background: var(--panel-bg); padding: 30px; border-radius: 15px; border: 1px solid var(--border-color);">
+                        <h3 style="color: var(--accent-gold); margin-bottom: 20px; font-size: 1.5rem;">04. 실시간 데이터 동기화 (Real-time Synchronization)</h3>
+                        <p>
+                            로또 데이터는 매주 토요일 밤 업데이트됩니다. 로또버깅은 공식 API와 직접 연동되어 매 회차 당첨 결과를 즉시 반영합니다. 
+                            이를 통해 미출수(Cold Numbers)의 임계값과 이월수(Carry-over)의 확률 변동을 실시간으로 추적하며 분석 모델을 최신 상태로 유지합니다.
+                        </p>
+                    </article>
+                </div>
+
+                <div style="margin-top: 50px; text-align: center; padding: 40px; border-top: 1px solid var(--border-color);">
+                    <p style="font-size: 0.9rem; color: var(--text-dim);">
+                        ※ 로또버깅 방법론은 데이터 사이언스 기반의 확률 분석 도구입니다. 로또는 확률 게임임을 명심하시고 건전한 복권 구매를 권장합니다.
+                    </p>
                 </div>
             </section>
         </main>
 
         <footer class="main-footer">
-            <p class="copyright">&copy; 2026 LOTTOBUGGING Data Science Lab. All Rights Reserved.</p>
+            <nav class="footer-links">
+                <a href="privacy.html" data-i18n="footer_privacy">개인정보처리방침</a>
+                <a href="terms.html" data-i18n="footer_terms">이용약관</a>
+                <a href="mailto:support@lottoresults.site" data-i18n="footer_contact">문의하기</a>
+            </nav>
+            <p class="copyright" data-i18n="footer_copyright">&copy; 2026 LOTTOBUGGING Data Science Lab. All Rights Reserved.</p>
         </footer>
     </div>
     <script src="main.js"></script>

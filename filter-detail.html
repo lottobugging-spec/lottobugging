@@ -18,7 +18,8 @@
         .section h3::before { content: '•'; font-size: 1.5rem; }
         .section p { line-height: 1.8; color: var(--text-main); }
         
-        .example-box { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+        .example-box { display: flex; flex-direction: row; flex-wrap: nowrap; gap: 10px; margin-top: 15px; overflow-x: auto; }
+        .detail-ball-container { display: flex; flex-direction: row; flex-wrap: nowrap; gap: 10px; justify-content: center; align-items: center; margin-top: 15px; }
         .status-badge { padding: 4px 12px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; }
         .status-pass { background: rgba(46, 204, 64, 0.1); color: #2ECC40; border: 1px solid #2ECC40; }
         .status-fail { background: rgba(255, 65, 54, 0.1); color: #FF4136; border: 1px solid #FF4136; }
@@ -132,10 +133,15 @@
 
                 ${filter.exampleNums ? `
                 <div class="section">
-                    <h3>예시 번호</h3>
-                    <div class="ball-container" style="justify-content: flex-start; margin-top:10px;">
+                    <h3>예시 조합 분석</h3>
+                    <div class="detail-ball-container">
                         ${filter.exampleNums.map(n => `<div class="ball" data-color="${n <= 10 ? 'yellow' : n <= 20 ? 'blue' : n <= 30 ? 'red' : n <= 40 ? 'gray' : 'green'}">${n}</div>`).join('')}
                     </div>
+                    ${filter.exAnalysis ? `
+                    <div style="margin-top:25px; padding:20px; background:rgba(9, 105, 218, 0.05); border-left:4px solid var(--accent-blue); border-radius:4px;">
+                        <p style="font-size:0.95rem; font-weight:500; color:var(--text-main); margin-bottom:5px;">📊 데이터 분석 리포트</p>
+                        <p style="font-size:0.9rem; color:var(--text-dim); line-height:1.6;">${filter.exAnalysis[currentLang] || filter.exAnalysis}</p>
+                    </div>` : ''}
                 </div>` : ''}
 
                 ${filter.passEx ? `

@@ -21,25 +21,6 @@
     <meta name="robots" content="index, follow">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-    <!-- [SEO] 구조화 데이터: Breadcrumbs -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "name": "홈",
-        "item": "https://lottoresults.site"
-      },{
-        "@type": "ListItem",
-        "position": 2,
-        "name": "통계 칼럼",
-        "item": "https://lottoresults.site/columns.html"
-      }]
-    }
-    </script>
-
     <link rel="stylesheet" href="style.css?v=1.7">
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5404863618739679"
@@ -96,44 +77,76 @@
     </header>
 
     <div class="container">
-        <main>
+        <main style="padding: 40px 0;">
             <section id="columns" class="content-section">
-                <header class="section-header">
-                    <h2>Lotto Science Insights</h2>
-                    <p>데이터 사이언스 관점에서 바라본 로또 분석과 확률의 세계</p>
+                <header class="section-header" style="text-align:center; margin-bottom:60px;">
+                    <h2 style="font-size: 2.5rem; color: var(--accent-blue);">Lotto Science Insights</h2>
+                    <p style="font-size: 1.1rem; color: var(--text-dim);">데이터 사이언스 관점에서 바라본 로또 분석과 확률의 세계</p>
                 </header>
                 
-                <div class="article-grid">
-                    <article class="post-card">
-                        <h3>대수의 법칙과 로또: 무작위성 속의 질서</h3>
-                        <p class="post-meta">2026.03.02 | Data Analytics Team</p>
-                        <p class="post-excerpt">
-                            로또는 매 회차 독립 시행이지만, 시행 횟수가 무한대로 늘어나면 각 번호의 출현 빈도는 이론적 확률(1/45)에 수렴하게 됩니다. 이를 '대수의 법칙'이라 합니다. 
-                            로또버깅은 이 단기적 편향을 분석하여 최적의 비율을 찾아냅니다.
-                        </p>
+                <div class="article-stack" style="display:grid; gap: 60px;">
+                    <article class="post-full" style="background: var(--panel-bg); padding: 40px; border-radius: 20px; border: 1px solid var(--border-color); line-height: 1.8;">
+                        <h3 style="font-size: 1.8rem; color: var(--accent-gold); margin-bottom: 15px;">대수의 법칙과 로또: 무작위성 속의 질서</h3>
+                        <p class="post-meta" style="color: var(--text-dim); margin-bottom: 25px;">2026.03.02 | Data Analytics Team</p>
+                        <div class="post-content">
+                            <p>
+                                많은 사람들이 로또를 단순한 '운'의 영역이라고 생각합니다. 하지만 통계학의 관점에서 로또는 매우 정교한 확률 모델입니다. 
+                                그 중에서도 <strong>'대수의 법칙(Law of Large Numbers)'</strong>은 로또 분석의 가장 기초가 되는 이론입니다.
+                            </p>
+                            <p style="margin-top: 15px;">
+                                대수의 법칙이란 시행 횟수가 늘어날수록 실제 결과가 이론적 기댓값에 가까워진다는 원리입니다. 
+                                로또 번호 45개가 각각 나올 확률은 약 13.3%로 모두 동일합니다. 하지만 1,000회 이상의 누적 데이터를 분석해 보면, 
+                                특정 기간 동안 유독 자주 나오는 번호(Hot Numbers)와 거의 나오지 않는 번호(Cold Numbers)가 존재합니다. 
+                                로또버깅은 이 단기적 편향성을 수치화하여, 평균 회귀(Mean Reversion)가 일어날 시점을 포착하는 알고리즘을 적용합니다.
+                            </p>
+                        </div>
                     </article>
 
-                    <article class="post-card">
-                        <h3>AC값(산술적 복잡도)이 증명하는 당첨의 조건</h3>
-                        <p class="post-meta">2026.02.28 | Algorithm Research</p>
-                        <p class="post-excerpt">
-                            많은 사람들이 생일이나 기념일로 번호를 조합하지만, 이는 수학적으로 매우 위험한 선택입니다. 로또 당첨 번호는 무작위성이 극대화된 상태여야 합니다. 
-                            AC값은 이를 측정하는 핵심 지표입니다.
-                        </p>
+                    <article class="post-full" style="background: var(--panel-bg); padding: 40px; border-radius: 20px; border: 1px solid var(--border-color); line-height: 1.8;">
+                        <h3 style="font-size: 1.8rem; color: var(--accent-gold); margin-bottom: 15px;">AC값(산술적 복잡도)이 증명하는 당첨의 조건</h3>
+                        <p class="post-meta" style="color: var(--text-dim); margin-bottom: 25px;">2026.02.28 | Algorithm Research</p>
+                        <div class="post-content">
+                            <p>
+                                로또 용지에 번호를 마킹할 때, 예쁜 모양을 만들거나 생일/기념일 등을 조합하는 경우가 많습니다. 
+                                하지만 이는 수학적으로 당첨 확률을 스스로 낮추는 행위가 될 수 있습니다. 
+                                이를 증명하는 지표가 바로 <strong>AC값(Arithmetic Complexity)</strong>입니다.
+                            </p>
+                            <p style="margin-top: 15px;">
+                                AC값은 6개 번호 사이의 차이값이 얼마나 다양한지를 측정하는 지수입니다. 
+                                1등 당첨 번호의 80% 이상은 AC값이 7 이상의 높은 복잡도를 보입니다. 
+                                즉, 무작위성이 극대화된 조합이 실제 당첨으로 이어진다는 뜻입니다. 
+                                로또버깅은 생성된 모든 조합의 AC값을 실시간으로 계산하여, 7 미만의 단순한 패턴은 과감히 필터링하고 
+                                통계적으로 유효한 '복잡한 조합'만을 사용자에게 제안합니다.
+                            </p>
+                        </div>
                     </article>
 
-                    <article class="post-card">
-                        <h3>제 1213회 데이터 분석: 패턴의 변화</h3>
-                        <p class="post-meta">2026.02.27 | Weekly Report</p>
-                        <p class="post-excerpt">
-                            지난 1213회 당첨번호는 전형적인 '분산형 패턴'을 보여주었습니다. 특히 10번대와 30번대 구간에서의 출현 빈도가 평균을 상회했습니다.
-                        </p>
+                    <article class="post-full" style="background: var(--panel-bg); padding: 40px; border-radius: 20px; border: 1px solid var(--border-color); line-height: 1.8;">
+                        <h3 style="font-size: 1.8rem; color: var(--accent-gold); margin-bottom: 15px;">분산 투자 전략: 왜 5세트 이상을 추천하는가?</h3>
+                        <p class="post-meta" style="color: var(--text-dim); margin-bottom: 25px;">2026.02.25 | Strategy Guide</p>
+                        <div class="post-content">
+                            <p>
+                                확률 통계에서 리스크를 관리하는 가장 좋은 방법은 '분산'입니다. 
+                                하나의 조합에 모든 기대를 거는 것보다, 서로 다른 통계적 특성을 가진 여러 조합을 확보하는 것이 기댓값을 높이는 데 유리합니다.
+                            </p>
+                            <p style="margin-top: 15px;">
+                                로또버깅의 'AI 정밀' 모드는 수백만 개의 경우의 수 중 최상위 피트니스 스코어를 가진 조합들을 선별합니다. 
+                                이때 1세트만 생성하는 것보다 5세트, 10세트 등 데이터 세트의 양을 늘리면, 
+                                홀짝 비율이나 고저 비율 등에서 상호 보완적인 관계를 가진 포트폴리오를 구성하게 됩니다. 
+                                이는 마치 주식 시장에서 분산 투자를 통해 안정성을 확보하는 것과 같은 원리입니다.
+                            </p>
+                        </div>
                     </article>
                 </div>
             </section>
         </main>
 
         <footer class="main-footer">
+            <nav class="footer-links">
+                <a href="privacy.html" data-i18n="footer_privacy">개인정보처리방침</a>
+                <a href="terms.html" data-i18n="footer_terms">이용약관</a>
+                <a href="mailto:support@lottoresults.site" data-i18n="footer_contact">문의하기</a>
+            </nav>
             <p class="copyright" data-i18n="footer_copyright">&copy; 2026 LOTTOBUGGING Data Science Lab. All Rights Reserved.</p>
         </footer>
     </div>
