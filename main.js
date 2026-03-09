@@ -16,17 +16,18 @@ const STATE = {
 async function initAI() {
     // tf 라이브러리 로드 대기 (최대 5초)
     let retryCount = 0;
-    while (typeof tf === 'undefined' && retryCount < 10) {
+    while (typeof window.tf === 'undefined' && retryCount < 10) {
         await new Promise(resolve => setTimeout(resolve, 500));
         retryCount++;
     }
 
-    if (typeof tf === 'undefined') {
+    if (typeof window.tf === 'undefined') {
         console.warn("AI Engine: TensorFlow.js not loaded. Falling back to simple scoring.");
         return;
     }
 
     try {
+        const tf = window.tf;
         const model = tf.sequential();
         model.add(tf.layers.dense({units: 16, inputShape: [6], activation: 'relu'}));
         model.add(tf.layers.dense({units: 8, activation: 'sigmoid'}));
@@ -37,7 +38,8 @@ async function initAI() {
 }
 
 async function predictFitness(nums) {
-    if (!STATE.aiModel) return 0.5;
+    if (!STATE.aiModel || typeof window.tf === 'undefined') return 0.5;
+    const tf = window.tf;
     const input = tf.tensor2d([nums.map(n => n / 45)]);
     const prediction = STATE.aiModel.predict(input);
     const score = await prediction.data();
