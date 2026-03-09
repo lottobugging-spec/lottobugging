@@ -111,15 +111,17 @@
             if (typeof FILTER_DETAILS !== 'undefined' && container) {
                 FILTER_DETAILS.forEach((f) => {
                     const card = document.createElement('a');
+                    const isAI = f.id === 22;
                     card.className = 'filter-card';
+                    if (isAI) card.style.borderColor = '#3182f6';
                     card.href = `filter-detail.html?id=${f.id}`;
                     const name = f.name[STATE.currentLang] || f.name['ko'];
                     const desc = f.desc[STATE.currentLang] || f.desc['ko'];
                     card.innerHTML = `
-                        <div class="f-num">Step ${String(f.id).padStart(2, '0')}</div>
+                        <div class="f-num" style="${isAI ? 'color: #3182f6;' : ''}">Step ${String(f.id).padStart(2, '0')}</div>
                         <div class="f-title">${name}</div>
                         <div class="f-desc">${desc}</div>
-                        <div class="f-tag">통계 알고리즘</div>
+                        <div class="f-tag" style="${isAI ? 'background: #3182f6; color: white;' : ''}">${isAI ? 'AI Deep Learning' : '통계 알고리즘'}</div>
                     `;
                     container.appendChild(card);
                 });
