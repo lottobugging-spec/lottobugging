@@ -14,37 +14,36 @@ const STATE = {
 
 // AI 엔진 초기화
 async function initAI() {
-    // tf 라이브러리 로드 대기 (최대 5초)
-    let retryCount = 0;
-    while (typeof window.tf === 'undefined' && retryCount < 10) {
-        await new Promise(resolve => setTimeout(resolve, 500));
-        retryCount++;
+    // 라이브러리 존재 여부 확인 (최대 3초 대기)
+    let retry = 0;
+    while (typeof window.tf === 'undefined' && retry < 6) {
+        await new Promise(r => setTimeout(r, 500));
+        retry++;
     }
 
-    if (typeof window.tf === 'undefined') {
-        console.warn("AI Engine: TensorFlow.js not loaded. Falling back to simple scoring.");
-        return;
+    if (typeof window.tf !== 'undefined' && !STATE.aiModel) {
+        try {
+            const tf = window.tf;
+            const model = tf.sequential();
+            model.add(tf.layers.dense({units: 16, inputShape: [6], activation: 'relu'}));
+            model.add(tf.layers.dense({units: 8, activation: 'sigmoid'}));
+            model.add(tf.layers.dense({units: 1, activation: 'linear'}));
+            model.compile({optimizer: 'adam', loss: 'meanSquaredError'});
+            STATE.aiModel = model;
+        } catch(e) { /* silent fallback */ }
     }
-
-    try {
-        const tf = window.tf;
-        const model = tf.sequential();
-        model.add(tf.layers.dense({units: 16, inputShape: [6], activation: 'relu'}));
-        model.add(tf.layers.dense({units: 8, activation: 'sigmoid'}));
-        model.add(tf.layers.dense({units: 1, activation: 'linear'}));
-        model.compile({optimizer: 'adam', loss: 'meanSquaredError'});
-        STATE.aiModel = model;
-    } catch(e) { console.error("AI Init Fail", e); }
 }
 
 async function predictFitness(nums) {
     if (!STATE.aiModel || typeof window.tf === 'undefined') return 0.5;
-    const tf = window.tf;
-    const input = tf.tensor2d([nums.map(n => n / 45)]);
-    const prediction = STATE.aiModel.predict(input);
-    const score = await prediction.data();
-    input.dispose(); prediction.dispose();
-    return Math.min(1, Math.max(0, score[0] + 0.5)); 
+    try {
+        const tf = window.tf;
+        const input = tf.tensor2d([nums.map(n => n / 45)]);
+        const prediction = STATE.aiModel.predict(input);
+        const score = await prediction.data();
+        input.dispose(); prediction.dispose();
+        return Math.min(1, Math.max(0, score[0] + 0.5));
+    } catch(e) { return 0.5; }
 }
 
 const TRANSLATIONS = {
