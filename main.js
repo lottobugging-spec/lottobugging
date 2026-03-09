@@ -14,6 +14,18 @@ const STATE = {
 
 // AI 엔진 초기화
 async function initAI() {
+    // tf 라이브러리 로드 대기 (최대 5초)
+    let retryCount = 0;
+    while (typeof tf === 'undefined' && retryCount < 10) {
+        await new Promise(resolve => setTimeout(resolve, 500));
+        retryCount++;
+    }
+
+    if (typeof tf === 'undefined') {
+        console.warn("AI Engine: TensorFlow.js not loaded. Falling back to simple scoring.");
+        return;
+    }
+
     try {
         const model = tf.sequential();
         model.add(tf.layers.dense({units: 16, inputShape: [6], activation: 'relu'}));
