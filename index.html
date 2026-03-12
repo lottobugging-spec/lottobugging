@@ -1,200 +1,232 @@
 <!DOCTYPE html>
-<html lang="ko-KR">
+<html class="dark" lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta http-equiv="content-language" content="ko">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://www.googletagmanager.com">
-
-    <title>로또버깅: AI 빅데이터 기반 로또 분석 및 확률 최적화 시스템</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+    <title data-i18n="title">로또버깅 - AI 스마트 로또 번호 추출</title>
     <meta name="description" content="22단계 필터링 알고리즘과 AI 딥러닝 분석을 통한 과학적 로또 당첨 번호 생성 시스템.">
-
-    <link rel="stylesheet" href="style.css?v=3.2">
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <script>
-      window.Userback = window.Userback || {};
-      Userback.access_token = "A-sBQHLH60t5i7qrdZCdmd3x7B1";
-      (function(d) {
-        var s = d.createElement('script');s.async = true;s.src = 'https://static.userback.io/widget/v1.js';(d.head || d.body).appendChild(s);
-      })(document);
-    </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5404863618739679"
-     crossorigin="anonymous"></script>
-    <meta name="google-adsense-account" content="ca-pub-5404863618739679">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(236, 91, 19, 0.12) 0%, transparent 70%);
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .monitor-glow {
+            box-shadow: 0 0 40px -10px rgba(236, 91, 19, 0.2);
+        }
+    </style>
 </head>
-<body>
-    <script>
-        (function() {
-            const savedTheme = localStorage.getItem('lotto-theme') || 'light';
-            if (savedTheme === 'dark') document.body.classList.add('dark-mode');
-        })();
-    </script>
+<body class="bg-[#0a0705] font-display text-slate-100 antialiased selection:bg-primary/30">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+    <!-- Hero Background -->
+    <div class="absolute inset-0 hero-gradient pointer-events-none"></div>
 
-    <header class="site-header">
-        <div class="top-bar container">
-            <div class="logo-area">
-                <h1><a href="/" style="text-decoration:none;">LOTTO<span class="highlight">BUGGING</span></a></h1>
+    <!-- Navigation -->
+    <header class="fixed top-0 z-50 w-full border-b border-white/5 bg-[#0a0705]/70 backdrop-blur-xl px-6 py-4">
+        <div class="mx-auto flex max-w-7xl items-center justify-between">
+            <div class="flex items-center gap-2.5 text-primary">
+                <span class="material-symbols-outlined text-3xl font-black">query_stats</span>
+                <h2 class="text-xl font-black tracking-tight uppercase">LottoBugging</h2>
             </div>
-            <div class="header-controls">
-                <div class="lang-dropdown-container">
-                    <button class="lang-dropdown-btn">
-                        <span id="langDisplay" data-i18n="lang_display">언어 선택</span>
-                        <span class="arrow">▼</span>
-                    </button>
-                    <div class="lang-dropdown-menu">
-                        <div class="lang-option" onclick="setLanguage('ko')">🇰🇷 한국어 (KO)</div>
-                        <div class="lang-option" onclick="setLanguage('en')">🇺🇸 English (EN)</div>
-                        <div class="lang-option" onclick="setLanguage('ja')">🇯🇵 日本語 (JA)</div>
-                    </div>
-                </div>
-                <div class="theme-toggle">
-                    <button id="themeBtn" class="theme-btn" aria-label="다크 모드 전환">
-                        <span id="themeIcon">☀️</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="main-header container">
-            <div class="tagline-area">
-                <p class="tagline" data-i18n="tagline">Data Science Solution for Lottery Probability</p>
-            </div>
-            <button class="menu-toggle" id="menuToggle" aria-label="메뉴 열기">
-                <span class="hamburger"></span>
-            </button>
-            <nav class="top-nav" aria-label="주요 서비스 탐색">
-                <a href="columns.html" data-i18n="nav_columns">통계 칼럼</a>
-                <a href="methodology.html" data-i18n="nav_methodology">분석 방법론</a>
-                <a href="filters.html" data-i18n="nav_filters">필터 가이드</a>
-                <a href="about.html" data-i18n="nav_about">서비스 안내</a>
+            <nav class="hidden md:flex items-center gap-10">
+                <a class="text-sm font-bold text-slate-400 hover:text-primary transition-colors uppercase tracking-wider" href="columns.html">통계 칼럼</a>
+                <a class="text-sm font-bold text-slate-400 hover:text-primary transition-colors uppercase tracking-wider" href="methodology.html">분석 방법론</a>
+                <a class="text-sm font-bold text-slate-400 hover:text-primary transition-colors uppercase tracking-wider" href="filters.html">필터 가이드</a>
+                <a class="text-sm font-bold text-slate-400 hover:text-primary transition-colors uppercase tracking-wider" href="about.html">서비스 안내</a>
             </nav>
+            <div class="flex items-center gap-4">
+                <button id="themeBtn" class="p-2.5 rounded-full glass text-slate-400 hover:text-white transition-all">
+                    <span id="themeIcon" class="material-symbols-outlined text-xl">light_mode</span>
+                </button>
+                <button class="bg-primary text-white px-7 py-2.5 rounded-full text-sm font-black shadow-lg shadow-primary/20 hover:brightness-110 active:scale-95 transition-all">
+                    START
+                </button>
+                <button id="menuToggle" class="md:hidden p-2 text-white"><span class="material-symbols-outlined">menu</span></button>
+            </div>
         </div>
     </header>
 
-    <div class="container">
-        <main role="main">
-            <section id="analyzer" class="tool-section">
-                <article class="monitor-wrapper">
-                    <div class="monitor">
-                        <div class="screen-header">
-                            <span class="status-dot green"></span>
-                            <span class="title">PROBABILITY OPTIMIZATION ENGINE</span>
+    <main class="flex-1 pt-32 pb-20">
+        <div class="mx-auto max-w-7xl px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+                
+                <!-- Left: Hero Text & Information -->
+                <div class="lg:col-span-5 flex flex-col gap-10 mt-4">
+                    <div class="flex flex-col gap-6">
+                        <div class="inline-flex items-center gap-2.5 rounded-full glass border border-primary/20 px-4 py-1.5 self-start">
+                            <span class="relative flex h-2 w-2">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                            </span>
+                            <span class="text-[10px] font-black text-primary uppercase tracking-[0.2em]">Next-Gen AI Analysis</span>
                         </div>
-                        <div class="result-display">
-                            <div class="ball-container" id="ballContainer">
-                                <div class="welcome-msg">
-                                    <h3 id="mainBrandTitle" data-i18n="welcome_title" class="brand-gradient">로또버깅</h3>
-                                    <p data-i18n="welcome_desc">무료 AI 로또 필터링 분석</p>
-                                </div>
+                        <h1 class="text-5xl font-black leading-[1.15] tracking-tight md:text-6xl xl:text-7xl text-white">
+                            AI가 분석하는<br/>
+                            <span class="bg-gradient-to-r from-primary to-orange-400 bg-clip-text text-transparent">스마트한 로또 번호</span>
+                        </h1>
+                    </div>
+
+                    <!-- Enhanced Feature Cards -->
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="glass p-6 rounded-2xl flex items-center gap-5 group hover:bg-white/[0.05] transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-2xl">psychology</span>
+                            </div>
+                            <div>
+                                <h4 class="font-black text-sm text-white mb-1 uppercase tracking-wider">AI Deep Learning</h4>
+                                <p class="text-xs text-slate-500 font-medium">TensorFlow 기반 정밀 신경망 분석</p>
                             </div>
                         </div>
-                        <div class="probability-box">
-                            <div class="prob-value" id="optimizationScore" data-i18n="system_ready">SYSTEM READY</div>
-                        </div>
-                        
-                        <div class="main-controls">
-                            <div class="control-group">
-                                <label for="qtySelect" data-i18n="qty_label">추출 수량 설정</label>
-                                <div class="btn-grid" id="qtySelect">
-                                    <button class="qty-btn active" data-qty="1">1 Set</button>
-                                    <button class="qty-btn" data-qty="5">5 Sets</button>
-                                    <button class="qty-btn" data-qty="10">10 Sets</button>
-                                    <button class="qty-btn" data-qty="20">20 Sets</button>
-                                </div>
+                        <div class="glass p-6 rounded-2xl flex items-center gap-5 group hover:bg-white/[0.05] transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-2xl">tune</span>
                             </div>
-                            <button id="btnGenerate" class="cyber-btn" aria-label="번호 생성 및 분석 실행" data-i18n="btn_generate">데이터 분석 및 조합 생성 실행</button>
-                            
-                            <!-- SNS 공유 섹션 -->
-                            <section class="share-section">
-                                <h2 data-i18n="share_title">분석 결과 주변에 공유하기</h2>
-                                <div class="share-buttons">
-                                    <button class="share-btn kakao" data-i18n="share_kakao">카카오톡</button>
-                                    <button class="share-btn facebook" data-i18n="share_facebook">페이스북</button>
-                                    <button class="share-btn twitter" data-i18n="share_twitter">X (트위터)</button>
-                                    <button class="share-btn copy" data-i18n="share_copy">URL 복사</button>
-                                </div>
-                            </section>
+                            <div>
+                                <h4 class="font-black text-sm text-white mb-1 uppercase tracking-wider">22 Smart Filters</h4>
+                                <p class="text-xs text-slate-500 font-medium">통계 기반 22단계 전수 필터링</p>
+                            </div>
                         </div>
                     </div>
-                </article>
+                </div>
 
-                <aside class="sidebar">
-                    <section class="panel filter-panel">
-                        <div class="panel-header">
-                            <span data-i18n="filter_header">필터링 조건</span>
-                            <span class="badge" id="activeFilterCount">22 Active (취향껏 선택해 조합)</span>
+                <!-- Right: Optimized Vertical Analyzer Tool (SCR-20260313-djed.png Reference) -->
+                <div class="lg:col-span-7">
+                    <div class="glass rounded-[2.5rem] p-3 shadow-2xl border-white/5 monitor-glow overflow-hidden">
+                        <div class="flex flex-col gap-3">
+                            <!-- Visual Monitor -->
+                            <div class="relative bg-black/40 rounded-[2rem] min-h-[400px] flex flex-col overflow-hidden border border-white/[0.03]">
+                                <div class="px-6 py-4 flex items-center justify-between bg-white/[0.02] border-b border-white/[0.05]">
+                                    <div class="flex items-center gap-3">
+                                        <div class="flex gap-1.5">
+                                            <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"></div>
+                                            <div class="w-2.5 h-2.5 rounded-full bg-[#febc2e]"></div>
+                                            <div class="w-2.5 h-2.5 rounded-full bg-[#28c840]"></div>
+                                        </div>
+                                        <span class="text-[10px] font-mono font-black text-slate-500 tracking-widest uppercase">System Core v12</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+                                        <span class="text-[10px] font-mono text-primary font-bold">READY</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex-1 flex flex-col items-center justify-center p-8 relative">
+                                    <div id="ballContainer" class="w-full space-y-6">
+                                        <div class="welcome-msg text-center space-y-4">
+                                            <div class="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center mx-auto border border-primary/20">
+                                                <span class="material-symbols-outlined text-4xl text-primary">auto_awesome</span>
+                                            </div>
+                                            <div class="space-y-1">
+                                                <h3 class="text-3xl font-black text-white tracking-tight">ANALYZER</h3>
+                                                <p class="text-slate-500 text-sm font-bold uppercase tracking-[0.2em]">Ready to Compute</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="px-6 py-4 bg-white/[0.02] border-t border-white/[0.05] flex justify-center">
+                                    <div id="optimizationScore" class="text-xs font-mono font-black text-primary tracking-[0.3em]">ESTABLISHING CONNECT...</div>
+                                </div>
+                            </div>
+
+                            <!-- Integrated Vertical Controls -->
+                            <div class="flex flex-col gap-3 p-2">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                    <div class="glass rounded-2xl p-4 flex flex-col gap-3 border-white/[0.05]">
+                                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest px-1">Lotto System</label>
+                                        <select id="lottoTypeSelect" class="w-full h-12 bg-black/20 rounded-xl border border-white/5 px-4 text-sm font-black text-white focus:ring-2 focus:ring-primary/20 outline-none transition-all appearance-none cursor-pointer">
+                                            <option value="KOREA_645">🇰🇷 KOREA 6/45</option>
+                                            <option value="US_POWERBALL">🇺🇸 US POWERBALL</option>
+                                            <option value="US_MEGA_MILLIONS">🇺🇸 MEGA MILLIONS</option>
+                                            <option value="EURO_MILLIONS">🇪🇺 EUROMILLIONS</option>
+                                            <option value="EURO_JACKPOT">🇪🇺 EUROJACKPOT</option>
+                                        </select>
+                                    </div>
+                                    <div class="glass rounded-2xl p-4 flex flex-col gap-3 border-white/[0.05]">
+                                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest px-1" data-i18n="qty_label">Quantity</label>
+                                        <div class="grid grid-cols-4 gap-2" id="qtySelect">
+                                            <button class="qty-btn active h-12 rounded-xl border border-white/5 bg-black/20 text-sm font-black text-slate-400 hover:border-primary/50 [&.active]:bg-primary [&.active]:text-white [&.active]:border-primary transition-all" data-qty="1">1</button>
+                                            <button class="qty-btn h-12 rounded-xl border border-white/5 bg-black/20 text-sm font-black text-slate-400 hover:border-primary/50 [&.active]:bg-primary [&.active]:text-white [&.active]:border-primary transition-all" data-qty="5">5</button>
+                                            <button class="qty-btn h-12 rounded-xl border border-white/5 bg-black/20 text-sm font-black text-slate-400 hover:border-primary/50 [&.active]:bg-primary [&.active]:text-white [&.active]:border-primary transition-all" data-qty="10">10</button>
+                                            <button class="qty-btn h-12 rounded-xl border border-white/5 bg-black/20 text-sm font-black text-slate-400 hover:border-primary/50 [&.active]:bg-primary [&.active]:text-white [&.active]:border-primary transition-all" data-qty="20">20</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <button id="btnGenerate" class="w-full h-20 rounded-[1.5rem] bg-primary text-white font-black text-xl shadow-2xl shadow-primary/30 hover:scale-[1.01] hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-4 group">
+                                    <span class="material-symbols-outlined text-2xl group-hover:rotate-180 transition-transform duration-500">sync</span>
+                                    <span data-i18n="btn_generate" class="tracking-tight">분석 및 번호 추출</span>
+                                </button>
+                            </div>
                         </div>
-                        <div class="filter-scroll" id="filterList"></div>
-                    </section>
-                </aside>
-            </section>
-        </main>
-
-        <section class="site-info-article container" style="margin-top: 60px; padding: 40px; background: var(--panel-bg); border-radius: 20px; border: 1px solid var(--border-color);">
-            <header style="margin-bottom: 30px; text-align: center;">
-                <h2 style="font-size: 1.8rem; color: var(--accent-blue);">과학적 로또 분석의 새로운 기준, 로또버깅</h2>
-                <p style="color: var(--text-dim);">무작위 속에서 통계적 유의성을 찾아내는 최첨단 데이터 엔진</p>
-            </header>
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; line-height: 1.8;">
-                <div>
-                    <h3 style="color: var(--text-main); margin-bottom: 15px;">22단계 정밀 필터링 시스템</h3>
-                    <p style="font-size: 0.95rem; color: var(--text-dim);">
-                        로또버깅은 단순히 숫자를 무작위로 추출하지 않습니다. 역대 1회부터 최신 회차까지의 모든 당첨 데이터를 전수 조사하여, 
-                        <strong>AC값(Arithmetic Complexity), 홀짝 비율, 저고 비율, 총합 구간, 끝수 패턴</strong> 등 22가지 이상의 통계적 변수를 실시간으로 분석합니다. 
-                        이를 통해 확률적으로 극히 희박한 조합(예: 1, 2, 3, 4, 5, 6 등)을 제거하고 당첨 기댓값이 높은 '유효 조합'만을 선별합니다.
-                    </p>
+                    </div>
                 </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Simple Modern Footer -->
+    <footer class="px-6 py-12 border-t border-white/5 text-center mt-auto">
+        <div class="max-w-7xl mx-auto flex flex-col items-center gap-8">
+            <div class="flex items-center gap-2 text-slate-600 grayscale brightness-200">
+                <span class="material-symbols-outlined text-2xl font-black">query_stats</span>
+                <h2 class="text-lg font-black tracking-tight uppercase">LottoBugging</h2>
+            </div>
+            <div class="flex flex-wrap justify-center gap-x-10 gap-y-4 text-xs font-black text-slate-500 uppercase tracking-widest">
+                <a href="privacy.html" class="hover:text-primary transition-colors">Privacy Policy</a>
+                <a href="terms.html" class="hover:text-primary transition-colors">Terms of Service</a>
+                <a href="about.html" class="hover:text-primary transition-colors">Contact</a>
+            </div>
+            <p class="text-[10px] text-slate-600 font-bold max-w-md uppercase tracking-widest leading-loose">
+                © 2026 Data Science Lab. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Filter Drawer (Remains same functionality) -->
+    <div id="filterDrawerOverlay" class="fixed inset-0 z-[110] bg-black/80 backdrop-blur-md hidden opacity-0 transition-opacity duration-300"></div>
+    <div id="filterDrawer" class="fixed top-0 right-[-100%] z-[120] w-full max-w-md h-full bg-[#0a0705] shadow-2xl transition-all duration-500 ease-in-out border-l border-white/5">
+        <div class="flex flex-col h-full">
+            <div class="px-8 py-8 border-b border-white/5 flex justify-between items-center bg-white/[0.01]">
                 <div>
-                    <h3 style="color: var(--text-main); margin-bottom: 15px;">AI 딥러닝 알고리즘의 결합</h3>
-                    <p style="font-size: 0.95rem; color: var(--text-dim);">
-                        우리의 시스템은 과거의 데이터에만 머물지 않습니다. 딥러닝 기반의 알고리즘은 최근 회차에서 나타나는 
-                        <strong>번호별 출현 주기(Hot & Cold Numbers)</strong>와 <strong>이월수 패턴</strong>을 학습합니다. 
-                        사용자가 선택한 분석 전략(표준, 패턴, 정밀)에 따라 가중치를 동적으로 조절하며, 수백만 개의 조합 중 시스템 피트니스 점수가 가장 높은 데이터 세트를 최종적으로 제안합니다.
-                    </p>
+                    <h3 class="font-black text-white text-xl tracking-tight uppercase">Filters</h3>
+                    <p id="activeFilterCount" class="text-[10px] text-primary font-black uppercase tracking-widest mt-1">22 Active Protocols</p>
                 </div>
+                <button id="closeFilterDrawer" class="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white transition-all">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
             </div>
-
-            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px dashed var(--border-color); text-align: center;">
-                <p style="font-size: 0.85rem; color: var(--text-dim); line-height: 1.6;">
-                    ※ 로또버깅은 데이터 사이언스 기반의 통계 모델링과 확률 분석의 유효성을 탐구하는 연구 프로젝트입니다.<br>
-                    본 서비스는 과거 데이터를 기반으로 한 통계적 분석 결과만을 제공하며, 당첨을 확정적으로 보장하거나 사행성을 조장하지 않습니다.<br>
-                    로또는 건전한 오락으로 즐겨야 하며, 과도한 몰입은 개인의 삶에 영향을 줄 수 있습니다. (도박문제 상담: 국번없이 1336)
-                </p>
+            <div id="filterList" class="flex-1 overflow-y-auto p-6 space-y-3">
+                <!-- Filters injected by main.js -->
             </div>
-        </section>
-
-        <footer class="main-footer" role="contentinfo">
-            <nav class="footer-links" aria-label="정책 및 약관">
-                <a href="privacy.html" data-i18n="footer_privacy">개인정보처리방침</a>
-                <a href="terms.html" data-i18n="footer_terms">이용약관</a>
-            </nav>
-            <p class="copyright" data-i18n="footer_copyright">&copy; 2026 LOTTOBUGGING Data Science Lab. All Rights Reserved.</p>
-        </footer>
-    </div>
-
-    <!-- 모달 -->
-    <div id="reportModal" class="modal" role="dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 data-i18n="analysis_report">ANALYSIS REPORT</h3>
-                <button class="close-modal" aria-label="닫기">&times;</button>
-            </div>
-            <div id="reportContent" class="modal-body"></div>
-            <div class="modal-footer">
-                <button class="confirm-btn close-modal-btn">확인</button>
+            <div class="p-8 border-t border-white/5 bg-white/[0.01]">
+                <button id="applyFiltersBtn" class="w-full py-5 rounded-2xl bg-primary text-white font-black uppercase tracking-widest hover:brightness-110 shadow-xl shadow-primary/20 transition-all">Save Changes</button>
             </div>
         </div>
     </div>
 
-    <div id="analysisOverlay" style="display:none;"></div>
+    <!-- Report Modal (Remains same functionality) -->
+    <div id="reportModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div class="glass w-full max-w-md rounded-[2.5rem] shadow-2xl overflow-hidden border-white/10">
+            <div id="reportContent" class="p-10"></div>
+            <div class="px-8 py-6 border-t border-white/5">
+                <button class="close-modal-btn w-full py-5 rounded-2xl bg-primary text-white font-black uppercase tracking-widest hover:brightness-110 transition-all">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <!-- 로직 최적화: 외부 라이브러리를 바디 끝으로 이동 -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="main.js?v=2.1"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="module" src="main.js?v=4.0"></script>
 </body>
 </html>

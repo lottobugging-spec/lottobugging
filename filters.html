@@ -32,18 +32,6 @@
         .f-desc { font-size: 0.9rem; color: var(--text-dim); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
         .f-tag { align-self: flex-start; background: rgba(9, 105, 218, 0.1); color: var(--accent-blue); font-size: 0.75rem; padding: 4px 10px; border-radius: 50px; font-weight: 600; }
         
-        .ads-area { max-width: 1200px; margin: 20px auto; text-align: center; min-height: 100px; background: rgba(0,0,0,0.02); display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem; border: 1px dashed #ddd; border-radius: 10px; }
-    </style>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5404863618739679"
-     crossorigin="anonymous"></script>
-    <meta name="google-adsense-account" content="ca-pub-5404863618739679">
-</head>
-<body>
-    <script>
-        (function() {
-            const savedTheme = localStorage.getItem('lotto-theme') || 'light';
-            if (savedTheme === 'dark') document.body.classList.add('dark-mode');
-        })();
     </script>
 
     <header class="site-header">
@@ -104,8 +92,8 @@
         </footer>
     </div>
 
-    <script src="main.js"></script>
-    <script>
+    <script type="module">
+        import { FILTER_DETAILS, STATE } from './main.js';
         window.addEventListener('DOMContentLoaded', () => {
             const container = document.getElementById('filtersContainer');
             if (typeof FILTER_DETAILS !== 'undefined' && container) {
@@ -113,15 +101,15 @@
                     const card = document.createElement('a');
                     const isAI = f.id === 22;
                     card.className = 'filter-card';
-                    if (isAI) card.style.borderColor = '#3182f6';
+                    if (isAI) card.style.borderColor = '#ec5b13';
                     card.href = `filter-detail.html?id=${f.id}`;
                     const name = f.name[STATE.currentLang] || f.name['ko'];
-                    const desc = f.desc[STATE.currentLang] || f.desc['ko'];
+                    const desc = f.desc ? (f.desc[STATE.currentLang] || f.desc['ko']) : "No description available.";
                     card.innerHTML = `
-                        <div class="f-num" style="${isAI ? 'color: #3182f6;' : ''}">Step ${String(f.id).padStart(2, '0')}</div>
+                        <div class="f-num" style="${isAI ? 'color: #ec5b13;' : ''}">Step ${String(f.id).padStart(2, '0')}</div>
                         <div class="f-title">${name}</div>
                         <div class="f-desc">${desc}</div>
-                        <div class="f-tag" style="${isAI ? 'background: #3182f6; color: white;' : ''}">${isAI ? 'AI Deep Learning' : '통계 알고리즘'}</div>
+                        <div class="f-tag" style="${isAI ? 'background: #ec5b13; color: white;' : ''}">${isAI ? 'AI Deep Learning' : '통계 알고리즘'}</div>
                     `;
                     container.appendChild(card);
                 });

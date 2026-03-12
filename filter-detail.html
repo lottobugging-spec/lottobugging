@@ -28,18 +28,6 @@
         .gen-link-btn { display: inline-block; background: var(--accent-orange); color: #fff; padding: 18px 40px; border-radius: 50px; font-weight: bold; font-size: 1.1rem; text-decoration: none; box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3); transition: 0.3s; }
         .gen-link-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255, 107, 0, 0.4); }
         
-        .ads-area { margin: 30px 0; text-align: center; min-height: 100px; background: rgba(0,0,0,0.02); display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem; border: 1px dashed #ddd; border-radius: 10px; }
-    </style>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5404863618739679"
-     crossorigin="anonymous"></script>
-    <meta name="google-adsense-account" content="ca-pub-5404863618739679">
-</head>
-<body>
-    <script>
-        (function() {
-            const savedTheme = localStorage.getItem('lotto-theme') || 'light';
-            if (savedTheme === 'dark') document.body.classList.add('dark-mode');
-        })();
     </script>
 
     <header class="site-header">
@@ -84,21 +72,19 @@
     </header>
 
     <div class="container">
-        <div class="ads-area">GOOGLE ADSENSE - 상단 광고</div>
 
         <main class="detail-container" id="filterDetailContent">
             <!-- JS로 내용 채움 -->
         </main>
 
-        <div class="ads-area">GOOGLE ADSENSE - 하단 광고</div>
 
         <footer class="main-footer">
             <p>&copy; 2026 LOTTOBUGGING Lab. All Rights Reserved.</p>
         </footer>
     </div>
 
-    <script src="main.js"></script>
-    <script>
+    <script type="module">
+        import { FILTER_DETAILS, STATE } from './main.js';
         window.addEventListener('DOMContentLoaded', () => {
             const params = new URLSearchParams(window.location.search);
             const id = parseInt(params.get('id'));
@@ -111,7 +97,7 @@
 
             const currentLang = STATE.currentLang || 'ko';
             document.getElementById('pageTitle').innerText = `${filter.name[currentLang]} - 로또 분석 필터 상세 | 로또버깅`;
-            document.getElementById('metaDesc').setAttribute('content', filter.desc[currentLang]);
+            document.getElementById('metaDesc').setAttribute('content', filter.desc ? (filter.desc[currentLang] || filter.desc['ko']) : "");
 
             const content = document.getElementById('filterDetailContent');
             content.innerHTML = `
@@ -122,7 +108,7 @@
 
                 <div class="section">
                     <h3>필터 설명</h3>
-                    <p>${filter.desc[currentLang]}</p>
+                    <p>${filter.desc ? (filter.desc[currentLang] || filter.desc['ko']) : "설명이 없습니다."}</p>
                 </div>
 
                 ${filter.why ? `

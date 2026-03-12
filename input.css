@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/container-queries";
+
+@theme {
+  --color-primary: #ec5b13;
+  --color-background-light: #f8f6f6;
+  --color-background-dark: #1a120e;
+  --font-display: "Public Sans", "sans-serif";
+  --radius-default: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+}
+
+@layer base {
+    body { 
+        @apply font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 transition-colors duration-300; 
+    }
+}
+
+.ball {
+    @apply w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-bold text-white text-lg shadow-inner;
+}
+.ball[data-color="yellow"] { background: #FFD700; color: #000; }
+.ball[data-color="blue"] { background: #007BFF; }
+.ball[data-color="red"] { background: #FF4136; }
+.ball[data-color="gray"] { background: #4A4A4A; }
+.ball[data-color="green"] { background: #2ECC40; }
+.ball[data-color="white"] { background: #FFFFFF; color: #000; border: 1px solid #ddd; }
+
+.result-row { @apply flex items-center justify-center gap-2 sm:gap-3 py-3 border-b border-slate-100 dark:border-slate-800 transition-all; }
+.btn-report { @apply text-[10px] font-bold px-2 py-1 rounded border border-primary text-primary hover:bg-primary hover:text-white transition-colors; }
+
+.spinner {
+    width: 30px; height: 30px;
+    border: 3px solid rgba(236, 91, 19, 0.2);
+    border-top-color: #ec5b13;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
